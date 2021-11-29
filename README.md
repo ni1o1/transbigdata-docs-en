@@ -1,34 +1,34 @@
-# TransBigData 针对交通时空大数据处理的Python包
+# English doc for TransBigData
 
 <img src="https://github.com/ni1o1/transbigdata/raw/main/docs/source/_static/logo-wordmark-dark.png" style="width:550px">
 
 [![Documentation Status](https://readthedocs.org/projects/transbigdata/badge/?version=latest)](https://transbigdata.readthedocs.io/en/latest/?badge=latest) ![PyPI](https://img.shields.io/pypi/v/transbigdata) [![bilibili](https://img.shields.io/badge/bilibili-%E5%90%8C%E6%B5%8E%E5%B0%8F%E6%97%AD%E5%AD%A6%E9%95%BF-green.svg)](https://space.bilibili.com/3051484)  
 
 
-**主要功能**
+**Main Functions**
 
-TransBigData工具针对时空大数据处理而开发，依托于GeoPandas。TransBigData集成了交通时空大数据处理过程中常用的方法。包括栅格化、数据质量分析、数据预处理、数据集计、轨迹分析、GIS处理、地图底图加载、坐标与距离计算、数据可视化等通用方法。TransBigData也针对出租车GPS数据、共享单车数据、公交GPS数据等多种常见交通时空大数据提供了快速简洁的处理方法。
+TransBigData is a Python package developed for spatio-temporal big data processing and relies on GeoPandas. TransBigData provides fast and concise methods for processing common traffic spatio-temporal big data such as Taxi GPS data, bicycle sharing data and bus GPS data. It includes general methods such as rasterization, data quality analysis, data pre-processing, data set counting, trajectory analysis, GIS processing, map base map loading, coordinate and distance calculation, and data visualization.
 
-**技术特点**
+**Technical Features**
 
-* 面向交通时空大数据分析不同阶段的处理需求提供不同处理功能。
-* 代码简洁、高效、灵活、易用，通过简短的代码即可实现复杂的数据任务。
+* Provides different processing methods for different stages of traffic spatio-temporal big data analysis.
+* The code with TransBigData is clean, efficient, flexible, and easy to use, allowing complex data tasks to be achieved with concise code.
 
 
 更多细节请查看：[TransBigData的说明文档](https://transbigdata.readthedocs.io/)
 
 
-## 安装
+## Installation
 
-在安装TransBigData之前，请确保已经安装了可用的geopandas包：https://geopandas.org/index.html  
-如果你已经安装了geopandas，则直接在命令提示符中运行下面代码即可安装
+Before installing TransBigData, make sure that you have installed the available geopandas package: https://geopandas.org/index.html
+If you already have geopandas installed, run the following code directly from the command prompt to install it
 
     pip install -U transbigdata
 
 
-## 使用
+## Usage
 
-下面例子展示如何使用TransBigData工具快速地从出租车GPS数据中提取出行OD:
+The following example shows how to use the TransBigData to quickly extract trip OD from cab GPS data:
 
     #导入TransBigData包
     import transbigdata as tbd
@@ -40,7 +40,7 @@ TransBigData工具针对时空大数据处理而开发，依托于GeoPandas。Tr
 
 <img src="https://github.com/ni1o1/transbigdata/raw/main/docs/source/_static/WX20211021-192131@2x.png" style="height:300px">
 
-使用transbigdata.taxigps_to_od方法，传入对应的列名，即可提取出行OD:
+Use the tbd.taxigps_to_od method and pass in the corresponding column name to extract the trip OD:
 
     #从GPS数据提取OD
     oddata = tbd.taxigps_to_od(data,col = ['VehicleNum','time','slon','slat','OpenStatus'])
@@ -48,7 +48,7 @@ TransBigData工具针对时空大数据处理而开发，依托于GeoPandas。Tr
 
 <img src="https://github.com/ni1o1/transbigdata/raw/main/docs/source/_static/WX20211021-190104@2x.png" style="height:300px">
 
-对提取出的OD进行OD的栅格集计:
+Aggregate OD into grids:
 
     #定义研究范围
     bounds = [113.6,22.4,114.8,22.9]
@@ -60,18 +60,18 @@ TransBigData工具针对时空大数据处理而开发，依托于GeoPandas。Tr
 
 <img src="https://github.com/ni1o1/transbigdata/raw/main/docs/source/_static/WX20211021-190524@2x.png" style="height:300px">
 
-## 相关链接
+## Related Links
 
-* 小旭学长的b站： https://space.bilibili.com/3051484
-* 小旭学长的七天入门交通时空大数据分析课程（零基础免费课）： https://www.lifangshuju.com/#/introduce/166  
-* 小旭学长的交通时空大数据分析课程： https://www.lifangshuju.com/#/introduce/154  
-* 小旭学长的数据可视化课程： https://www.lifangshuju.com/#/introduce/165  
-* 本项目的github页面： https://github.com/ni1o1/transbigdata/  
-* 有bug请在这个页面提交： https://github.com/ni1o1/transbigdata/issues  
+* Bilibili:  https://space.bilibili.com/3051484
+* Data analytics course for beginner https://www.lifangshuju.com/#/introduce/166  
+* Transportation Big Data analysis course： https://www.lifangshuju.com/#/introduce/154  
+* Data Visualization course： https://www.lifangshuju.com/#/introduce/165  
+* Github for this project： https://github.com/ni1o1/transbigdata/  
+* Bug report： https://github.com/ni1o1/transbigdata/issues  
 
 ## 引用
 
-而如果你想要引用这个 GitHub 仓库，可以使用如下的 bibtex：
+And if you want to reference this GitHub repository, you can use the following bibtex.
 
 ```
 @misc{transbigdata,
