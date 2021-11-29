@@ -69,7 +69,7 @@ Aggregate OD into grids:
 * Github for this project： https://github.com/ni1o1/transbigdata/  
 * Bug report： https://github.com/ni1o1/transbigdata/issues  
 
-## 引用
+## Citation
 
 And if you want to reference this GitHub repository, you can use the following bibtex.
 
