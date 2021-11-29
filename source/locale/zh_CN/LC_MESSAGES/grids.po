@@ -1,0 +1,442 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, Qing Yu
+# This file is distributed under the same license as the TransBigData
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: TransBigData 0.2.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-29 23:07+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.1\n"
+
+#: ../grids.rst:6
+msgid "数据栅格化"
+msgstr ""
+
+#: ../grids.rst:9
+msgid "方形栅格渔网的生成与对应"
+msgstr ""
+
+#: ../grids.rst:13
+msgid "生成研究范围内的方形栅格"
+msgstr ""
+
+#: ../grids.rst:15 ../grids.rst:42 ../grids.rst:65 ../grids.rst:89
+#: ../grids.rst:114 ../grids.rst:136 ../grids.rst:178 ../grids.rst:199
+#: ../grids.rst:213 ../grids.rst:437
+msgid "**输入**"
+msgstr ""
+
+#: ../grids.rst:17 ../grids.rst:44 ../grids.rst:439
+msgid "bounds"
+msgstr ""
+
+msgid "List"
+msgstr ""
+
+#: ../grids.rst:18 ../grids.rst:45 ../grids.rst:440
+msgid ""
+"生成范围的边界，[lon1,lat1,lon2,lat2] (WGS84坐标系) "
+"其中，lon1,lat1是左下角坐标，lon2,lat2是右上角坐标"
+msgstr ""
+
+#: ../grids.rst:21 ../grids.rst:48 ../grids.rst:442
+msgid "accuracy"
+msgstr ""
+
+msgid "number"
+msgstr ""
+
+#: ../grids.rst:20 ../grids.rst:47
+msgid "栅格大小（米）"
+msgstr ""
+
+#: ../grids.rst:23 ../grids.rst:50 ../grids.rst:74 ../grids.rst:98
+#: ../grids.rst:123 ../grids.rst:147 ../grids.rst:187 ../grids.rst:204
+#: ../grids.rst:218 ../grids.rst:444
+msgid "**输出**"
+msgstr ""
+
+#: ../grids.rst:25
+msgid "grid"
+msgstr ""
+
+msgid "GeoDataFrame"
+msgstr ""
+
+#: ../grids.rst:26
+msgid "栅格的GeoDataFrame，其中LONCOL与LATCOL为栅格的编号，HBLON与HBLAT为栅格的中心点坐标"
+msgstr ""
+
+#: ../grids.rst:29 ../grids.rst:54 ../grids.rst:72 ../grids.rst:96
+#: ../grids.rst:121 ../grids.rst:142
+msgid "params"
+msgstr ""
+
+#: ../grids.rst:28 ../grids.rst:53 ../grids.rst:72 ../grids.rst:96
+#: ../grids.rst:121
+msgid "栅格参数(lonStart,latStart,deltaLon,deltaLat)，分别为栅格左下角坐标与单个栅格的经纬度长宽"
+msgstr ""
+
+#: ../grids.rst:40
+msgid "栅格参数获取"
+msgstr ""
+
+#: ../grids.rst:63
+msgid "GPS数据对应栅格编号。输入数据的经纬度列与栅格参数，输出对应的栅格编号"
+msgstr ""
+
+#: ../grids.rst:67 ../grids.rst:180 ../grids.rst:189
+msgid "lon"
+msgstr ""
+
+msgid "Series"
+msgstr ""
+
+#: ../grids.rst:68 ../grids.rst:181 ../grids.rst:190
+msgid "经度列"
+msgstr ""
+
+#: ../grids.rst:69 ../grids.rst:182 ../grids.rst:193
+msgid "lat"
+msgstr ""
+
+#: ../grids.rst:70 ../grids.rst:183 ../grids.rst:192
+msgid "纬度列"
+msgstr ""
+
+#: ../grids.rst:76 ../grids.rst:91 ../grids.rst:116
+msgid "LONCOL"
+msgstr ""
+
+#: ../grids.rst:77 ../grids.rst:92 ../grids.rst:117
+msgid "经度栅格编号列"
+msgstr ""
+
+#: ../grids.rst:79 ../grids.rst:93 ../grids.rst:118
+msgid "LATCOL"
+msgstr ""
+
+#: ../grids.rst:79 ../grids.rst:94 ../grids.rst:119
+msgid "纬度栅格编号列"
+msgstr ""
+
+#: ../grids.rst:87
+msgid "栅格编号对应栅格中心点经纬度。输入数据的栅格编号与栅格参数，输出对应的栅格中心点"
+msgstr ""
+
+#: ../grids.rst:100
+msgid "HBLON"
+msgstr ""
+
+#: ../grids.rst:101
+msgid "栅格中心点经度列"
+msgstr ""
+
+#: ../grids.rst:104
+msgid "HBLAT"
+msgstr ""
+
+#: ../grids.rst:103
+msgid "栅格中心点纬度列"
+msgstr ""
+
+#: ../grids.rst:112
+msgid "栅格编号生成栅格的地理信息列。输入数据的栅格编号与栅格参数，输出对应的地理信息列"
+msgstr ""
+
+#: ../grids.rst:126
+msgid "geometry"
+msgstr ""
+
+#: ../grids.rst:126
+msgid "栅格的矢量图形列"
+msgstr ""
+
+#: ../grids.rst:134
+msgid "输入数据（带有栅格经纬度编号两列），矢量图形与栅格化参数，输出数据栅格并对应矢量图形。"
+msgstr ""
+
+#: ../grids.rst:138
+msgid "data"
+msgstr ""
+
+msgid "DataFrame"
+msgstr ""
+
+#: ../grids.rst:139
+msgid "数据,（带有栅格经纬度编号两列）"
+msgstr ""
+
+#: ../grids.rst:140
+msgid "shape"
+msgstr ""
+
+#: ../grids.rst:141
+msgid "矢量图形"
+msgstr ""
+
+#: ../grids.rst:143
+msgid "栅格化参数"
+msgstr ""
+
+#: ../grids.rst:145
+msgid "col"
+msgstr ""
+
+#: ../grids.rst:145
+msgid "列名，[经度栅格编号，纬度栅格编号]"
+msgstr ""
+
+#: ../grids.rst:151
+msgid "data1"
+msgstr ""
+
+#: ../grids.rst:150
+msgid "数据栅格并对应矢量图形"
+msgstr ""
+
+#: ../grids.rst:154
+msgid "geohash编码"
+msgstr ""
+
+#: ../grids.rst:156
+msgid ""
+"geohash是一种公共域地理编码系统，它的作用是将经纬度地理位置编码为字母和数字组成的字符串，字符串也可解码为经纬度。每个字符串代表一个网格编号，字符串的长度越长则精度越高。根据\\"
+" `wiki <https://en.wikipedia.org/wiki/Geohash>`__\\ "
+"，geohash字符串长度对应精度表格如下："
+msgstr ""
+
+#: ../grids.rst:159
+msgid "geohash length(precision)"
+msgstr ""
+
+#: ../grids.rst:159
+msgid "lat bits"
+msgstr ""
+
+#: ../grids.rst:159
+msgid "lng bits"
+msgstr ""
+
+#: ../grids.rst:159
+msgid "lat error"
+msgstr ""
+
+#: ../grids.rst:159
+msgid "lng error"
+msgstr ""
+
+#: ../grids.rst:159
+msgid "km error"
+msgstr ""
+
+#: ../grids.rst:161
+msgid "1"
+msgstr ""
+
+#: ../grids.rst:161 ../grids.rst:162
+msgid "2"
+msgstr ""
+
+#: ../grids.rst:161 ../grids.rst:163
+msgid "3"
+msgstr ""
+
+#: ../grids.rst:161
+msgid "±23"
+msgstr ""
+
+#: ../grids.rst:161
+msgid "±2500"
+msgstr ""
+
+#: ../grids.rst:162 ../grids.rst:165
+msgid "5"
+msgstr ""
+
+#: ../grids.rst:162
+msgid "±2.8"
+msgstr ""
+
+#: ../grids.rst:162
+msgid "±5.6"
+msgstr ""
+
+#: ../grids.rst:162
+msgid "±630"
+msgstr ""
+
+#: ../grids.rst:163 ../grids.rst:167
+msgid "7"
+msgstr ""
+
+#: ../grids.rst:163 ../grids.rst:168
+msgid "8"
+msgstr ""
+
+#: ../grids.rst:163
+msgid "±0.70"
+msgstr ""
+
+#: ../grids.rst:163
+msgid "±78"
+msgstr ""
+
+#: ../grids.rst:164
+msgid "4"
+msgstr ""
+
+#: ../grids.rst:164
+msgid "10"
+msgstr ""
+
+#: ../grids.rst:164
+msgid "±0.087"
+msgstr ""
+
+#: ../grids.rst:164
+msgid "±0.18"
+msgstr ""
+
+#: ../grids.rst:164
+msgid "±20"
+msgstr ""
+
+#: ../grids.rst:165
+msgid "12"
+msgstr ""
+
+#: ../grids.rst:165
+msgid "13"
+msgstr ""
+
+#: ../grids.rst:165
+msgid "±0.022"
+msgstr ""
+
+#: ../grids.rst:165
+msgid "±2.4"
+msgstr ""
+
+#: ../grids.rst:166
+msgid "6"
+msgstr ""
+
+#: ../grids.rst:166
+msgid "15"
+msgstr ""
+
+#: ../grids.rst:166
+msgid "±0.0027"
+msgstr ""
+
+#: ../grids.rst:166
+msgid "±0.0055"
+msgstr ""
+
+#: ../grids.rst:166
+msgid "±0.61"
+msgstr ""
+
+#: ../grids.rst:167
+msgid "17"
+msgstr ""
+
+#: ../grids.rst:167
+msgid "18"
+msgstr ""
+
+#: ../grids.rst:167
+msgid "±0.00068"
+msgstr ""
+
+#: ../grids.rst:167
+msgid "±0.076"
+msgstr ""
+
+#: ../grids.rst:168
+msgid "20"
+msgstr ""
+
+#: ../grids.rst:168
+msgid "±0.000085"
+msgstr ""
+
+#: ../grids.rst:168
+msgid "±0.00017"
+msgstr ""
+
+#: ../grids.rst:168
+msgid "±0.019"
+msgstr ""
+
+#: ../grids.rst:171
+msgid "TransBigData包中也提供了geohash的处理功能，主要包括三个函数："
+msgstr ""
+
+#: ../grids.rst:176 ../grids.rst:197
+msgid "输入经纬度与精度，输出geohash编码"
+msgstr ""
+
+#: ../grids.rst:185
+msgid "precision"
+msgstr ""
+
+#: ../grids.rst:185
+msgid "geohash精度"
+msgstr ""
+
+#: ../grids.rst:202 ../grids.rst:207 ../grids.rst:216
+msgid "geohash"
+msgstr ""
+
+#: ../grids.rst:202 ../grids.rst:207 ../grids.rst:216
+msgid "geohash编码列"
+msgstr ""
+
+#: ../grids.rst:211
+msgid "输入geohash编码，输出geohash网格的地理信息图形Series列"
+msgstr ""
+
+#: ../grids.rst:221
+msgid "poly"
+msgstr ""
+
+#: ../grids.rst:221
+msgid "geohash的栅格列"
+msgstr ""
+
+#: ../grids.rst:223
+msgid "相比TransBigData包中提供的方形栅格处理方法，geohash更慢，也无法提供自由定义的栅格大小。下面的示例展示如何利用这三个函数对数据进行geohash编码集计，并可视化"
+msgstr ""
+
+#: ../grids.rst:431
+msgid "六边形渔网生成"
+msgstr ""
+
+#: ../grids.rst:435
+msgid "生成研究范围内的六边形渔网。"
+msgstr ""
+
+#: ../grids.rst:442
+msgid "六边形的边长（米）"
+msgstr ""
+
+#: ../grids.rst:447
+msgid "hexagon"
+msgstr ""
+
+#: ../grids.rst:447
+msgid "六边形渔网的矢量图形"
+msgstr ""
+

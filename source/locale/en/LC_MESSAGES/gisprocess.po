@@ -1,0 +1,265 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, Qing Yu
+# This file is distributed under the same license as the TransBigData
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: TransBigData 0.2.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-29 23:07+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.1\n"
+
+#: ../gisprocess.rst:6
+msgid "GIS处理"
+msgstr ""
+
+#: ../gisprocess.rst:9
+msgid "近邻匹配"
+msgstr ""
+
+#: ../gisprocess.rst:11
+msgid "下面的案例展示如何用TransBigData包进行点与点、点与线的近邻匹配。该方法使用的是KDTree算法，可查看wiki：https://en.wikipedia.org/wiki/K-d_tree，算法复杂度为o(log(n))"
+msgstr ""
+
+#: ../gisprocess.rst:15
+msgid "点与点匹配（DataFrame与DataFrame）"
+msgstr ""
+
+#: ../gisprocess.rst:17
+msgid "导入TransBigData包"
+msgstr ""
+
+#: ../gisprocess.rst:23
+msgid "生成两个GeoDataFrame表，但它们只有经纬度列"
+msgstr ""
+
+#: ../gisprocess.rst:35
+msgid "使用tbd.ckdnearest进行点与点匹配，如果是DataFrame与DataFrame匹配（不含有地理信息），则需要指定前后两个表的经纬度列"
+msgstr ""
+
+#: ../gisprocess.rst:40
+msgid "输入两个DataFrame，分别指定经纬度列名，为表A匹配表B中最近点，并计算距离"
+msgstr ""
+
+#: ../gisprocess.rst:42 ../gisprocess.rst:180 ../gisprocess.rst:337
+#: ../gisprocess.rst:486 ../gisprocess.rst:840 ../gisprocess.rst:861
+msgid "**输入**"
+msgstr ""
+
+#: ../gisprocess.rst:44
+msgid "dfA_origin"
+msgstr ""
+
+msgid "DataFrame"
+msgstr ""
+
+#: ../gisprocess.rst:45
+msgid "表A"
+msgstr ""
+
+#: ../gisprocess.rst:46
+msgid "dfB_origin"
+msgstr ""
+
+#: ../gisprocess.rst:47
+msgid "表B"
+msgstr ""
+
+#: ../gisprocess.rst:48
+msgid "Aname"
+msgstr ""
+
+msgid "List"
+msgstr ""
+
+#: ../gisprocess.rst:49
+msgid "表A中经纬度列字段"
+msgstr ""
+
+#: ../gisprocess.rst:51
+msgid "Bname"
+msgstr ""
+
+#: ../gisprocess.rst:51
+msgid "表B中经纬度列字段"
+msgstr ""
+
+#: ../gisprocess.rst:53 ../gisprocess.rst:187 ../gisprocess.rst:344
+#: ../gisprocess.rst:493 ../gisprocess.rst:847 ../gisprocess.rst:868
+msgid "**输出**"
+msgstr ""
+
+#: ../gisprocess.rst:56 ../gisprocess.rst:191 ../gisprocess.rst:347
+msgid "gdf"
+msgstr ""
+
+#: ../gisprocess.rst:56 ../gisprocess.rst:190
+msgid "为A匹配到B上最近点的表"
+msgstr ""
+
+#: ../gisprocess.rst:165
+msgid "点与点匹配（GeoDataFrame与GeoDataFrame）"
+msgstr ""
+
+#: ../gisprocess.rst:167
+msgid "将A表B表变为含有点信息的GeoDataFrame"
+msgstr ""
+
+#: ../gisprocess.rst:174
+msgid "使用tbd.ckdnearest_point进行点与点匹配"
+msgstr ""
+
+#: ../gisprocess.rst:178
+msgid "输入两个GeoDataFrame，gdfA、gdfB均为点，该方法会为gdfA表连接上gdfB中最近的点，并添加距离字段dsit"
+msgstr ""
+
+#: ../gisprocess.rst:182 ../gisprocess.rst:339
+msgid "gdA"
+msgstr ""
+
+msgid "GeoDataFrame"
+msgstr ""
+
+#: ../gisprocess.rst:183 ../gisprocess.rst:340
+msgid "表A，点要素"
+msgstr ""
+
+#: ../gisprocess.rst:185 ../gisprocess.rst:342
+msgid "gdB"
+msgstr ""
+
+#: ../gisprocess.rst:185
+msgid "表B，点要素"
+msgstr ""
+
+#: ../gisprocess.rst:316
+msgid "点与线匹配（GeoDataFrame与GeoDataFrame）"
+msgstr ""
+
+#: ../gisprocess.rst:318
+msgid "将A表变为地理点，B表为线"
+msgstr ""
+
+#: ../gisprocess.rst:335
+msgid "输入两个GeoDataFrame，其中gdfA为点，gdfB为线，该方法会为gdfA表连接上gdfB中最近的线，并添加距离字段dsit"
+msgstr ""
+
+#: ../gisprocess.rst:342
+msgid "表B，线要素"
+msgstr ""
+
+#: ../gisprocess.rst:347
+msgid "为A匹配到B中最近的线"
+msgstr ""
+
+#: ../gisprocess.rst:349
+msgid "用tbd.ckdnearest_line可以实现点匹配线，其原理是将线中的折点提取，然后使用点匹配点。"
+msgstr ""
+
+#: ../gisprocess.rst:477
+msgid "打断线"
+msgstr ""
+
+#: ../gisprocess.rst:479
+msgid "在实际应用中，我们可能会需要把很长的线打断为很多子线段，每一条线段不要超过一定的最大长度，此时则可以使用TransBigData包中的splitline_with_length方法。"
+msgstr ""
+
+#: ../gisprocess.rst:484
+msgid "输入线GeoDataFrame要素，打断为最大长度maxlength的小线段"
+msgstr ""
+
+#: ../gisprocess.rst:488
+msgid "Centerline"
+msgstr ""
+
+#: ../gisprocess.rst:489
+msgid "线要素"
+msgstr ""
+
+#: ../gisprocess.rst:491
+msgid "maxlength"
+msgstr ""
+
+msgid "number"
+msgstr ""
+
+#: ../gisprocess.rst:491
+msgid "打断的线段最大长度"
+msgstr ""
+
+#: ../gisprocess.rst:496
+msgid "splitedline"
+msgstr ""
+
+#: ../gisprocess.rst:496
+msgid "打断后的线"
+msgstr ""
+
+#: ../gisprocess.rst:498
+msgid "下面演示如何将线打断为100米一段的线段"
+msgstr ""
+
+#: ../gisprocess.rst:834
+msgid "面合并"
+msgstr ""
+
+#: ../gisprocess.rst:838
+msgid "输入多边形GeoDataFrame数据，以及分组列名col，对不同组别进行分组的多边形进行合并"
+msgstr ""
+
+#: ../gisprocess.rst:842 ../gisprocess.rst:863
+msgid "data"
+msgstr ""
+
+#: ../gisprocess.rst:843 ../gisprocess.rst:864
+msgid "多边形数据"
+msgstr ""
+
+#: ../gisprocess.rst:845
+msgid "col"
+msgstr ""
+
+msgid "str"
+msgstr ""
+
+#: ../gisprocess.rst:845
+msgid "分组列名"
+msgstr ""
+
+#: ../gisprocess.rst:851 ../gisprocess.rst:870
+msgid "data1"
+msgstr ""
+
+#: ../gisprocess.rst:850
+msgid "合并后的面"
+msgstr ""
+
+#: ../gisprocess.rst:854
+msgid "对面取外边界构成新多边形"
+msgstr ""
+
+#: ../gisprocess.rst:859
+msgid "输入多边形GeoDataFrame数据，对多边形取外边界构成新多边形"
+msgstr ""
+
+#: ../gisprocess.rst:866
+msgid "minarea"
+msgstr ""
+
+#: ../gisprocess.rst:866
+msgid "最小面积，小于这个面积的面全部剔除"
+msgstr ""
+
+#: ../gisprocess.rst:871
+msgid "处理后的面"
+msgstr ""
+
