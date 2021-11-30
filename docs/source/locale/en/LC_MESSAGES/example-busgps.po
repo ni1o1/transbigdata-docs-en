@@ -28,11 +28,11 @@ msgstr ""
 
 #: ../example-busgps/example-busgps.rst:13
 msgid "读取数据"
-msgstr ""
+msgstr "Read data"
 
 #: ../example-busgps/example-busgps.rst:15
 msgid "读取GPS数据"
-msgstr ""
+msgstr "Read GPS data"
 
 #: ../example-busgps/example-busgps.rst:25
 msgid "经纬度坐标转换"
@@ -40,7 +40,7 @@ msgstr ""
 
 #: ../example-busgps/example-busgps.rst:155
 msgid "读取公交线数据"
-msgstr ""
+msgstr "Read the bus line data"
 
 #: ../example-busgps/example-busgps.rst:175
 msgid "读取公交站点数据"
