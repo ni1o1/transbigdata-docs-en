@@ -20,163 +20,163 @@ msgstr ""
 
 #: ../preprocess.rst:6
 msgid "数据预处理"
-msgstr ""
+msgstr "Data Preprocess"
 
 #: ../preprocess.rst:10
 msgid "各类数据通用的预处理"
-msgstr ""
+msgstr "Common pre-processing of various types of data"
 
 #: ../preprocess.rst:14
 msgid "删除信息与前后数据相同的数据以减少数据量 如：某个体连续n条数据除了时间以外其他信息都相同，则可以只保留首末两条数据"
-msgstr ""
+msgstr "Delete the data with the same information as the data before and after to reduce the amount of data. For example, if several consecutive data of an individual have the same information except for the time, only the first and last two data can be kept"
 
 #: ../preprocess.rst:17 ../preprocess.rst:34 ../preprocess.rst:51
 #: ../preprocess.rst:70 ../preprocess.rst:90 ../preprocess.rst:116
 #: ../preprocess.rst:138 ../preprocess.rst:165
 msgid "**输入**"
-msgstr ""
+msgstr "**Input**"
 
 #: ../preprocess.rst:19 ../preprocess.rst:36 ../preprocess.rst:53
 #: ../preprocess.rst:72 ../preprocess.rst:92 ../preprocess.rst:118
 #: ../preprocess.rst:140 ../preprocess.rst:167
 msgid "data"
-msgstr ""
+msgstr "data"
 
 msgid "DataFrame"
-msgstr ""
+msgstr "DataFrame"
 
 #: ../preprocess.rst:20 ../preprocess.rst:37 ../preprocess.rst:54
 #: ../preprocess.rst:73 ../preprocess.rst:93 ../preprocess.rst:119
 #: ../preprocess.rst:168
 msgid "数据"
-msgstr ""
+msgstr "Data"
 
 #: ../preprocess.rst:22 ../preprocess.rst:39 ../preprocess.rst:58
 #: ../preprocess.rst:76 ../preprocess.rst:94 ../preprocess.rst:120
 #: ../preprocess.rst:142 ../preprocess.rst:169
 msgid "col"
-msgstr ""
+msgstr "col"
 
 msgid "List"
-msgstr ""
+msgstr "List"
 
 #: ../preprocess.rst:22
 msgid "列名，按[个体ID,时间,经度,纬度]的顺序，可以传入更多列。会以时间排序，再判断除了时间以外其他列的信息"
-msgstr ""
+msgstr "The column name, in the order of ['Vehicleid, Time']. It will sort by time, and then determine the information of other columns besides the time"
 
 #: ../preprocess.rst:24 ../preprocess.rst:41 ../preprocess.rst:60
 #: ../preprocess.rst:81 ../preprocess.rst:107 ../preprocess.rst:127
 #: ../preprocess.rst:151 ../preprocess.rst:174
 msgid "**输出**"
-msgstr ""
+msgstr "**Output**"
 
 #: ../preprocess.rst:27 ../preprocess.rst:45 ../preprocess.rst:64
 #: ../preprocess.rst:84 ../preprocess.rst:110 ../preprocess.rst:130
 #: ../preprocess.rst:155 ../preprocess.rst:176
 msgid "data1"
-msgstr ""
+msgstr "data1"
 
 #: ../preprocess.rst:27 ../preprocess.rst:154 ../preprocess.rst:177
 msgid "清洗后的数据"
-msgstr ""
+msgstr "Cleaned data"
 
 #: ../preprocess.rst:31
 msgid ""
 "删除漂移数据。条件是，此数据与前后的速度都大于speedlimit，但前后数据之间的速度却小于speedlimit。 "
 "传入的数据中时间列如果为datetime格式则计算效率更快"
-msgstr ""
+msgstr "Delete the drift data. The select principle is that: if the speed of a trajectory point is larger than the `speed limit` with before and after points, while the speed between the before and after data is less than the `speedlimit`. The time column in the input data is calculated more efficiently if it is in ``datetime format."
 
 #: ../preprocess.rst:39
 msgid "列名，按[个体ID,时间,经度,纬度]的顺序"
-msgstr ""
+msgstr "Column names, in the order of ['VehicleNum', 'Time', 'Lng', 'Lat']"
 
 #: ../preprocess.rst:44 ../preprocess.rst:63 ../preprocess.rst:84
 msgid "研究范围内的数据"
-msgstr ""
+msgstr "Data within the scope of the study"
 
 #: ../preprocess.rst:49
 msgid "输入研究范围的左下右上经纬度坐标，剔除超出研究范围的数据"
-msgstr ""
+msgstr "Enter the latitude and longitude coordinates of the lower left and upper right of the study area and exclude data that are outside the study area"
 
 #: ../preprocess.rst:55
 msgid "bounds"
-msgstr ""
+msgstr "bounds"
 
 #: ../preprocess.rst:56
 msgid "研究范围的左下右上经纬度坐标，顺序为[lon1,lat1,lon2,lat2]"
-msgstr ""
+msgstr "Latitude and longitude coordinates of the lower left and upper right of the study area, in the order of [lon1,lat1,lon2,lat2]"
 
 #: ../preprocess.rst:58 ../preprocess.rst:77
 msgid "经纬度列名"
-msgstr ""
+msgstr "Column name of longitude and latitude"
 
 #: ../preprocess.rst:68
 msgid "输入研究范围的GeoDataFrame，剔除超出研究区域的数据"
-msgstr ""
+msgstr "Input the GeoDataFrame of the study area and exclude the data beyond the study area"
 
 #: ../preprocess.rst:74
 msgid "shape"
-msgstr ""
+msgstr "shape"
 
 msgid "GeoDataFrame"
-msgstr ""
+msgstr "GeoDataFrame"
 
 #: ../preprocess.rst:75
 msgid "研究范围的GeoDataFrame"
-msgstr ""
+msgstr "The GeoDataFrame of the study area"
 
 #: ../preprocess.rst:79
 msgid "accuracy"
-msgstr ""
+msgstr "accuracy"
 
 msgid "number"
-msgstr ""
+msgstr "number"
 
 #: ../preprocess.rst:79
 msgid "计算原理是先栅格化后剔除，这里定义栅格大小，越小精度越高"
-msgstr ""
+msgstr "The principle is to fishnet first and then reject. The size of fishnet will be defined. The smaller size the higher accuracy"
 
 #: ../preprocess.rst:88
 msgid "对数据的ID列重新编号"
-msgstr ""
+msgstr "Renumber the ID columns of the data"
 
 msgid "str"
-msgstr ""
+msgstr "str"
 
 #: ../preprocess.rst:95 ../preprocess.rst:121
 msgid "要重新编号的ID列名"
-msgstr ""
+msgstr "Name of the ID column to be re-indexed"
 
 #: ../preprocess.rst:96
 msgid "new"
-msgstr ""
+msgstr "new"
 
 msgid "bool"
-msgstr ""
+msgstr "bool"
 
 #: ../preprocess.rst:97
 msgid "False，相同ID的新编号相同；True，依据表中的顺序，ID再次出现则编号不同"
-msgstr ""
+msgstr "False: the new number of the same ID will be the same index; True: according to the order of the table, the origin ID appears again with different index"
 
 #: ../preprocess.rst:98
 msgid "timegap"
-msgstr ""
+msgstr "timegap"
 
 #: ../preprocess.rst:99
 msgid "如果个体在一段时间内没出现（timegap为时间阈值），则编号为新的个体。此参数与timecol同时设定才有效果。"
-msgstr ""
+msgstr "If an individual does not appear for a period of time (`timegap` is the time threshold), it is numbered as a new individual. This parameter should be set with `timecol` to take effect."
 
 #: ../preprocess.rst:100
 msgid "timecol"
-msgstr ""
+msgstr "timecol"
 
 #: ../preprocess.rst:101
 msgid "时间字段名称，此参数与timegap同时设定才有效果。"
-msgstr ""
+msgstr "The column name of time, it should be set with `timegap` to take effect"
 
 #: ../preprocess.rst:102 ../preprocess.rst:125
 msgid "suffix"
-msgstr ""
+msgstr "suffix"
 
 #: ../preprocess.rst:103
 msgid "新编号列名的后缀，设置为False时替代原有列名"
@@ -184,10 +184,10 @@ msgstr ""
 
 #: ../preprocess.rst:105
 msgid "sample"
-msgstr ""
+msgstr "sample"
 
 msgid "int"
-msgstr ""
+msgstr "int"
 
 #: ../preprocess.rst:105
 msgid "传入数值，对重新编号的个体进行抽样"
@@ -195,79 +195,79 @@ msgstr ""
 
 #: ../preprocess.rst:110 ../preprocess.rst:130
 msgid "重新编号的数据"
-msgstr ""
+msgstr "Renumbered data"
 
 #: ../preprocess.rst:114
 msgid "对数据的ID列重新编号，如果相邻两条记录超过距离，则编号为新id"
-msgstr ""
+msgstr "Reindex the ID column of the data, if two adjacent records exceed the distance, the index will be a new number"
 
 #: ../preprocess.rst:122 ../preprocess.rst:146
 msgid "disgap"
-msgstr ""
+msgstr "disgap"
 
 #: ../preprocess.rst:123
 msgid "如果个体轨迹超过一定距离，则编号为新的个体。"
-msgstr ""
+msgstr "If the individual trajectory exceeds a certain distance, a new individual index will be assigned"
 
 #: ../preprocess.rst:125
 msgid "新编号列名的后缀"
-msgstr ""
+msgstr "Suffix of the new numbered column name"
 
 #: ../preprocess.rst:133
 msgid "轨迹清洗"
-msgstr ""
+msgstr "Trajectory data cleaning"
 
 #: ../preprocess.rst:136
 msgid "轨迹数据清洗组合拳"
-msgstr ""
+msgstr "A combo for trajectory data cleaning"
 
 #: ../preprocess.rst:141
 msgid "轨迹数据"
-msgstr ""
+msgstr "Trajectory data"
 
 #: ../preprocess.rst:143
 msgid "列名，以[个体id,时间,经度,纬度]排列"
-msgstr ""
+msgstr "Column names, in the order of ['VehicleNum', 'Time', 'Lng', 'Lat']"
 
 #: ../preprocess.rst:144
 msgid "tripgap"
-msgstr ""
+msgstr "tripgap"
 
 #: ../preprocess.rst:145
 msgid "多长的时间视为新的出行"
-msgstr ""
+msgstr "The time length threshold considered as a new trip"
 
 #: ../preprocess.rst:147
 msgid "多长距离视为新的出行"
-msgstr ""
+msgstr "The distance threshold considered as a new trip"
 
 #: ../preprocess.rst:149
 msgid "speedlimit"
-msgstr ""
+msgstr "speedlimit"
 
 #: ../preprocess.rst:149
 msgid "车速限制"
-msgstr ""
+msgstr "speedlimit"
 
 #: ../preprocess.rst:158
 msgid "出租车数据的预处理"
-msgstr ""
+msgstr "Pre-processing of taxi data"
 
 #: ../preprocess.rst:162
 msgid ""
 "删除出租车数据中载客状态瞬间变化的记录，这些记录的存在会影响出行订单判断。 "
 "判断条件为:如果对同一辆车，上一条记录与下一条记录的载客状态都与本条记录不同，则本条记录应该删去"
-msgstr ""
+msgstr "Deletes records of instantaneous changes in passenger carrying status from taxi data. These abnormal records can affect travel order judgments. Judgement method: If the passenger status of the previous record and the next record are different from this record for the same vehicle, then this record should be deleted."
 
 #: ../preprocess.rst:170
 msgid "列名，按[车辆ID,时间,载客状态]的顺序"
-msgstr ""
+msgstr "Column names, in the order of ['VehicleNum', 'Time', 'OpenStatus']"
 
 #: ../preprocess.rst:172
 msgid "timelimit"
-msgstr ""
+msgstr "timelimit"
 
 #: ../preprocess.rst:172
 msgid "可选，单位为秒，上一条记录与下一条记录的时间小于该时间阈值才予以删除"
-msgstr ""
+msgstr "Optional, in seconds. If the time between the previous record and the next record is less than the time threshold, then it will be deleted"
 
