@@ -28,35 +28,35 @@ roundnum : number
 
     import transbigdata as tbd
     import pandas as pd
-    #读取数据    
+    # Read data    
     data = pd.read_csv('TaxiData-Sample.csv',header = None) 
     data.columns = ['Vehicleid','Time','Lng','Lat','OpenStatus','Speed']      
     data['Time'] = pd.to_datetime(data['Time'])
-    #轨迹增密前的采样间隔
+    # The sampling interval
     tbd.data_summary(data,col = ['Vehicleid','Time','Lng','Lat'],show_sample_duration=True)
 
 ::
 
-    数据量
+    Amount of data
     -----------------
-    数据总量 : 544999 条
-    个体总量 : 180 个
-    个体数据量均值 : 3027.77 条
-    个体数据量上四分位 : 4056.25 条
-    个体数据量中位数 : 2600.5 条
-    个体数据量下四分位 : 1595.75 条
+    Total number of data items: 544999
+    Total number of individuals: 180
+    Mean value of individual data items : 3027.77 
+    Upper quartile of individual data items: 4056.25
+    Median volume of individual data items: 2600.5
+    Lower quartile of individual data items: 1595.75
 
-    数据时间段
+    Data time period
     -----------------
-    开始时间 : 2021-11-12 00:00:00
-    结束时间 : 2021-11-12 23:59:59
+    Start time : 2021-11-12 00:00:00
+    End time : 2021-11-12 23:59:59
 
-    个体采样间隔
+    Individual sampling interval
     -----------------
-    均值 : 28.0 秒
-    上四分位 : 30.0 秒
-    中位数 : 20.0 秒
-    下四分位 : 15.0 秒
+    Mean value : 28.0 seconds
+    Upper quartile : 30.0 seconds
+    Median : 20.0 seconds
+    Lower quartile : 15.0 seconds
 
 .. function:: transbigdata.sample_duration(data,col = ['Vehicleid','Time']):
 

@@ -20,85 +20,85 @@ msgstr ""
 
 #: ../quality.rst:6
 msgid "数据质量分析"
-msgstr ""
+msgstr "Data Quality Analysis"
 
 #: ../quality.rst:12
 msgid "输入数据，打印数据概况"
-msgstr ""
+msgstr "Input the data, output the general information of the dataset."
 
 #: ../quality.rst:14 ../quality.rst:65
 msgid "**输入**"
-msgstr ""
+msgstr "**Input**"
 
 #: ../quality.rst:16 ../quality.rst:67
 msgid "data"
-msgstr ""
+msgstr "data"
 
 msgid "DataFrame"
-msgstr ""
+msgstr "DataFrame"
 
 #: ../quality.rst:17
 msgid "轨迹点数据"
-msgstr ""
+msgstr "The trajectory points"
 
 #: ../quality.rst:18 ../quality.rst:70
 msgid "col"
-msgstr ""
+msgstr "col"
 
 msgid "List"
-msgstr ""
+msgstr "List"
 
 #: ../quality.rst:19
 msgid "列名，按[个体ID，时间]的顺序"
-msgstr ""
+msgstr "The column name, in the order of ['Vehicleid', 'Time']"
 
 #: ../quality.rst:20
 msgid "show_sample_duration"
-msgstr ""
+msgstr "show_sample_duration"
 
 msgid "bool"
-msgstr ""
+msgstr "bool"
 
 #: ../quality.rst:21
 msgid "是否输出个体采样间隔信息"
-msgstr ""
+msgstr "Whether to output individual sampling interval"
 
 #: ../quality.rst:23
 msgid "roundnum"
-msgstr ""
+msgstr "roundnum"
 
 msgid "number"
-msgstr ""
+msgstr "number"
 
 #: ../quality.rst:23
 msgid "小数点取位数"
-msgstr ""
+msgstr "Decimal places"
 
 #: ../quality.rst:25
 msgid "使用方法"
-msgstr ""
+msgstr "**Code Example**"
 
 #: ../quality.rst:63
 msgid "统计数据采样间隔"
-msgstr ""
+msgstr "Count the data sampling interval."
 
 #: ../quality.rst:68
 msgid "数据"
-msgstr ""
+msgstr "Data"
 
 #: ../quality.rst:70
 msgid "列名，按[个体ID,时间]的顺序"
-msgstr ""
+msgstr "The column name, in the order of ['Vehicleid', 'Time']"
 
 #: ../quality.rst:72
 msgid "**输出**"
-msgstr ""
+msgstr "**Output**"
 
 #: ../quality.rst:74
 msgid "sample_duration"
-msgstr ""
+msgstr "sample_duration"
 
 #: ../quality.rst:75
 msgid "一列的数据表，列名为duration，内容是数据的采样间隔，单位秒"
-msgstr ""
+msgstr "A single-column DataFrame with the column name duration, the content is the sampling interval of the data, in seconds"
 
