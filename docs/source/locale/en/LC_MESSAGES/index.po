@@ -20,7 +20,7 @@ msgstr ""
 
 #: ../index.rst:83 ../index.rst:85
 msgid "安装、依赖与更新日志"
-msgstr "Installation, Dependency and Update Log"
+msgstr "Installation"
 
 #: ../index.rst:93 ../index.rst:95
 msgid "使用示例"
