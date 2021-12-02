@@ -30,9 +30,9 @@ params : List
 
 ::
 
-    #设定范围
-    bounds = [lon1,lat1,lon2,lat2]
-    grid,params = tbd.rect_grids(bounds,accuracy = 500)
+    # Set the boundary
+    bounds = [lon1, lat1, lon2, lat2]
+    grid, params = tbd.rect_grids(bounds, accuracy = 500)
 
 
 .. function:: transbigdata.grid_params(bounds,accuracy = 500)
@@ -55,8 +55,8 @@ params : List
 
 ::
 
-    bounds = [113.75194,22.447837,114.624187,22.864748]
-    tbd.grid_params(bounds,accuracy = 500)
+    bounds = [113.75194, 22.447837, 114.624187, 22.864748]
+    tbd.grid_params(bounds, accuracy = 500)
 
 .. function:: transbigdata.GPS_to_grids(lon,lat,params)
 
@@ -80,7 +80,7 @@ LATCOL : Series
 
 ::
 
-    data['LONCOL'],data['LATCOL'] = tbd.GPS_to_grids(data['Lng'],data['Lat'],params)
+    data['LONCOL'], data['LATCOL'] = tbd.GPS_to_grids(data['Lng'], data['Lat'], params)
 
 .. function:: transbigdata.grids_centre(loncol,latcol,params)
 
@@ -105,7 +105,7 @@ HBLAT : Series
 
 ::
 
-    data['HBLON'],data['HBLAT'] = tbd.grids_centre(data['LONCOL'],data['LATCOL'],params)
+    data['HBLON'], data['HBLAT'] = tbd.grids_centre(data['LONCOL'], data['LATCOL'], params)
 
 .. function:: transbigdata.gridid_to_polygon(loncol,latcol,params)
 
@@ -127,7 +127,7 @@ geometry : Series
 
 ::
 
-    data['geometry'] = tbd.gridid_to_polygon(data['LONCOL'],data['LATCOL'],params)
+    data['geometry'] = tbd.gridid_to_polygon(data['LONCOL'], data['LATCOL'], params)
 
 .. function:: transbigdata.gridid_sjoin_shape(data,shape,params,col = ['LONCOL','LATCOL'])
 
@@ -227,13 +227,14 @@ poly : Series
     import transbigdata as tbd
     import pandas as pd
     import geopandas as gpd
-    #读取数据    
+    # Read data    
     data = pd.read_csv('TaxiData-Sample.csv',header = None) 
     data.columns = ['VehicleNum','time','slon','slat','OpenStatus','Speed'] 
 
 ::
 
-    #依据经纬度geohash编码，精确度选6时，栅格大小约为±0.61km
+    # Based on the geohash encode of the longtitude and latitude
+    # The grid size is approximately ±0.61km when the precision is set to 6
     data['geohash'] = tbd.geohash_encode(data['slon'],data['slat'],precision=6)
     data['geohash']
 
@@ -259,13 +260,16 @@ poly : Series
 
 ::
 
-    #基于geohash编码集计
+    # Aggregate based on geohash encode
     dataagg = data.groupby(['geohash'])['VehicleNum'].count().reset_index()
-    #geohash编码解码为经纬度
-    dataagg['lon_geohash'],dataagg['lat_geohash'] = tbd.geohash_decode(dataagg['geohash'])
-    #geohash编码生成栅格矢量图形
+    
+    # Decoding geohash to longtitude and latitude
+    dataagg['lon_geohash'], dataagg['lat_geohash'] = tbd.geohash_decode(dataagg['geohash'])
+    
+    # Encoding to generate grid  vector geometry
     dataagg['geometry'] = tbd.geohash_togrid(dataagg['geohash'])
-    #转换为GeoDataFrame
+    
+    # Transforming to GeoDataFrame
     dataagg = gpd.GeoDataFrame(dataagg)
     dataagg
 
@@ -397,27 +401,32 @@ poly : Series
 
 ::
 
-    #设定绘图边界
-    bounds = [113.6,22.4,114.8,22.9]
-    #创建图框
+    # Set the boundary
+    bounds = [113.6, 22.4, 114.8, 22.9]
+
+    # Create a figure frame
     import matplotlib.pyplot as plt
     import plot_map
-    fig =plt.figure(1,(8,8),dpi=280)
+    fig =plt.figure(1, (8, 8), dpi=280)
     ax =plt.subplot(111)
     plt.sca(ax)
-    #添加地图底图
-    tbd.plot_map(plt,bounds,zoom = 12,style = 4)
-    #绘制colorbar
+
+    # Add a base map
+    tbd.plot_map(plt, bounds, zoom=12, style=4)
+    
+    # Add a colorbar
     cax = plt.axes([0.05, 0.33, 0.02, 0.3])
     plt.title('count')
     plt.sca(ax)
-    #绘制geohash的栅格集计
-    dataagg.plot(ax = ax,column = 'VehicleNum',cax = cax,legend = True)
-    #添加比例尺和指北针
-    tbd.plotscale(ax,bounds = bounds,textsize = 10,compasssize = 1,accuracy = 2000,rect = [0.06,0.03],zorder = 10)
+
+    # Plot the geohash-based grid aggregation
+    dataagg.plot(ax=ax, column='VehicleNum', cax=cax,legend=True)
+
+    # Add scale and compass
+    tbd.plotscale(ax, bounds = bounds, textsize = 10, compasssize = 1, accuracy = 2000, rect = [0.06,0.03], zorder = 10)
     plt.axis('off')
-    plt.xlim(bounds[0],bounds[2])
-    plt.ylim(bounds[1],bounds[3])
+    plt.xlim(bounds[0], bounds[2])
+    plt.ylim(bounds[1], bounds[3])
     plt.show()
 
 
@@ -449,9 +458,9 @@ hexagon : GeoDataFrame
 ::
 
     
-    #设定范围
-    bounds = [113.6,22.4,114.8,22.9]
-    hexagon = tbd.hexagon_grids(bounds,accuracy = 5000)
+    # Set the boundary
+    bounds = [113.6, 22.4, 114.8, 22.9]
+    hexagon = tbd.hexagon_grids(bounds, accuracy = 5000)
     hexagon.plot()
 
 .. image:: _static/WX20211021-201747@2x.png
