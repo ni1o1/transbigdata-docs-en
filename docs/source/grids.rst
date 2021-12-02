@@ -30,7 +30,7 @@ params : List
 
 ::
 
-    # Set the boundary
+    # Set the bounds
     bounds = [lon1, lat1, lon2, lat2]
     grid, params = tbd.rect_grids(bounds, accuracy = 500)
 
@@ -401,7 +401,7 @@ poly : Series
 
 ::
 
-    # Set the boundary
+    # Set the bounds
     bounds = [113.6, 22.4, 114.8, 22.9]
 
     # Create a figure frame
@@ -411,7 +411,7 @@ poly : Series
     ax =plt.subplot(111)
     plt.sca(ax)
 
-    # Add a base map
+    # Basemap Loading
     tbd.plot_map(plt, bounds, zoom=12, style=4)
     
     # Add a colorbar
@@ -458,7 +458,7 @@ hexagon : GeoDataFrame
 ::
 
     
-    # Set the boundary
+    # Set the bounds
     bounds = [113.6, 22.4, 114.8, 22.9]
     hexagon = tbd.hexagon_grids(bounds, accuracy = 5000)
     hexagon.plot()

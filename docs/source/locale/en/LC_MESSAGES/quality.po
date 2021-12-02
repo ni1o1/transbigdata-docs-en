@@ -20,7 +20,7 @@ msgstr ""
 
 #: ../quality.rst:6
 msgid "数据质量分析"
-msgstr "Data Quality Analysis"
+msgstr "Data Quality"
 
 #: ../quality.rst:12
 msgid "输入数据，打印数据概况"

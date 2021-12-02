@@ -24,7 +24,7 @@ msgstr "Data Preprocess"
 
 #: ../preprocess.rst:10
 msgid "各类数据通用的预处理"
-msgstr "Common pre-processing of various types of data"
+msgstr "Common preprocess of various types of data"
 
 #: ../preprocess.rst:14
 msgid "删除信息与前后数据相同的数据以减少数据量 如：某个体连续n条数据除了时间以外其他信息都相同，则可以只保留首末两条数据"
