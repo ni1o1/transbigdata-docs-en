@@ -49,11 +49,13 @@ vmap : keplergl.keplergl.KeplerGl
 
     import transbigdata as tbd
     import pandas as pd
-    #读取数据    
-    data = pd.read_csv('TaxiData-Sample.csv',header = None) 
-    data.columns = ['VehicleNum','Time','Lng','Lat','OpenStatus','Speed']
-    #可视化数据点分布
-    tbd.visualization_data(data,col = ['Lng','Lat'],accuracy=300)
+
+    # Read data    
+    data = pd.read_csv('TaxiData-Sample.csv', header=None) 
+    data.columns = ['VehicleNum', 'Time', 'Lng', 'Lat', 'OpenStatus', 'Speed']
+    
+    # Visualization of data point distribution
+    tbd.visualization_data(data, col=['Lng', 'Lat'], accuracy=300)
 
 .. image:: example-taxi/datavis.png
 
@@ -87,11 +89,13 @@ vmap : keplergl.keplergl.KeplerGl
 
     import transbigdata as tbd
     import pandas as pd
-    #读取数据    
-    data = pd.read_csv('TaxiData-Sample.csv',header = None) 
-    data.columns = ['VehicleNum','Time','Lng','Lat','OpenStatus','Speed']  
-    #轨迹数据可视化
-    tbd.visualization_trip(data,col = ['Lng', 'Lat', 'VehicleNum', 'Time'])
+
+    # Read data    
+    data = pd.read_csv('TaxiData-Sample.csv', header=None) 
+    data.columns = ['VehicleNum', 'Time', 'Lng', 'Lat', 'OpenStatus', 'Speed']  
+    
+    # Trajectory Visualization 
+    tbd.visualization_trip(data, col = ['Lng', 'Lat', 'VehicleNum', 'Time'])
 
 .. image:: example-taxi/kepler-traj.png
 
@@ -129,12 +133,15 @@ vmap : keplergl.keplergl.KeplerGl
 
     import transbigdata as tbd
     import pandas as pd
-    #读取数据    
-    data = pd.read_csv('TaxiData-Sample.csv',header = None) 
-    data.columns = ['VehicleNum','Time','Lng','Lat','OpenStatus','Speed']
-    #提取OD
-    oddata = tbd.taxigps_to_od(data,col = ['VehicleNum','Time','Lng','Lat','OpenStatus'])
-    #OD可视化
+
+    # Read data    
+    data = pd.read_csv('TaxiData-Sample.csv', header=None) 
+    data.columns = ['VehicleNum', 'Time', 'Lng', 'Lat', 'OpenStatus', 'Speed']
+    
+    # Extract the OD
+    oddata = tbd.taxigps_to_od(data,col = ['VehicleNum', 'Time', 'Lng', 'Lat', 'OpenStatus'])
+    
+    # OD visualization
     tbd.visualization_od(oddata)
 
 .. image:: example-taxi/odvisualization.png
