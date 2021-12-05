@@ -73,7 +73,7 @@ tbd.split_subwayline方法可以用轨道站点切分轨道线路，得到轨道
 
 ::
 
-    #构建拓扑模型
+    #Modeling for subway network topology
     import networkx as nx
     G = tbd.metro_network(stop)
     nx.draw(G)
