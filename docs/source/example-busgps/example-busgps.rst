@@ -26,10 +26,10 @@
 
 ::
 
-    #切分经纬度的字符串
+    #Slice the latitude and longitude string
     BUS_GPS['lon'] = BUS_GPS['Strlatlon'].apply(lambda r:r.split(',')[0])
     BUS_GPS['lat'] = BUS_GPS['Strlatlon'].apply(lambda r:r.split(',')[1])
-    #坐标系转换
+    #Convert coordinates
     BUS_GPS['lon'],BUS_GPS['lat'] = tbd.gcj02towgs84(BUS_GPS['lon'].astype(float),BUS_GPS['lat'].astype(float))
     BUS_GPS.head(5)
 
@@ -336,7 +336,7 @@
 
 ::
 
-    ## 绘制耗时分布箱型图
+    ## Draw box plot for one-way travel time
     import numpy as np
     import matplotlib.pyplot as plt
     import seaborn as sns
@@ -364,10 +364,10 @@
 
 ::
 
-    #转换坐标系为投影坐标系，方便后面计算距离
+    #Convert coordinate system to projection coordinate system for later calculation of distance
     line.crs = {'init':'epsg:4326'}
     line_2416 = line.to_crs(epsg = 2416)
-    #公交线路数据里面的geometry
+    #Obtain the geometry inside the bus route data
     lineshp = line_2416['geometry'].iloc[0]
     linename = line_2416['name'].iloc[0]
     lineshp
@@ -387,14 +387,14 @@
 
 ::
 
-    #筛选去掉车速过快的
-    #车速单位转换为km/h
+    #Remove the data with abnormal speed
+    #Vehicle speed units converted to km/h
     onewaytime['speed'] = (lineshp.length/onewaytime['duration'])*3.6
     onewaytime = onewaytime[onewaytime['speed']<=60]
 
 ::
 
-    ## 车速分布
+    ## Travel speed distribution
     import numpy as np
     import matplotlib.pyplot as plt
     import seaborn as sns
