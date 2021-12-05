@@ -155,7 +155,7 @@
 
 ::
 
-    #读取区域信息
+    #Read the GeoDataFrame of the study area
     import geopandas as gpd
     sz = gpd.read_file(r'sz/sz.shp')
     sz.crs = None
