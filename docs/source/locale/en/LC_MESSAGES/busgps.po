@@ -20,37 +20,37 @@ msgstr ""
 
 #: ../busgps.rst:6
 msgid "公交车GPS数据处理"
-msgstr ""
+msgstr "Bus GPS data processing"
 
 #: ../busgps.rst:10
 msgid "输入公交GPS数据、公交线路与站点的GeoDataFrame，该方法能够识别公交的到离站信息"
-msgstr ""
+msgstr "Input bus GPS data, bus route and station GeoDataFrame, this method can identify the bus arrival and departure information"
 
 #: ../busgps.rst:12 ../busgps.rst:46
 msgid "**输入**"
-msgstr ""
+msgstr "**Input**"
 
 #: ../busgps.rst:14
 msgid "data"
-msgstr ""
+msgstr "data"
 
 msgid "DataFrame"
-msgstr ""
+msgstr "DataFrame"
 
 #: ../busgps.rst:15
 msgid "公交GPS数据，单一公交线路，且需要含有车辆ID、GPS时间、经纬度（wgs84）"
-msgstr ""
+msgstr "Bus GPS data. It should be the data from one bus route, and need to contain vehicle ID, GPS time, latitude and longitude (wgs84)"
 
 #: ../busgps.rst:16
 msgid "line"
-msgstr ""
+msgstr "line"
 
 msgid "GeoDataFrame"
-msgstr ""
+msgstr "GeoDataFrame"
 
 #: ../busgps.rst:17
 msgid "公交线型的GeoDataFrame数据，单一公交线路"
-msgstr ""
+msgstr "GeoDataFrame for the bus line"
 
 #: ../busgps.rst:18 ../busgps.rst:50
 msgid "stop"
@@ -58,7 +58,7 @@ msgstr ""
 
 #: ../busgps.rst:19 ../busgps.rst:51
 msgid "公交站点的GeoDataFrame数据"
-msgstr ""
+msgstr "GeoDataFrame for bus stops"
 
 #: ../busgps.rst:20 ../busgps.rst:58
 msgid "col"
@@ -69,7 +69,7 @@ msgstr ""
 
 #: ../busgps.rst:21
 msgid "列名，按[车辆ID,时间,经度,纬度，站点名称字段]的顺序"
-msgstr ""
+msgstr "Column names, in the order of [vehicle ID, time, longitude, latitude, station name]"
 
 #: ../busgps.rst:22
 msgid "stopbuffer"
@@ -80,7 +80,7 @@ msgstr ""
 
 #: ../busgps.rst:23
 msgid "米，站点的一定距离范围，车辆进入这一范围视为到站，离开则视为离站"
-msgstr ""
+msgstr "Meter. When the vehicle approaches the station within this certain distance, it is considered to be arrive at the station."
 
 #: ../busgps.rst:24
 msgid "mintime"
@@ -92,11 +92,11 @@ msgstr ""
 
 #: ../busgps.rst:26
 msgid "project_epsg"
-msgstr ""
+msgstr "Seconds. Within a short period of time that the bus arrive at bus station again, it will not be consider as another arrival"
 
 #: ../busgps.rst:27
 msgid "匹配时会将数据转换为投影坐标系以计算距离，这里需要给定投影坐标系的epsg代号"
-msgstr ""
+msgstr "The matching algorithm will convert the data into a projection coordinate system to calculate the distance, here the epsg code of the projection coordinate system is given"
 
 #: ../busgps.rst:28
 msgid "timegap"
@@ -104,7 +104,7 @@ msgstr ""
 
 #: ../busgps.rst:29
 msgid "秒，清洗数据用，多长时间车辆不出现，就视为新的车辆"
-msgstr ""
+msgstr "Seconds. For how long the vehicle does not appear, it will be considered as a new vehicle"
 
 #: ../busgps.rst:32
 msgid "method"
@@ -117,7 +117,7 @@ msgstr ""
 msgid ""
 "公交运行图匹配方法，可选'project'或'dislimit'； project为直接匹配线路上最近点，匹配速度快； "
 "dislimit则需要考虑前面点位置，加上距离限制，匹配速度慢。"
-msgstr ""
+msgstr "The method of matching the bus, either 'project' or 'dislimit'; 'project' is to directly match the nearest point on the route, which is fast. 'dislimit' needs to consider the front point position with the distance limitation, the matching speed is slow."
 
 #: ../busgps.rst:35
 msgid "projectoutput"
@@ -128,11 +128,11 @@ msgstr ""
 
 #: ../busgps.rst:35
 msgid "是否输出投影后的数据"
-msgstr ""
+msgstr "Whether to output the projected data"
 
 #: ../busgps.rst:37 ../busgps.rst:60
 msgid "**输出**"
-msgstr ""
+msgstr "**Output**"
 
 #: ../busgps.rst:40 ../busgps.rst:48
 msgid "arrive_info"
@@ -140,15 +140,15 @@ msgstr ""
 
 #: ../busgps.rst:40
 msgid "公交到离站信息"
-msgstr ""
+msgstr "Bus arrival and departure information"
 
 #: ../busgps.rst:44
 msgid "输入到离站信息表arrive_info与站点信息表stop，计算单程耗时"
-msgstr ""
+msgstr "Input the departure information table `drive_info` and the station information table `stop` to calculate the one-way travel time"
 
 #: ../busgps.rst:49
 msgid "公交到离站数据"
-msgstr ""
+msgstr "The departure information table `drive_info`"
 
 #: ../busgps.rst:52
 msgid "start"
@@ -159,7 +159,7 @@ msgstr ""
 
 #: ../busgps.rst:53
 msgid "起点站名字"
-msgstr ""
+msgstr "Starting station name"
 
 #: ../busgps.rst:54
 msgid "end"
@@ -167,11 +167,11 @@ msgstr ""
 
 #: ../busgps.rst:55
 msgid "终点站名字"
-msgstr ""
+msgstr "Ending station name"
 
 #: ../busgps.rst:57
 msgid "字段列名[车辆ID,站点名称]"
-msgstr ""
+msgstr "Column name [vehicle ID, station name]"
 
 #: ../busgps.rst:62
 msgid "onewaytime"
@@ -179,5 +179,5 @@ msgstr ""
 
 #: ../busgps.rst:63
 msgid "公交单程耗时"
-msgstr ""
+msgstr "One-way travel time of the bus"
 
