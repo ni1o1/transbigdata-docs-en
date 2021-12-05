@@ -157,7 +157,7 @@
 
     #Read the GeoDataFrame of the study area
     import geopandas as gpd
-    sz = gpd.read_file(r'sz/sz.shp')
+    sz = gpd.read_file(r'sz.json')
     sz.crs = None
     sz.plot()
 
