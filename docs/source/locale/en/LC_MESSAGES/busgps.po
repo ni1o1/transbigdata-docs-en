@@ -88,11 +88,11 @@ msgstr ""
 
 #: ../busgps.rst:25
 msgid "秒，短时间内公交再次到站则需要与前一次的到站数据结合一起计算到离站时间，该参数设置阈值"
-msgstr ""
+msgstr "Seconds. Within a short period of time that the bus arrive at bus station again, it will not be consider as another arrival"
 
 #: ../busgps.rst:26
 msgid "project_epsg"
-msgstr "Seconds. Within a short period of time that the bus arrive at bus station again, it will not be consider as another arrival"
+msgstr ""
 
 #: ../busgps.rst:27
 msgid "匹配时会将数据转换为投影坐标系以计算距离，这里需要给定投影坐标系的epsg代号"
