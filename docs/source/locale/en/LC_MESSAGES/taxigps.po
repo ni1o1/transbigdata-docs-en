@@ -20,15 +20,15 @@ msgstr ""
 
 #: ../taxigps.rst:6
 msgid "出租车GPS数据处理"
-msgstr ""
+msgstr "Taxi GPS data processing"
 
 #: ../taxigps.rst:10
 msgid "出租车OD提取算法，输入出租车GPS数据,提取OD"
-msgstr ""
+msgstr "Input Taxi GPS data, extract OD information"
 
 #: ../taxigps.rst:12 ../taxigps.rst:23
 msgid "**输入**"
-msgstr ""
+msgstr "**Input**"
 
 #: ../taxigps.rst:14 ../taxigps.rst:25
 msgid "data"
@@ -39,7 +39,7 @@ msgstr ""
 
 #: ../taxigps.rst:15
 msgid "出租车GPS数据（清洗好的）"
-msgstr ""
+msgstr "Taxi GPS data"
 
 #: ../taxigps.rst:17 ../taxigps.rst:30
 msgid "col"
@@ -50,15 +50,15 @@ msgstr ""
 
 #: ../taxigps.rst:17
 msgid "数据中各列列名，需要按顺序[车辆id，时间，经度，纬度，载客状态]"
-msgstr ""
+msgstr "Column names in the data, need to be in order [vehicle id, time, longitude, latitude, passenger status]"
 
 #: ../taxigps.rst:21
 msgid "输入出租车数据与OD数据，提取载客与空载的行驶路径点"
-msgstr ""
+msgstr "Input Taxi data and OD data to extract the trajectory points for delivery and idle trips"
 
 #: ../taxigps.rst:26
 msgid "出租车GPS数据，字段名由col变量指定"
-msgstr ""
+msgstr "Taxi GPS data, field name specified by col variable"
 
 #: ../taxigps.rst:27
 msgid "oddata"
@@ -66,15 +66,15 @@ msgstr ""
 
 #: ../taxigps.rst:28
 msgid "出租车OD数据"
-msgstr ""
+msgstr "Taxi OD data"
 
 #: ../taxigps.rst:30
 msgid "列名，按[车辆ID,时间,经度,纬度,载客状态]的顺序"
-msgstr ""
+msgstr "Column names, need to be in order [vehicle id, time, longitude, latitude, passenger status]"
 
 #: ../taxigps.rst:32
 msgid "**输出**"
-msgstr ""
+msgstr "**Output**"
 
 #: ../taxigps.rst:34
 msgid "data_deliver"
@@ -82,7 +82,7 @@ msgstr ""
 
 #: ../taxigps.rst:35
 msgid "载客轨迹点"
-msgstr ""
+msgstr "Trajectory points for delivery trips"
 
 #: ../taxigps.rst:36
 msgid "data_idle"
@@ -90,5 +90,5 @@ msgstr ""
 
 #: ../taxigps.rst:37
 msgid "空载轨迹点"
-msgstr ""
+msgstr "Trajectory points for idle trips"
 
