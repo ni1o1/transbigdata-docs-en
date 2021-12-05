@@ -28,7 +28,7 @@ msgstr "Example"
 
 #: ../index.rst:104 ../index.rst:106
 msgid "通用方法"
-msgstr "General Method"
+msgstr "General Methods"
 
 #: ../index.rst:122 ../index.rst:124
 msgid "各类数据处理方法"
