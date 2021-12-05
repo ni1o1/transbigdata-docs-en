@@ -35,7 +35,7 @@ msgstr "TransBigData depends on geopandas: https://geopandas.org/index.html. "
 
 #: ../getting_started.rst:16
 msgid "在Python中运行下面代码::"
-msgstr "Run the following code in Python"
+msgstr "To import `TransBigData`, run the following code in Python"
 
 #: ../getting_started.rst:21
 msgid "依赖包"
