@@ -19,7 +19,7 @@
     BUS_GPS= pd.read_csv(r'busgps.csv',header = None)
     BUS_GPS.columns = ['GPSDateTime', 'LineId', 'LineName', 'NextLevel', 'PrevLevel',
            'Strlatlon', 'ToDir', 'VehicleId', 'VehicleNo', 'unknow']
-    #时间转换为datetime格式
+    #Convert the time column to datetime type
     BUS_GPS['GPSDateTime'] = pd.to_datetime(BUS_GPS['GPSDateTime'])
 
 经纬度坐标转换
@@ -330,7 +330,7 @@
 
 ::
 
-    onewaytime = tbd.busgps_onewaytime(arriveinfo,stop,
+    onewaytime = tbd.busgps_onewaytime(arriveinfo,
                                        start = '延安东路外滩',
                                        end = '申昆路枢纽站',col = ['VehicleId','stopname'])
 

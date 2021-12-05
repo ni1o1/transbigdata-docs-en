@@ -72,7 +72,7 @@ msgstr "Plot the generated grids:"
 
 #: ../example-taxi/example-taxi.rst:239
 msgid "出行OD提取与集计"
-msgstr "Extraction and aggregate taxi trips"
+msgstr "Origin-destination(OD) Extraction and aggregate taxi trips"
 
 #: ../example-taxi/example-taxi.rst:241
 msgid "使用tbd.taxigps_to_od方法，传入对应的列名，即可提取出行OD:"
