@@ -20,11 +20,11 @@ msgstr ""
 
 #: ../example-busgps/example-busgps.rst:2
 msgid "公交GPS的到离站信息匹配"
-msgstr ""
+msgstr "Example of identifying arrival and departure information from Bus GPS data"
 
 #: ../example-busgps/example-busgps.rst:4
 msgid "下面的案例展示如何用TransBigData包处理公交GPS数据，以内置方法计算公交车辆的到离站信息、统计公交单程耗时与运营车速"
-msgstr ""
+msgstr "The following example shows how to use TransBigData to process bus GPS data, including identifying bus arrival and departure information, calculate travel time and operating speed for buses."
 
 #: ../example-busgps/example-busgps.rst:13
 msgid "读取数据"
@@ -36,7 +36,7 @@ msgstr "Read GPS data"
 
 #: ../example-busgps/example-busgps.rst:25
 msgid "经纬度坐标转换"
-msgstr ""
+msgstr "Convert coordinates"
 
 #: ../example-busgps/example-busgps.rst:155
 msgid "读取公交线数据"
@@ -44,29 +44,29 @@ msgstr "Read the bus line data"
 
 #: ../example-busgps/example-busgps.rst:175
 msgid "读取公交站点数据"
-msgstr ""
+msgstr "Read the bus stop data"
 
 #: ../example-busgps/example-busgps.rst:196
 msgid "到离站信息匹配"
-msgstr ""
+msgstr "Identifying arrival and departure information"
 
 #: ../example-busgps/example-busgps.rst:204
 msgid "数据清洗中..."
-msgstr ""
+msgstr "Data cleaning in progress..."
 
 #: ../example-busgps/example-busgps.rst:206
 msgid "运行位置匹配中......"
-msgstr ""
+msgstr "identifying bus position......"
 
 #: ../example-busgps/example-busgps.rst:208
 msgid "匹配到离站信息........................................................................................................................................................."
-msgstr ""
+msgstr "Identifying arrival and departure information........................................................................................................................................................."
 
 #: ../example-busgps/example-busgps.rst:329
 msgid "单程耗时"
-msgstr ""
+msgstr "One-way travel time"
 
 #: ../example-busgps/example-busgps.rst:363
 msgid "运营车速"
-msgstr ""
+msgstr "operating speed"
 
