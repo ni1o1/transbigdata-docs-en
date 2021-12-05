@@ -35,9 +35,9 @@ TransBigData简介
 
 下面例子展示如何使用TransBigData工具快速地从出租车GPS数据中提取出行OD::
 
-    #导入TransBigData包
+    #Import TransBigData
     import transbigdata as tbd
-    #读取数据    
+    #Read the data    
     import pandas as pd
     data = pd.read_csv('TaxiData-Sample.csv',header = None) 
     data.columns = ['VehicleNum','time','slon','slat','OpenStatus','Speed'] 
@@ -48,7 +48,7 @@ TransBigData简介
 
 使用tbd.taxigps_to_od方法，传入对应的列名，即可提取出行OD::
 
-    #从GPS数据提取OD
+    #Extract OD from GPS data
     oddata = tbd.taxigps_to_od(data,col = ['VehicleNum','time','slon','slat','OpenStatus'])
     oddata
 
@@ -57,11 +57,11 @@ TransBigData简介
 
 对提取出的OD进行OD的栅格集计::
 
-    #定义研究范围
+    #define bounds
    bounds = [113.6,22.4,114.8,22.9]
-   #输入研究范围边界bounds与栅格宽度accuracy，获取栅格化参数
+   #obtain the gridding parameters
    params = tbd.grid_params(bounds = bounds,accuracy = 1500)
-   #栅格化OD并集计
+   #gridding OD data and aggregate
    od_gdf = tbd.odagg_grid(oddata,params)
    od_gdf.plot(column = 'count')
 
