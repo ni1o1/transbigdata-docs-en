@@ -20,7 +20,7 @@ msgstr ""
 
 #: ../example-taxi/example-taxi.rst:2
 msgid "出租车数据处理"
-msgstr "Example of Taxi GPS data processing"
+msgstr "Taxi GPS data processing"
 
 #: ../example-taxi/example-taxi.rst:4
 msgid "使用示例中的样例数据集在github仓库中，链接为：https://github.com/ni1o1/transbigdata/tree/main/example"
