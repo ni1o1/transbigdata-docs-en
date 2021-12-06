@@ -200,25 +200,22 @@ Identify Bicycle sharing trip information using ``tbd.bikedata_to_od``
     </table>
     </div>
 
-
+Calculate the travel distance. Remove too long and too short trips.
 
 ::
 
-    #计算骑行直线距离
     move_data['distance'] = tbd.getdistance(move_data['slon'],move_data['slat'],move_data['elon'],move_data['elat'])
-    #清洗骑行数据，删除过长与过短的出行
     move_data = move_data[(move_data['distance']>100)&(move_data['distance']<10000)]
 
+Perform data gridding:
+
 ::
 
-    # 获取栅格划分参数
     bounds = (120.85, 30.67, 122.24, 31.87)
     params = tbd.grid_params(bounds,accuracy = 500)
-    #集计OD
+    #Aggregate OD data
     od_gdf = tbd.odagg_grid(move_data, params, col=['slon', 'slat', 'elon', 'elat'])
     od_gdf.head(5)
-
-
 
 
 .. raw:: html
@@ -327,37 +324,34 @@ Identify Bicycle sharing trip information using ``tbd.bikedata_to_od``
 
 ::
 
-    #创建图框
+    #Create figure
     import matplotlib.pyplot as plt
     import plot_map
     fig =plt.figure(1,(8,8),dpi=300)
     ax =plt.subplot(111)
     plt.sca(ax)
-    #添加地图底图
+    #Load basemap
     tbd.plot_map(plt,bounds,zoom = 11,style = 8)
-    #绘制colorbar
+    #Plot colorbar
     cax = plt.axes([0.05, 0.33, 0.02, 0.3])
     plt.title('Data count')
     plt.sca(ax)
-    #绘制OD
+    #Plot OD
     od_gdf.plot(ax = ax,column = 'count',cmap = 'Blues_r',linewidth = 0.5,vmax = 10,cax = cax,legend = True)
-    #添加比例尺和指北针
+    #Plot compass and scale
     tbd.plotscale(ax,bounds = bounds,textsize = 10,compasssize = 1,textcolor = 'white',accuracy = 2000,rect = [0.06,0.03],zorder = 10)
     plt.axis('off')
     plt.xlim(bounds[0],bounds[2])
     plt.ylim(bounds[1],bounds[3])
     plt.show()
 
-
-
 .. image:: output_7_0.png
 
 
-网络构建
--------------------------
 
 提取节点信息
-~~~~~~~~~~~~~~~~~~~
+----------------
+
 
 ::
 
@@ -463,7 +457,7 @@ Identify Bicycle sharing trip information using ``tbd.bikedata_to_od``
 
 
 提取边信息
-~~~~~~~~~~~~~~~~~~~
+------------------------
 
 ::
 
