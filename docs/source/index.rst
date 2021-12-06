@@ -68,6 +68,10 @@ TransBigData简介
 .. image:: _static/WX20211021-190524@2x.png
    :height: 300
 
+Example gallery
+---------------
+.. raw:: html
+   :file: gallery/html/grid.html
 
 相关链接
 ---------------
@@ -100,6 +104,7 @@ TransBigData简介
    example-busgps/example-busgps.rst
    metromodel/metromodel.rst
    Example-pNEUMA/Example-pNEUMA.rst
+   example-bikesharing/example-bikesharing.rst
 
 通用方法
 =========================
