@@ -574,7 +574,7 @@ Merge the node information to the OD data to extract edge data.
 
 
 Construct network
---------
+---------------------------------
 
 ::
 
@@ -591,7 +591,7 @@ Construct network
         g.es[i]['weight'] = edge_weights[i]
 
 Community detection
--------------
+--------------------------------------
 
 ::
 
@@ -720,7 +720,7 @@ Community detection
 
 
 Visualize the community
--------------
+--------------------------------------
 
 ::
 
