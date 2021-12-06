@@ -1,11 +1,11 @@
 pNEUMA trajectory dataset processing
 ====================================
-
+| Jupyter notebook for this example: https://github.com/ni1o1/transbigdata/blob/main/example/Example%204-pNEUMA%20trajectory%20dataset%20processing.ipynb
 | In this example, …the pNEUMA trajectory at Athens will be processed
   and visualized.
 | Note that the sample data has been reshaped to a neat form. The origin
   version of pNEUMA dataset can be download at this
-  `website <https://open-traffic.epfl.ch/>`__
+  `website <https://open-traffic.epfl.ch/>`__.
 
 ::
 
