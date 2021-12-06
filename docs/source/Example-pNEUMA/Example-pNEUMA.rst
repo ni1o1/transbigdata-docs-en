@@ -1,7 +1,7 @@
 pNEUMA trajectory dataset processing
 ====================================
 
-| Jupyter notebook for this example: https://github.com/ni1o1/transbigdata/blob/main/example/Example%204-pNEUMA%20trajectory%20dataset%20processing.ipynb
+| Jupyter notebook for this example: `Here <https://github.com/ni1o1/transbigdata/blob/main/example/Example%204-pNEUMA%20trajectory%20dataset%20processing.ipynb>`__.
 | In this example, …the pNEUMA trajectory at Athens will be processed
   and visualized.
 | Note that the sample data has been reshaped to a neat form. The origin
