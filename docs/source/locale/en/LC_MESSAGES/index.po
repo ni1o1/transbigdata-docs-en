@@ -96,7 +96,7 @@ msgstr "Bilibili: https://space.bilibili.com/3051484"
 
 #: ../index.rst:76
 msgid "小旭学长的七天入门交通时空大数据分析课程（零基础免费课）： https://www.lifangshuju.com/#/introduce/166"
-msgstr "data analytics course for beginner"
+msgstr "data analytics course for beginner： https://www.lifangshuju.com/#/introduce/166"
 
 #: ../index.rst:77
 msgid "小旭学长的交通时空大数据分析课程： https://www.lifangshuju.com/#/introduce/154"
