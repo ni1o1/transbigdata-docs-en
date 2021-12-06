@@ -1,7 +1,17 @@
-共享单车数据社区发现
+Community detection for bicycle-sharing demand
 ========================================
 
-| 这个案例的Jupyter notebook: `点击这里 <https://github.com/ni1o1/transbigdata/blob/main/example/Example%205-community%20detection%20for%20bikesharing%20data.ipynb>`__.
+| Jupyter notebook for this example: `Here <https://github.com/ni1o1/transbigdata/blob/main/example/Example%205-community%20detection%20for%20bikesharing%20data.ipynb>`__.
+
+
+For bicycle sharing demand, each trip of can be seen as a process from the starting loaction to the end loaction. When we regard the start point and the end point as nodes, and the travel between them as edges, a network can be constructed. By analysing this network, we can get information about the spatial connection structure of the city or the macro travel characteristics of the bicycle sharing demand.
+Community detection, also called graph partition, helps us to reveal the hidden relations among the nodes in the network. In this example, we will introduce how to integrate `TransBigData` into the analysis process of community detection from bicycle-sharing data. 
+
+
+Data preprocessing
+-------------------------
+
+Fristly, import packages.
 
 ::
 
@@ -10,17 +20,12 @@
     import geopandas as gpd
     import transbigdata as tbd
 
-数据预处理
--------------------------
+Read bicycle sharing data
 
 ::
 
-    #读取共享单车数据
     bikedata = pd.read_csv(r'data/bikedata-sample.csv')
     bikedata.head(5)
-
-
-
 
 .. raw:: html
 
@@ -95,22 +100,20 @@
     </div>
 
 
+Read the polygon of the study area and delete the data outside of the study area
 
 ::
 
-    #读取上海行政区划边界
     shanghai_admin = gpd.read_file(r'data/shanghai.json')
-    #剔除研究范围外的数据
     bikedata = tbd.clean_outofshape(bikedata, shanghai_admin, col=['LONGITUDE', 'LATITUDE'], accuracy=500)
 
+Identify Bicycle sharing trip information using ``tbd.bikedata_to_od``
+
 ::
 
-    #识别单车出行OD
     move_data,stop_data = tbd.bikedata_to_od(bikedata,
                        col = ['BIKE_ID','DATA_TIME','LONGITUDE','LATITUDE','LOCK_STATUS'])
     move_data.head(5)
-
-
 
 
 .. raw:: html
