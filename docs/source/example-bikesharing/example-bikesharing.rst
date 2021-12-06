@@ -1,11 +1,13 @@
 Community detection for bicycle-sharing demand
-========================================
+======================================================
 
 | Jupyter notebook for this example: `Here <https://github.com/ni1o1/transbigdata/blob/main/example/Example%205-community%20detection%20for%20bikesharing%20data.ipynb>`__.
 
 
-For bicycle sharing demand, each trip of can be seen as a process from the starting loaction to the end loaction. When we regard the start point and the end point as nodes, and the travel between them as edges, a network can be constructed. By analysing this network, we can get information about the spatial connection structure of the city or the macro travel characteristics of the bicycle sharing demand.
-Community detection, also called graph partition, helps us to reveal the hidden relations among the nodes in the network. In this example, we will introduce how to integrate `TransBigData` into the analysis process of community detection from bicycle-sharing data. 
+| For bicycle sharing demand, each trip of can be seen as a process from the starting loaction to the end loaction. When we regard the start point and the end point as nodes, and the travel between them as edges, a network can be constructed. By analysing this network, we can get information about the spatial connection structure of the city or the macro travel characteristics of the bicycle sharing demand.
+
+
+| Community detection, also called graph partition, helps us to reveal the hidden relations among the nodes in the network. In this example, we will introduce how to integrate `TransBigData` into the analysis process of community detection from bicycle-sharing data. 
 
 
 Data preprocessing
@@ -100,7 +102,8 @@ Read bicycle sharing data
     </div>
 
 
-Read the polygon of the study area and delete the data outside of the study area
+| 
+| Read the polygon of the study area and delete the data outside of the study area
 
 ::
 
@@ -200,7 +203,8 @@ Identify Bicycle sharing trip information using ``tbd.bikedata_to_od``
     </table>
     </div>
 
-Calculate the travel distance. Remove too long and too short trips.
+| 
+| Calculate the travel distance. Remove too long and too short trips.
 
 ::
 
@@ -320,7 +324,8 @@ Perform data gridding:
     </table>
     </div>
 
-
+| 
+| Visualize figure.
 
 ::
 
@@ -349,24 +354,22 @@ Perform data gridding:
 
 
 
-提取节点信息
-----------------
+Extract node data
+----------------------
 
+| Combine the ``LONCOL`` and ``LATCOL`` columns information into one field
 
 ::
 
-    #把起终点的经纬度栅格编号变为一个字段
     od_gdf['S'] = od_gdf['SLONCOL'].astype(str) + ',' + od_gdf['SLATCOL'].astype(str)
     od_gdf['E'] = od_gdf['ELONCOL'].astype(str) + ',' + od_gdf['ELATCOL'].astype(str)
-    #提取节点集合
+    #Extract node set
     node = set(od_gdf['S'])|set(od_gdf['E'])
-    #把节点集合变成DataFrame
+    #Change the type into DataFrame
     node = pd.DataFrame(node)
-    #重新编号节点
+    #reindex the node
     node['id'] = range(len(node))
     node
-
-
 
 
 .. raw:: html
@@ -455,22 +458,20 @@ Perform data gridding:
     </div>
 
 
-
-提取边信息
+Extract edge data
 ------------------------
+
+Merge the node information to the OD data to extract edge data.
 
 ::
 
-    #把新编号连接到OD数据上
     node.columns = ['S','S_id']
     od_gdf = pd.merge(od_gdf,node,on = ['S'])
     node.columns = ['E','E_id']
     od_gdf = pd.merge(od_gdf,node,on = ['E'])
-    #提取边信息
+    #extract edge data
     edge = od_gdf[['S_id','E_id','count']]
     edge
-
-
 
 
 .. raw:: html
@@ -572,38 +573,35 @@ Perform data gridding:
 
 
 
-构建网络
+Construct network
 --------
 
 ::
 
     import igraph
-    #创建网络
+    #Construct network
     g = igraph.Graph()
-    #在网络中添加节点。
+    #Add node
     g.add_vertices(len(node))
-    #在网络中添加边。
+    #Add edge
     g.add_edges(edge[['S_id','E_id']].values)
-    #提取边的权重。
+    #Add weight
     edge_weights = edge[['count']].values
-    #给边添加权重。
     for i in range(len(edge_weights)):
         g.es[i]['weight'] = edge_weights[i]
 
-社区发现
+Community detection
 -------------
 
 ::
 
-    #社区发现
+    #Community detection
     g_clustered = g.community_multilevel(weights = edge_weights, return_levels=False)
 
 ::
 
-    #模块度
+    #Modularity
     g_clustered.modularity
-
-
 
 
 .. parsed-literal::
@@ -611,12 +609,11 @@ Perform data gridding:
     0.8496561130926571
 
 
-
 ::
 
-    #将结果赋值到节点上
+    #Assign the group result to the node
     node['group'] = g_clustered.membership
-    #重命名列
+    #rename the columns
     node.columns = ['grid','node_id','group']
     node
 
@@ -722,26 +719,26 @@ Perform data gridding:
 
 
 
-社区可视化
+Visualize the community
 -------------
 
 ::
 
-    #统计每个社区的栅格数量
+    #Count the number of grids per community
     group = node['group'].value_counts()
-    #提取大于10个栅格的社区
+    #Extract communities with more than 10 grids
     group = group[group>10]
-    #只保留这些社区的栅格
+    #Retain only these community grids
     node = node[node['group'].apply(lambda r:r in group.index)]
 
 ::
 
-    #切分获取栅格编号
+    #Get the grid number
     node['LONCOL'] = node['grid'].apply(lambda r:r.split(',')[0]).astype(int)
     node['LATCOL'] = node['grid'].apply(lambda r:r.split(',')[1]).astype(int)
-    #生成栅格地理图形
+    #Generate the geometry
     node['geometry'] = tbd.gridid_to_polygon(node['LONCOL'],node['LATCOL'],params)
-    #转为GeoDataFrame
+    #Change it into GeoDataFrame
     import geopandas as gpd
     node = gpd.GeoDataFrame(node)
     node
@@ -896,20 +893,19 @@ Perform data gridding:
 
 ::
 
-    #以group字段为分组，将同一组别的面要素合并
+    #Use the group column to merge polygon
     node_community = tbd.merge_polygon(node,'group')
-    #输入多边形GeoDataFrame数据，对多边形取外边界构成新多边形
-    #设定最小面积minarea，小于该面积的面全部剔除，避免大量离群点出现
+    #Input polygon GeoDataFrame data, take the exterior boundary of the polygon to form a new polygon
     node_community = tbd.polyon_exterior(node_community,minarea = 0.000100)
 
 
 
 ::
 
-    #生成调色盘
+    #Generate palette
     import seaborn as sns
-    ## l: 亮度
-    ## s: 饱和度
+    ## l: Luminance
+    ## s: Saturation
     cmap = sns.hls_palette(n_colors=len(node_community), l=.7, s=0.8)
     sns.palplot(cmap)
 
@@ -920,21 +916,21 @@ Perform data gridding:
 
 ::
 
-    #创建图框
+    #Create figure
     import matplotlib.pyplot as plt
     import plot_map
     fig =plt.figure(1,(8,8),dpi=300)
     ax =plt.subplot(111)
     plt.sca(ax)
-    #添加地图底图
+    #Load basemap
     tbd.plot_map(plt,bounds,zoom = 10,style = 6)
-    #设定colormap
+    #Set colormap
     from matplotlib.colors import ListedColormap 
-    #打乱社区的排列顺序
+    #Disrupting the order of the community
     node_community = node_community.sample(frac=1)
-    #绘制社区
+    #Plot community
     node_community.plot(cmap = ListedColormap(cmap),ax = ax,edgecolor = '#333',alpha = 0.8)
-    #添加比例尺和指北针
+    #Add scale
     tbd.plotscale(ax,bounds = bounds,textsize = 10,compasssize = 1,textcolor = 'k'
                   ,accuracy = 2000,rect = [0.06,0.03],zorder = 10)
     plt.axis('off')
