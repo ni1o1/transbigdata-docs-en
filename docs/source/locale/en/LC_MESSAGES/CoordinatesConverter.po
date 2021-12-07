@@ -20,71 +20,71 @@ msgstr ""
 
 #: ../CoordinatesConverter.rst:6
 msgid "坐标与距离"
-msgstr ""
+msgstr "Coordinates and Distances"
 
 #: ../CoordinatesConverter.rst:9
 msgid "火星坐标系互转"
-msgstr ""
+msgstr "Converting of Mars coordinate "
 
 #: ../CoordinatesConverter.rst:12
 msgid "坐标互转方法"
-msgstr ""
+msgstr "Coordinate convertering method"
 
 #: ../CoordinatesConverter.rst:14
 msgid "TransBigData包提供了GCJ02,BD09,BD09mc,WGS94坐标系互转。"
-msgstr ""
+msgstr "TransBigData package provide quick converting of coordinates such as GCJ02, BD09, BD09mc, WGS94"
 
 #: ../CoordinatesConverter.rst:30
 msgid "坐标互转，基于numpy列运算::"
-msgstr ""
+msgstr "Coordinates reciprocal converting, based on numpy column computation::"
 
 #: ../CoordinatesConverter.rst:41
 msgid "对地理要素转换坐标"
-msgstr ""
+msgstr "Convert coordinates of the geographic elements"
 
 #: ../CoordinatesConverter.rst:45
 msgid "输入地理要素的GeoDataFrame，对整体做坐标转换"
-msgstr ""
+msgstr "Convert coordinates of all data. The input is the geographic elements' DataFrame. "
 
 #: ../CoordinatesConverter.rst:47
 msgid "**输入**"
-msgstr ""
+msgstr "**Input**"
 
 #: ../CoordinatesConverter.rst:49 ../CoordinatesConverter.rst:58
 msgid "gdf"
-msgstr ""
+msgstr "gdf"
 
 msgid "GeoDataFrame"
-msgstr ""
+msgstr "GeoDataFrame"
 
 #: ../CoordinatesConverter.rst:50
 msgid "地理要素"
-msgstr ""
+msgstr "Geographic elements"
 
 #: ../CoordinatesConverter.rst:52
 msgid "method"
-msgstr ""
+msgstr "method"
 
 msgid "function"
-msgstr ""
+msgstr "function"
 
 #: ../CoordinatesConverter.rst:52
 msgid "坐标转换函数"
-msgstr ""
+msgstr "The coordinate converting function"
 
 #: ../CoordinatesConverter.rst:54
 msgid "**输出**"
-msgstr ""
+msgstr "**Output**"
 
 #: ../CoordinatesConverter.rst:57
 msgid "转换后结果"
-msgstr ""
+msgstr "The result of converting"
 
 #: ../CoordinatesConverter.rst:82
 msgid "经纬度计算距离"
-msgstr ""
+msgstr "Calculate the distance based on longitude and latitude"
 
 #: ../CoordinatesConverter.rst:86
 msgid "按经度1，纬度1，经度2，纬度2 （十进制度数）顺序输入起终点经纬度，为DataFrame的列，获取距离（米），基于numpy列运算::"
-msgstr ""
+msgstr "Input the origin/destination location in the sequence of lon1, lat1, lon2, lat2 (in decimal degrees) from DataFrame. The output is the distance."
 

@@ -59,7 +59,7 @@ gdf : GeoDataFrame
 
 ::
 
-    #读取线要素
+    # Read the line json file
     import geopandas as gpd
     Centerline = gpd.read_file(r'test_lines.json')
     Centerline.plot()
@@ -70,7 +70,7 @@ gdf : GeoDataFrame
 
 ::
 
-    #整体进行坐标转换
+    # Converting all the coordinates
     import transbigdata as tbd
     Centerline_transformed = tbd.transform_shape(Centerline,tbd.bd09towgs84)
     Centerline_transformed.plot()
