@@ -14,17 +14,17 @@
 ::
 
     import transbigdata as tbd
-    #用下面代码设置你的mapboxtoken
-    tbd.set_mapboxtoken('pk.eyxxxxxxxxxx.xxxxxxxxx')#必须在里面设置你申请的token，直接复制此行代码无效！
+    # Set your mapboxtoken with the following code
+    tbd.set_mapboxtoken('pk.eyxxxxxxxxxx.xxxxxxxxx')# The token you applied for must be set in it. Copying this line of code directly is invalid
 
 另外还需要设置一个地图底图的存储位置，下一次显示同一个位置时，地图会从本地读取加载。
 
 ::
 
-    #设置你的地图底图存储路径
-    #如果你是linux或者mac系统，路径是这么写，注意最后有一个反斜杠
+    # Set your map basemap storage path
+    # On linux or mac, the path is written like this. Note that there is a backslash at the end
     tbd.set_imgsavepath(r'/Users/xxxx/xxxx/')
-    #如果是windows系统，路径这么写，最后注意要两个斜杠以防转义
+    # On windows, the path is written like this. Finally, pay attention to two slashes to prevent escape
     tbd.set_imgsavepath(r'E:\pythonscript\xxx\\')
 
 设置好后，下次绘制底图时，会在你设置的路径下创建一个tileimg文件夹，底图都放在里面  
@@ -32,16 +32,16 @@
 
 ::
 
-    #定义显示范围范围
+    # Define display range
     bounds = [113.6,22.4,114.8,22.9]
-    #创建图框
+    # Plot Frame 
     import matplotlib.pyplot as plt
     fig =plt.figure(1,(8,8),dpi=250)
     ax =plt.subplot(111)
     plt.sca(ax)
-    #添加地图底图
+    # Add map basemap
     tbd.plot_map(plt,bounds,zoom = 11,style = 4)
-    #添加比例尺和指北针
+    # Add scale bar and north arrow
     tbd.plotscale(ax,bounds = bounds,textsize = 10,compasssize = 1,accuracy = 2000,rect = [0.06,0.03],zorder = 10)
     plt.axis('off')
     plt.xlim(bounds[0],bounds[2])
@@ -138,7 +138,7 @@ style : number
 
 ::
 
-    #设定显示范围
+    # Set display range
     bounds = [lon1,lat1,lon2,lat2]  
     tbd.plot_map(plt,bounds,zoom = 12,style = 4)  
 
