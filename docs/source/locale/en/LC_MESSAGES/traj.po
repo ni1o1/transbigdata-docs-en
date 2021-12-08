@@ -24,7 +24,7 @@ msgstr "Trajectory Processing"
 
 #: ../traj.rst:9
 msgid "轨迹线型生成"
-msgstr "Generation of trajectory GeoDataFrame"
+msgstr "Trajectory GeoDataFrame"
 
 #: ../traj.rst:13
 msgid "输入轨迹点，生成轨迹线型的GeoDataFrame"
@@ -107,11 +107,11 @@ msgstr "The storage path"
 
 #: ../traj.rst:42
 msgid "轨迹增密"
-msgstr "Trajectory densitification"
+msgstr "Trajectory densification"
 
 #: ../traj.rst:46
 msgid "轨迹点增密，确保每隔timegap秒会有一个轨迹点"
-msgstr "Trajectory densitification, ensure that there is a trajectory point each `timegap` seconds"
+msgstr "Trajectory densification, ensure that there is a trajectory point each `timegap` seconds"
 
 #: ../traj.rst:51
 msgid "数据"
