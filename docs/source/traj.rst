@@ -65,64 +65,64 @@ data1 : DataFrame
 
     import transbigdata as tbd
     import pandas as pd
-    #读取数据    
+    # Read data   
     data = pd.read_csv('TaxiData-Sample.csv',header = None) 
     data.columns = ['Vehicleid','Time','Lng','Lat','OpenStatus','Speed']      
     data['Time'] = pd.to_datetime(data['Time'])
-    #轨迹增密前的采样间隔
+    # Origin ampling interval
     tbd.data_summary(data,col = ['Vehicleid','Time','Lng','Lat'],show_sample_duration=True)
 
 ::
 
-    数据量
+    Items of data
     -----------------
-    数据总量 : 544999 条
-    个体总量 : 180 个
-    个体数据量均值 : 3027.77 条
-    个体数据量上四分位 : 4056.25 条
-    个体数据量中位数 : 2600.5 条
-    个体数据量下四分位 : 1595.75 条
+    Total points: 544999
+    Number of Individual IDs: 180 
+    Average of individual: 3027.77 
+    Upper quartile of individual: 4056.25 
+    Median of individual: 2600.5 
+    Lower quartile of individual: 1595.75 
 
-    数据时间段
+    Time period
     -----------------
-    开始时间 : 2021-11-12 00:00:00
-    结束时间 : 2021-11-12 23:59:59
+    Start : 2021-11-12 00:00:00
+    End : 2021-11-12 23:59:59
 
-    个体采样间隔
+    Sampling interval
     -----------------
-    均值 : 28.0 秒
-    上四分位 : 30.0 秒
-    中位数 : 20.0 秒
-    下四分位 : 15.0 秒
+    Average: 28.0 秒
+    Upper quartile: 30.0 秒
+    Median: 20.0 秒
+    Lower quartile: 15.0 秒
 
 进行轨迹增密，设置15秒一条数据::
     
     data1 = tbd.traj_densify(data,timegap = 15)
-    #轨迹增密后的采样间隔
+    # Sampling interval after trajectory densification
     tbd.data_summary(data1,show_sample_duration=True)
 
 ::
 
-    数据量
+    Items of data
     -----------------
-    数据总量 : 1526524 条
-    个体总量 : 180 个
-    个体数据量均值 : 8480.69 条
-    个体数据量上四分位 : 9554.75 条
-    个体数据量中位数 : 8175.0 条
-    个体数据量下四分位 : 7193.5 条
+    Total points : 1526524 条
+    Number of Individual IDs : 180 个
+    Average of individual : 8480.69 条
+    Upper quartile of individual : 9554.75 条
+    Median of individual: 8175.0 条
+    Lower quartile of individual: 7193.5 条
 
-    数据时间段
+    Time period
     -----------------
-    开始时间 : 2021-11-12 00:00:00
-    结束时间 : 2021-11-12 23:59:59
+    Start: 2021-11-12 00:00:00
+    End: 2021-11-12 23:59:59
 
-    个体采样间隔
+    Sampling interval
     -----------------
-    均值 : 9.99 秒
-    上四分位 : 15.0 秒
-    中位数 : 11.0 秒
-    下四分位 : 6.0 秒
+    Average: 9.99 秒
+    Upper quartile: 15.0 秒
+    Median: 11.0 秒
+    Lower quartile: 6.0 秒
 
 增密后的效果
 
