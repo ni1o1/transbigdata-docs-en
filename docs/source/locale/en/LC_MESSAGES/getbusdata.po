@@ -24,7 +24,7 @@ msgstr "Bus Crawler"
 
 #: ../getbusdata.rst:8
 msgid "通过输入城市与关键词，获取公交线路的线型与站点"
-msgstr "Get the geograpgic information of the bus station and line"
+msgstr "Obtain the geographic information of the bus station and bus line from the map service"
 
 #: ../getbusdata.rst:10 ../getbusdata.rst:28
 msgid "**输入**"

@@ -227,6 +227,7 @@ poly : Series
     import transbigdata as tbd
     import pandas as pd
     import geopandas as gpd
+    
     # Read data    
     data = pd.read_csv('TaxiData-Sample.csv',header = None) 
     data.columns = ['VehicleNum','time','slon','slat','OpenStatus','Speed'] 

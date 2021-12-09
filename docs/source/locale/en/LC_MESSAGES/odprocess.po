@@ -43,7 +43,7 @@ msgstr "DataFrame"
 
 #: ../odprocess.rst:18
 msgid "数据"
-msgstr "The origin data file"
+msgstr "The origin DataFrame"
 
 #: ../odprocess.rst:19 ../odprocess.rst:66
 msgid "shape"

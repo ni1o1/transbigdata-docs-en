@@ -32,7 +32,7 @@ msgstr "Coordinate convertering method"
 
 #: ../CoordinatesConverter.rst:14
 msgid "TransBigData包提供了GCJ02,BD09,BD09mc,WGS94坐标系互转。"
-msgstr "TransBigData package provide quick converting of coordinates such as GCJ02, BD09, BD09mc, WGS94"
+msgstr "TransBigData package provides quick converting of coordinates such as GCJ02, BD09, BD09mc, WGS94"
 
 #: ../CoordinatesConverter.rst:30
 msgid "坐标互转，基于numpy列运算::"
@@ -82,9 +82,9 @@ msgstr "The result of converting"
 
 #: ../CoordinatesConverter.rst:82
 msgid "经纬度计算距离"
-msgstr "Calculate the distance based on longitude and latitude"
+msgstr "Distance measurment"
 
 #: ../CoordinatesConverter.rst:86
-msgid "按经度1，纬度1，经度2，纬度2 （十进制度数）顺序输入起终点经纬度，为DataFrame的列，获取距离（米），基于numpy列运算::"
-msgstr "Input the origin/destination location in the sequence of lon1, lat1, lon2, lat2 (in decimal degrees) from DataFrame. The output is the distance."
+msgid "按经度1，纬度1，经度2，纬度2 （十进制）顺序输入起终点经纬度，为DataFrame的列，获取距离（米），基于numpy列运算::"
+msgstr "Input the origin/destination location in the sequence of [lon1, lat1, lon2, lat2] (in decimal) from DataFrame. The output is the distance (m)."
 

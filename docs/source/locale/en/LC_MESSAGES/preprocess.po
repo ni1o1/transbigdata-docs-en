@@ -84,7 +84,7 @@ msgstr "Cleaned data"
 msgid ""
 "删除漂移数据。条件是，此数据与前后的速度都大于speedlimit，但前后数据之间的速度却小于speedlimit。 "
 "传入的数据中时间列如果为datetime格式则计算效率更快"
-msgstr "Delete the drift data. The select principle is that: if the speed of a trajectory point is larger than the `speed limit` with before and after points, while the speed between the before and after data is less than the `speedlimit`. The time column in the input data is calculated more efficiently if it is in ``datetime format."
+msgstr "Delete the drift data. The select principle is that: if the speed of a trajectory point is larger than the `speed limit` with before and after points, while the speed between the before and after data is less than the `speedlimit`. The time column in the input data is calculated more efficiently if it is in `datetime` format."
 
 #: ../preprocess.rst:39
 msgid "列名，按[个体ID,时间,经度,纬度]的顺序"
@@ -96,7 +96,7 @@ msgstr "Data within the scope of the study"
 
 #: ../preprocess.rst:49
 msgid "输入研究范围的左下右上经纬度坐标，剔除超出研究范围的数据"
-msgstr "Enter the latitude and longitude coordinates of the lower left and upper right of the study area and exclude data that are outside the study area"
+msgstr "The input is the latitude and longitude coordinates of the lower left and upper right of the study area and exclude data that are outside the study area"
 
 #: ../preprocess.rst:55
 msgid "bounds"
@@ -104,7 +104,7 @@ msgstr "bounds"
 
 #: ../preprocess.rst:56
 msgid "研究范围的左下右上经纬度坐标，顺序为[lon1,lat1,lon2,lat2]"
-msgstr "Latitude and longitude coordinates of the lower left and upper right of the study area, in the order of [lon1,lat1,lon2,lat2]"
+msgstr "Latitude and longitude of the lower left and upper right of the study area, in the order of [lon1, lat1, lon2, lat2]"
 
 #: ../preprocess.rst:58 ../preprocess.rst:77
 msgid "经纬度列名"
@@ -134,7 +134,7 @@ msgstr "number"
 
 #: ../preprocess.rst:79
 msgid "计算原理是先栅格化后剔除，这里定义栅格大小，越小精度越高"
-msgstr "The principle is to fishnet first and then reject. The size of fishnet will be defined. The smaller size the higher accuracy"
+msgstr "The size of grid. The principle is to do the data gridding first and then do the data cleaning. The smaller the size is, the higher accuracy it has"
 
 #: ../preprocess.rst:88
 msgid "对数据的ID列重新编号"
@@ -180,7 +180,7 @@ msgstr "suffix"
 
 #: ../preprocess.rst:103
 msgid "新编号列名的后缀，设置为False时替代原有列名"
-msgstr ""
+msgstr "The suffix of the new column. When set to False, the former column will be replaced"
 
 #: ../preprocess.rst:105
 msgid "sample"
@@ -191,7 +191,7 @@ msgstr "int"
 
 #: ../preprocess.rst:105
 msgid "传入数值，对重新编号的个体进行抽样"
-msgstr ""
+msgstr "To desampling the data, optional"
 
 #: ../preprocess.rst:110 ../preprocess.rst:130
 msgid "重新编号的数据"
@@ -219,7 +219,7 @@ msgstr "Trajectory data cleaning"
 
 #: ../preprocess.rst:136
 msgid "轨迹数据清洗组合拳"
-msgstr "A combo for trajectory data cleaning"
+msgstr "A combo for trajectory data cleaning, including defining the the time length threshold considered as a new trip, and the distance threshold considered as a new trip"
 
 #: ../preprocess.rst:141
 msgid "轨迹数据"
@@ -243,11 +243,11 @@ msgstr "The distance threshold considered as a new trip"
 
 #: ../preprocess.rst:149
 msgid "speedlimit"
-msgstr "speedlimit"
+msgstr "Speed limit"
 
 #: ../preprocess.rst:149
 msgid "车速限制"
-msgstr "speedlimit"
+msgstr "Speed limit"
 
 #: ../preprocess.rst:158
 msgid "出租车数据的预处理"
@@ -265,7 +265,7 @@ msgstr "Column names, in the order of ['VehicleNum', 'Time', 'OpenStatus']"
 
 #: ../preprocess.rst:172
 msgid "timelimit"
-msgstr "timelimit"
+msgstr "Time limit"
 
 #: ../preprocess.rst:172
 msgid "可选，单位为秒，上一条记录与下一条记录的时间小于该时间阈值才予以删除"

@@ -24,7 +24,7 @@ msgstr "Data Quality"
 
 #: ../quality.rst:12
 msgid "输入数据，打印数据概况"
-msgstr "Input the data, output the general information of the dataset."
+msgstr "Output the general information of the dataset."
 
 #: ../quality.rst:14 ../quality.rst:65
 msgid "**输入**"
@@ -72,7 +72,7 @@ msgstr "number"
 
 #: ../quality.rst:23
 msgid "小数点取位数"
-msgstr "Decimal places"
+msgstr "Number of decimal places"
 
 #: ../quality.rst:25
 msgid "使用方法"
@@ -100,5 +100,5 @@ msgstr "sample_duration"
 
 #: ../quality.rst:75
 msgid "一列的数据表，列名为duration，内容是数据的采样间隔，单位秒"
-msgstr "A single-column DataFrame with the column name duration, the content is the sampling interval of the data, in seconds"
+msgstr "A Series with the column name `duration`, the content is the sampling interval of the data, in seconds"
 

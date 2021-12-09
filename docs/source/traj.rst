@@ -65,10 +65,12 @@ data1 : DataFrame
 
     import transbigdata as tbd
     import pandas as pd
+
     # Read data   
     data = pd.read_csv('TaxiData-Sample.csv',header = None) 
     data.columns = ['Vehicleid','Time','Lng','Lat','OpenStatus','Speed']      
     data['Time'] = pd.to_datetime(data['Time'])
+
     # Origin ampling interval
     tbd.data_summary(data,col = ['Vehicleid','Time','Lng','Lat'],show_sample_duration=True)
 
@@ -90,14 +92,15 @@ data1 : DataFrame
 
     Sampling interval
     -----------------
-    Average: 28.0 秒
-    Upper quartile: 30.0 秒
-    Median: 20.0 秒
-    Lower quartile: 15.0 秒
+    Average: 28.0 Seconds
+    Upper quartile: 30.0 Seconds
+    Median: 20.0 Seconds
+    Lower quartile: 15.0 Seconds
 
 进行轨迹增密，设置15秒一条数据::
     
     data1 = tbd.traj_densify(data,timegap = 15)
+    
     # Sampling interval after trajectory densification
     tbd.data_summary(data1,show_sample_duration=True)
 
@@ -105,12 +108,12 @@ data1 : DataFrame
 
     Items of data
     -----------------
-    Total points : 1526524 条
-    Number of Individual IDs : 180 个
-    Average of individual : 8480.69 条
-    Upper quartile of individual : 9554.75 条
-    Median of individual: 8175.0 条
-    Lower quartile of individual: 7193.5 条
+    Total points : 1526524 
+    Number of Individual IDs : 180 
+    Average of individual : 8480.69 
+    Upper quartile of individual : 9554.75 
+    Median of individual: 8175.0 
+    Lower quartile of individual: 7193.5 
 
     Time period
     -----------------
@@ -119,10 +122,10 @@ data1 : DataFrame
 
     Sampling interval
     -----------------
-    Average: 9.99 秒
-    Upper quartile: 15.0 秒
-    Median: 11.0 秒
-    Lower quartile: 6.0 秒
+    Average: 9.99 Seconds
+    Upper quartile: 15.0 Seconds
+    Median: 11.0 Seconds
+    Lower quartile: 6.0 Seconds
 
 增密后的效果
 

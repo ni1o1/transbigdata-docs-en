@@ -382,11 +382,11 @@ msgstr "±0.019"
 
 #: ../grids.rst:171
 msgid "TransBigData包中也提供了geohash的处理功能，主要包括三个函数："
-msgstr "TransBigData also provide the function based on `Geohash`, the three functions are as follows:"
+msgstr "TransBigData also provides the function based on `Geohash`, the three functions are as follows:"
 
 #: ../grids.rst:176 ../grids.rst:197
 msgid "输入经纬度与精度，输出geohash编码"
-msgstr "The input is the longitude, latitude, and the precision, the output is the `Geohash` encode"
+msgstr "The input is the longitude, latitude, and the precision, the output is the `Geohash` encode result of longitude and latitude"
 
 #: ../grids.rst:185
 msgid "precision"

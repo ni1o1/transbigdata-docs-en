@@ -28,7 +28,7 @@ msgstr "Visualization Settings in Jupyter"
 
 #: ../visualization.rst:9
 msgid "TransBigData包也依托于kepler.gl提供的可视化插件提供了一键数据整理与可视化的方法"
-msgstr "The TransBigData package also relies on the visualization plugin provided by kepler.gl to provide one-click data organization and visualization methods."
+msgstr "The TransBigData package also provide one-click data organization and visualization methods based on the visualization plugin provided by kepler.gl to ."
 
 #: ../visualization.rst:10
 msgid "使用此功能请先安装python的keplergl包"
@@ -61,7 +61,7 @@ msgstr "DataFrame"
 
 #: ../visualization.rst:30
 msgid "数据点分布"
-msgstr "Data point distribution"
+msgstr "The data point"
 
 #: ../visualization.rst:32 ../visualization.rst:72 ../visualization.rst:110
 msgid "col"

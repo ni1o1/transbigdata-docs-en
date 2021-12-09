@@ -14,17 +14,24 @@
 ::
 
     import transbigdata as tbd
+
     # Set your mapboxtoken with the following code
-    tbd.set_mapboxtoken('pk.eyxxxxxxxxxx.xxxxxxxxx')# The token you applied for must be set in it. Copying this line of code directly is invalid
+
+    tbd.set_mapboxtoken('pk.eyxxxxxxxxxx.xxxxxxxxx')
+    # The token you applied for must be set in it. 
+    # Copying this line of code directly is invalid
 
 另外还需要设置一个地图底图的存储位置，下一次显示同一个位置时，地图会从本地读取加载。
 
 ::
 
     # Set your map basemap storage path
-    # On linux or mac, the path is written like this. Note that there is a backslash at the end
+    # On linux or mac, the path is written like this. 
+    # Note that there is a backslash at the end
     tbd.set_imgsavepath(r'/Users/xxxx/xxxx/')
-    # On windows, the path is written like this. Finally, pay attention to two slashes to prevent escape
+    
+    # On windows, the path is written like this. 
+    # Finally, pay attention to two slashes to prevent escape
     tbd.set_imgsavepath(r'E:\pythonscript\xxx\\')
 
 设置好后，下次绘制底图时，会在你设置的路径下创建一个tileimg文件夹，底图都放在里面  
@@ -34,18 +41,21 @@
 
     # Define display range
     bounds = [113.6,22.4,114.8,22.9]
+
     # Plot Frame 
     import matplotlib.pyplot as plt
     fig =plt.figure(1,(8,8),dpi=250)
     ax =plt.subplot(111)
     plt.sca(ax)
+
     # Add map basemap
     tbd.plot_map(plt,bounds,zoom = 11,style = 4)
+
     # Add scale bar and north arrow
-    tbd.plotscale(ax,bounds = bounds,textsize = 10,compasssize = 1,accuracy = 2000,rect = [0.06,0.03],zorder = 10)
+    tbd.plotscale(ax,bounds = bounds,textsize = 10,compasssize = 1,accuracy = 2000, rect = [0.06,0.03], zorder = 10)
     plt.axis('off')
-    plt.xlim(bounds[0],bounds[2])
-    plt.ylim(bounds[1],bounds[3])
+    plt.xlim(bounds[0], bounds[2])
+    plt.ylim(bounds[1], bounds[3])
     plt.show()
 
 .. image:: plot_map/output_6_0.png
@@ -169,4 +179,4 @@ rect : List
 
 ::
 
-    tbd.plotscale(ax,bounds = bounds,textsize = 10,compasssize = 1,accuracy = 2000,rect = [0.06,0.03])  
+    tbd.plotscale(ax,bounds = bounds,textsize = 10,compasssize = 1,accuracy = 2000, rect = [0.06, 0.03])  

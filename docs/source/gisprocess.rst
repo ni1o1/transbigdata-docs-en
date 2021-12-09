@@ -58,7 +58,8 @@ gdf : DataFrame
 ::
 
     tbd.ckdnearest(dfA,dfB,Aname=['lon1','lat1'],Bname=['lon','lat'])
-    # The calculated distance at this time is the actual distance converted from latitude and longitude
+    # The calculated distance at this time is the actual distance 
+    # converted from latitude and longitude
 
 
 
@@ -168,8 +169,8 @@ gdf : DataFrame
 
 ::
 
-    dfA['geometry'] = gpd.points_from_xy(dfA['lon1'],dfA['lat1'])
-    dfB['geometry'] = gpd.points_from_xy(dfB['lon'],dfB['lat'])
+    dfA['geometry'] = gpd.points_from_xy(dfA['lon1'], dfA['lat1'])
+    dfB['geometry'] = gpd.points_from_xy(dfB['lon'], dfB['lat'])
 
 使用tbd.ckdnearest_point进行点与点匹配
 
@@ -516,6 +517,7 @@ splitedline : GeoDataFrame
     # Convert line to projected coordinate system
     Centerline.crs = {'init':'epsg:4326'}
     Centerline = Centerline.to_crs(epsg = '4517')
+    
     # calculate the line's length
     Centerline['length'] = Centerline.length
     Centerline
