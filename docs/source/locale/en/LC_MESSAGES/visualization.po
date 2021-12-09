@@ -129,7 +129,7 @@ msgstr "Visualizations provided by keplergl"
 
 #: ../visualization.rst:48
 msgid "使用方法::"
-msgstr "Method::"
+msgstr "**Method**::"
 
 #: ../visualization.rst:62
 msgid "轨迹可视化"
@@ -157,7 +157,7 @@ msgstr "Map zoom level"
 
 #: ../visualization.rst:84 ../visualization.rst:126
 msgid "使用方法"
-msgstr "Method"
+msgstr "**Method**"
 
 #: ../visualization.rst:99
 msgid "OD可视化"

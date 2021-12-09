@@ -28,10 +28,12 @@ roundnum : number
 
     import transbigdata as tbd
     import pandas as pd
+
     # Read data    
     data = pd.read_csv('TaxiData-Sample.csv',header = None) 
     data.columns = ['Vehicleid','Time','Lng','Lat','OpenStatus','Speed']      
     data['Time'] = pd.to_datetime(data['Time'])
+    
     # The sampling interval
     tbd.data_summary(data,col = ['Vehicleid','Time','Lng','Lat'],show_sample_duration=True)
 
