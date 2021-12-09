@@ -20,7 +20,7 @@ msgstr ""
 
 #: ../getbusdata.rst:4
 msgid "爬虫"
-msgstr "Bus Crawler"
+msgstr "Data Acquisition"
 
 #: ../getbusdata.rst:8
 msgid "通过输入城市与关键词，获取公交线路的线型与站点"
