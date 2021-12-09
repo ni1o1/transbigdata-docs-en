@@ -58,7 +58,7 @@ gdf : DataFrame
 ::
 
     tbd.ckdnearest(dfA,dfB,Aname=['lon1','lat1'],Bname=['lon','lat'])
-    #此时计算出的距离为经纬度换算实际距离
+    # The calculated distance at this time is the actual distance converted from latitude and longitude
 
 
 
@@ -193,7 +193,7 @@ gdf : GeoDataFrame
 ::
 
     tbd.ckdnearest_point(dfA,dfB)
-    #此时计算出的距离为经纬度距离
+    # The calculated distance is the latitude-andlongitude-based distance
 
 
 
@@ -351,7 +351,7 @@ gdf : GeoDataFrame
 ::
 
     tbd.ckdnearest_line(dfA,dfB)
-    #此时计算出的距离为经纬度距离
+    # The calculated distance is the latitude-andlongitude-based distance
 
 
 
@@ -499,7 +499,7 @@ splitedline : GeoDataFrame
 
 ::
 
-    #读取线要素
+    # Read the line GeoDataFrame
     import geopandas as gpd
     Centerline = gpd.read_file(r'test_lines.json')
     Centerline.plot()
@@ -513,10 +513,10 @@ splitedline : GeoDataFrame
 
 ::
 
-    #转换线为投影坐标系
+    # Convert line to projected coordinate system
     Centerline.crs = {'init':'epsg:4326'}
     Centerline = Centerline.to_crs(epsg = '4517')
-    #计算线的长度
+    # calculate the line's length
     Centerline['length'] = Centerline.length
     Centerline
 
@@ -617,13 +617,13 @@ splitedline : GeoDataFrame
 
 ::
 
-    #将线打断为最长100米的线段
+    # split the line to maximum 100m
     import transbigdata as tbd
     splitedline = tbd.splitline_with_length(Centerline,maxlength = 100)
 
 ::
 
-    #打断后线型不变
+    # the splited line remain unchanged
     splitedline.plot()
 
 
@@ -638,7 +638,7 @@ splitedline : GeoDataFrame
 
 ::
 
-    #但内容已经变成一段一段了
+    # it does been splited
     splitedline
 
 
