@@ -32,7 +32,7 @@ msgstr "General Methods"
 
 #: ../index.rst:122 ../index.rst:124
 msgid "各类数据处理方法"
-msgstr "Various data processing methods"
+msgstr "methods for specific data"
 
 #: ../index.rst:7
 msgid "TransBigData 为交通时空大数据而生"
