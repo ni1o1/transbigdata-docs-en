@@ -33,12 +33,11 @@ TransBigData简介
 
     pip install -U transbigdata
 
-下面例子展示如何使用TransBigData工具快速地从出租车GPS数据中提取出行OD
-::
+下面例子展示如何使用TransBigData工具快速地从出租车GPS数据中提取出行OD::
 
-    #导入TransBigData包
+    #Import TransBigData
     import transbigdata as tbd
-    #读取数据    
+    #Read the data    
     import pandas as pd
     data = pd.read_csv('TaxiData-Sample.csv',header = None) 
     data.columns = ['VehicleNum','time','slon','slat','OpenStatus','Speed'] 
@@ -47,11 +46,9 @@ TransBigData简介
 .. image:: _static/WX20211021-192131@2x.png
    :height: 300
 
+使用tbd.taxigps_to_od方法，传入对应的列名，即可提取出行OD::
 
-使用*tbd.taxigps_to_od*方法，传入对应的列名，即可提取出行OD
-::
-
-    #从GPS数据提取OD
+    #Extract OD from GPS data
     oddata = tbd.taxigps_to_od(data,col = ['VehicleNum','time','slon','slat','OpenStatus'])
     oddata
 
@@ -60,23 +57,21 @@ TransBigData简介
 
 对提取出的OD进行OD的栅格集计::
 
-    #定义研究范围
+    #define bounds
    bounds = [113.6,22.4,114.8,22.9]
-   #输入研究范围边界bounds与栅格宽度accuracy，获取栅格化参数
+   #obtain the gridding parameters
    params = tbd.grid_params(bounds = bounds,accuracy = 1500)
-   #栅格化OD并集计
+   #gridding OD data and aggregate
    od_gdf = tbd.odagg_grid(oddata,params)
    od_gdf.plot(column = 'count')
 
 .. image:: _static/WX20211021-190524@2x.png
    :height: 300
 
-使用示例
+Example gallery
 ---------------
 .. raw:: html
    :file: gallery/html/grid.html
-
-
 
 相关链接
 ---------------
@@ -88,11 +83,11 @@ TransBigData简介
 * 本项目的github页面： https://github.com/ni1o1/transbigdata/  
 * 有bug请在这个页面提交： https://github.com/ni1o1/transbigdata/issues
 
-安装
+安装、依赖与更新日志
 =========================
 
 .. toctree::
-   :caption: 安装
+   :caption: 安装、依赖与更新日志
    :maxdepth: 2
    
    getting_started.rst
@@ -110,7 +105,7 @@ TransBigData简介
    metromodel/metromodel.rst
    Example-pNEUMA/Example-pNEUMA.rst
    example-bikesharing/example-bikesharing.rst
-   
+
 通用方法
 =========================
 
@@ -123,12 +118,11 @@ TransBigData简介
    grids.rst
    odprocess.rst
    visualization.rst
-   getbusdata.rst
    traj.rst
    gisprocess.rst
    plot_map.rst
    CoordinatesConverter.rst
-
+   getbusdata.rst
 
 各类数据处理方法
 =========================
