@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bus GPS data processing &mdash; TransBigData 0.3.0 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" /><link rel="shortcut icon" href="_static/logo2.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Bus and subway network topology modeling" href="metroline.html" />
+    <link rel="prev" title="Bike-sharing data processing" href="bikedata.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html"><img src="_static/logo-wordmark-light.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.3.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p><span class="caption-text">安装</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Installation</a></li>
+</ul>
+<p><span class="caption-text">Example</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="example-taxi/example-taxi.html">Taxi GPS data processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example-busgps/example-busgps.html">Identifying arrival and departure information from Bus GPS data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metromodel/metromodel.html">Modeling for subway network topology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Example-pNEUMA/Example-pNEUMA.html">pNEUMA trajectory dataset processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example-bikesharing/example-bikesharing.html">Community detection for bicycle-sharing demand</a></li>
+</ul>
+<p><span class="caption-text">General Methods</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quality.html">Data Quality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preprocess.html">Data Preprocess</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grids.html">Data Gridding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="odprocess.html">Data Aggregating</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">Data Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getbusdata.html">Data Acquisition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="traj.html">Trajectory Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gisprocess.html">GIS Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plot_map.html">Load the basemap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CoordinatesConverter.html">Coordinates and Distances</a></li>
+</ul>
+<p><span class="caption-text">methods for specific data</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="taxigps.html">Taxi GPS data processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bikedata.html">Bike-sharing data processing</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Bus GPS data processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metroline.html">Bus and subway network topology modeling</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">TransBigData</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Bus GPS data processing</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/busgps.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="gps">
+<span id="busgps"></span><h1>Bus GPS data processing<a class="headerlink" href="#gps" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="transbigdata.busgps_arriveinfo">
+<code class="sig-prename descclassname"><span class="pre">transbigdata.</span></code><code class="sig-name descname"><span class="pre">busgps_arriveinfo</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['VehicleId',</span> <span class="pre">'GPSDateTime',</span> <span class="pre">'lon',</span> <span class="pre">'lat',</span> <span class="pre">'stopname']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stopbuffer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mintime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project_epsg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2416</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timegap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1800</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'project'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projectoutput</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transbigdata.busgps_arriveinfo" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Input bus GPS data, bus route and station GeoDataFrame, this method can identify the bus arrival and departure information</p>
+<p><strong>Input</strong></p>
+<dl class="simple">
+<dt>data<span class="classifier">DataFrame</span></dt><dd><p>Bus GPS data. It should be the data from one bus route, and need to contain vehicle ID, GPS time, latitude and longitude (wgs84)</p>
+</dd>
+<dt>line<span class="classifier">GeoDataFrame</span></dt><dd><p>GeoDataFrame for the bus line</p>
+</dd>
+<dt>stop<span class="classifier">GeoDataFrame</span></dt><dd><p>GeoDataFrame for bus stops</p>
+</dd>
+<dt>col<span class="classifier">List</span></dt><dd><p>Column names, in the order of [vehicle ID, time, longitude, latitude, station name]</p>
+</dd>
+<dt>stopbuffer<span class="classifier">number</span></dt><dd><p>Meter. When the vehicle approaches the station within this certain distance, it is considered to be arrive at the station.</p>
+</dd>
+<dt>mintime<span class="classifier">number</span></dt><dd><p>Seconds. Within a short period of time that the bus arrive at bus station again, it will not be consider as another arrival</p>
+</dd>
+<dt>project_epsg<span class="classifier">number</span></dt><dd><p>The matching algorithm will convert the data into a projection coordinate system to calculate the distance, here the epsg code of the projection coordinate system is given</p>
+</dd>
+<dt>timegap<span class="classifier">number</span></dt><dd><p>Seconds. For how long the vehicle does not appear, it will be considered as a new vehicle</p>
+</dd>
+<dt>method<span class="classifier">str</span></dt><dd><p>The method of matching the bus, either ‘project’ or ‘dislimit’; ‘project’ is to directly match the nearest point on the route, which is fast. ‘dislimit’ needs to consider the front point position with the distance limitation, the matching speed is slow.</p>
+</dd>
+<dt>projectoutput<span class="classifier">bool</span></dt><dd><p>Whether to output the projected data</p>
+</dd>
+</dl>
+<p><strong>Output</strong></p>
+<dl class="simple">
+<dt>arrive_info<span class="classifier">DataFrame</span></dt><dd><p>Bus arrival and departure information</p>
+</dd>
+</dl>
+<dl class="py function">
+<dt id="transbigdata.busgps_onewaytime">
+<code class="sig-prename descclassname"><span class="pre">transbigdata.</span></code><code class="sig-name descname"><span class="pre">busgps_onewaytime</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arrive_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['VehicleId',</span> <span class="pre">'stopname']</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transbigdata.busgps_onewaytime" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Input the departure information table <cite>drive_info</cite> and the station information table <cite>stop</cite> to calculate the one-way travel time</p>
+<p><strong>Input</strong></p>
+<dl class="simple">
+<dt>arrive_info<span class="classifier">DataFrame</span></dt><dd><p>The departure information table <cite>drive_info</cite></p>
+</dd>
+<dt>stop<span class="classifier">GeoDataFrame</span></dt><dd><p>GeoDataFrame for bus stops</p>
+</dd>
+<dt>start<span class="classifier">Str</span></dt><dd><p>Starting station name</p>
+</dd>
+<dt>end<span class="classifier">Str</span></dt><dd><p>Ending station name</p>
+</dd>
+<dt>col<span class="classifier">List</span></dt><dd><p>Column name [vehicle ID, station name]</p>
+</dd>
+</dl>
+<p><strong>Output</strong></p>
+<dl class="simple">
+<dt>onewaytime<span class="classifier">DataFrame</span></dt><dd><p>One-way travel time of the bus</p>
+</dd>
+</dl>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="bikedata.html" class="btn btn-neutral float-left" title="Bike-sharing data processing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="metroline.html" class="btn btn-neutral float-right" title="Bus and subway network topology modeling" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Qing Yu.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

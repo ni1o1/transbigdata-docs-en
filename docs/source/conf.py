@@ -22,8 +22,8 @@ copyright = '2021, Qing Yu'
 author = 'Qing Yu'
 
 # The full version, including alpha/beta/rc tags
-release = '0.2.7'
-version = '0.2.7'
+release = '0.3.0'
+version = '0.3.0'
 html_logo = "_static/logo-wordmark-light.png"
 html_favicon = '_static/logo2.ico'
 # -- General configuration ---------------------------------------------------
@@ -42,7 +42,8 @@ templates_path = ['_templates']
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
 language = 'en'
-locale_dirs = ['locale/'] 
+locale_dirs = ['../locale/']   # path is example but recommended.
+
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.

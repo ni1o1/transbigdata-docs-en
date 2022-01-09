@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Load the basemap &mdash; TransBigData 0.3.0 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" /><link rel="shortcut icon" href="_static/logo2.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Coordinates and Distances" href="CoordinatesConverter.html" />
+    <link rel="prev" title="GIS Processing" href="gisprocess.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html"><img src="_static/logo-wordmark-light.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.3.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p><span class="caption-text">安装</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Installation</a></li>
+</ul>
+<p><span class="caption-text">Example</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="example-taxi/example-taxi.html">Taxi GPS data processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example-busgps/example-busgps.html">Identifying arrival and departure information from Bus GPS data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metromodel/metromodel.html">Modeling for subway network topology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Example-pNEUMA/Example-pNEUMA.html">pNEUMA trajectory dataset processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example-bikesharing/example-bikesharing.html">Community detection for bicycle-sharing demand</a></li>
+</ul>
+<p><span class="caption-text">General Methods</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quality.html">Data Quality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preprocess.html">Data Preprocess</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grids.html">Data Gridding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="odprocess.html">Data Aggregating</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">Data Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getbusdata.html">Data Acquisition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="traj.html">Trajectory Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gisprocess.html">GIS Processing</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Load the basemap</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">Settings before start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">Load the basemap</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#streets">Basemap style 1: streets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#outdoors">Basemap style 2: outdoors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#satellite">Basemap style 3: satellite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#light">Basemap style 4: light</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dark">Basemap style 5: dark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#light-ch">Basemap style 6: light-ch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ice-creem">Basemap style 7: ice creem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#night">Basemap style 8: night</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#terrain">Basemap style 9: terrain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#basic-blue">Basemap style 10: basic blue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Code example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">Compass and scale</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="CoordinatesConverter.html">Coordinates and Distances</a></li>
+</ul>
+<p><span class="caption-text">methods for specific data</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="taxigps.html">Taxi GPS data processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bikedata.html">Bike-sharing data processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="busgps.html">Bus GPS data processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metroline.html">Bus and subway network topology modeling</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">TransBigData</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Load the basemap</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/plot_map.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="plot-map">
+<span id="id1"></span><h1>Load the basemap<a class="headerlink" href="#plot-map" title="Permalink to this headline">¶</a></h1>
+<section id="id2">
+<h2>Settings before start<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">The TransBigData package provides the function of drawing map basemap on matplotlib. The basemap is provided by mapbox and the coordinate system is WGS84. If you want to use this function, you first need to click <a class="reference external" href="https://account.mapbox.com/auth/signin/?route-to=%22https://account.mapbox.com/%22">THIS LINK</a> to register for a mapbox account. Register as a developer on the mapbox, and obtain a mapbox token. <a class="reference external" href="https://docs.mapbox.com/help/getting-started/access-tokens/#how-access-tokens-work">THIS LINK</a> introduces the function of mapbox token.</div>
+<div class="line">If you have obtained the mapbox token, you can use the following code to set the mapbox token for TransBigData (you only need to set it once, and you don’t need to reset it when you reopen python later)</div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">transbigdata</span> <span class="k">as</span> <span class="nn">tbd</span>
+<span class="c1">#用下面代码设置你的mapboxtoken</span>
+<span class="n">tbd</span><span class="o">.</span><span class="n">set_mapboxtoken</span><span class="p">(</span><span class="s1">&#39;pk.eyxxxxxxxxxx.xxxxxxxxx&#39;</span><span class="p">)</span><span class="c1">#必须在里面设置你申请的token，直接复制此行代码无效！</span>
+</pre></div>
+</div>
+<p>In addition, you need to set the storage location of a map basemap. When the same location is displayed next time, the map will be read and loaded locally</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#设置你的地图底图存储路径</span>
+<span class="c1">#如果你是linux或者mac系统，路径是这么写，注意最后有一个反斜杠</span>
+<span class="n">tbd</span><span class="o">.</span><span class="n">set_imgsavepath</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;/Users/xxxx/xxxx/&#39;</span><span class="p">)</span>
+<span class="c1">#如果是windows系统，路径这么写，最后注意要两个斜杠以防转义</span>
+<span class="n">tbd</span><span class="o">.</span><span class="n">set_imgsavepath</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;E:\pythonscript\xxx</span><span class="se">\\</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After setting, the next time you draw the base map, you will create a <cite>tileimg</cite> folder under the path you set, and put all the base maps in it. Try the following code to see if you can draw the base map successfully</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#定义显示范围范围</span>
+<span class="n">bounds</span> <span class="o">=</span> <span class="p">[</span><span class="mf">113.6</span><span class="p">,</span><span class="mf">22.4</span><span class="p">,</span><span class="mf">114.8</span><span class="p">,</span><span class="mf">22.9</span><span class="p">]</span>
+<span class="c1">#创建图框</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">fig</span> <span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">sca</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+<span class="c1">#添加地图底图</span>
+<span class="n">tbd</span><span class="o">.</span><span class="n">plot_map</span><span class="p">(</span><span class="n">plt</span><span class="p">,</span><span class="n">bounds</span><span class="p">,</span><span class="n">zoom</span> <span class="o">=</span> <span class="mi">11</span><span class="p">,</span><span class="n">style</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span>
+<span class="c1">#添加比例尺和指北针</span>
+<span class="n">tbd</span><span class="o">.</span><span class="n">plotscale</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">bounds</span> <span class="o">=</span> <span class="n">bounds</span><span class="p">,</span><span class="n">textsize</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span><span class="n">compasssize</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">accuracy</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">,</span><span class="n">rect</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.06</span><span class="p">,</span><span class="mf">0.03</span><span class="p">],</span><span class="n">zorder</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">bounds</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">bounds</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="_images/output_6_0.png" src="_images/output_6_0.png" />
+</section>
+<section id="id3">
+<h2>Load the basemap<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>The base map visualization is provided by the plot_map. Ensure that your plot_map version is newer than 0.3.3:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">plot</span><span class="o">-</span><span class="nb">map</span>
+</pre></div>
+</div>
+<dl class="py function">
+<dt id="transbigdata.plot_map">
+<code class="sig-prename descclassname"><span class="pre">transbigdata.</span></code><code class="sig-name descname"><span class="pre">plot_map</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zoom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">printlog</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">styleid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dark'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transbigdata.plot_map" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Add the basemap</p>
+<p><strong>Input</strong></p>
+<dl class="simple">
+<dt>bounds<span class="classifier">List</span></dt><dd><p>The drawing boundary of the base map, [lon1,lat1,lon2,lat2] (WGS84 coordinate system), where lon1 and lat1 are the coordinates of the lower left corner and lon2 and lat2 are the coordinates of the upper right corner</p>
+</dd>
+<dt>zoom<span class="classifier">number</span></dt><dd><p>The larger the magnification level of the base map, the longer the loading time. Generally, the range for a single city is between 12 and 16</p>
+</dd>
+<dt>printlog<span class="classifier">bool</span></dt><dd><p>Show log</p>
+</dd>
+<dt>style<span class="classifier">number</span></dt><dd><p>The style of map basemap can be 1-10, as follows (ensure that your plot_map version is newer than 0.3.3)</p>
+</dd>
+</dl>
+<section id="streets">
+<h3>Basemap style 1: streets<a class="headerlink" href="#streets" title="Permalink to this headline">¶</a></h3>
+<img alt="_images/1.png" src="_images/1.png" />
+</section>
+<section id="outdoors">
+<h3>Basemap style 2: outdoors<a class="headerlink" href="#outdoors" title="Permalink to this headline">¶</a></h3>
+<img alt="_images/2.png" src="_images/2.png" />
+</section>
+<section id="satellite">
+<h3>Basemap style 3: satellite<a class="headerlink" href="#satellite" title="Permalink to this headline">¶</a></h3>
+<img alt="_images/3.png" src="_images/3.png" />
+</section>
+<section id="light">
+<h3>Basemap style 4: light<a class="headerlink" href="#light" title="Permalink to this headline">¶</a></h3>
+<img alt="_images/4.png" src="_images/4.png" />
+</section>
+<section id="dark">
+<h3>Basemap style 5: dark<a class="headerlink" href="#dark" title="Permalink to this headline">¶</a></h3>
+<img alt="_images/5.png" src="_images/5.png" />
+</section>
+<section id="light-ch">
+<h3>Basemap style 6: light-ch<a class="headerlink" href="#light-ch" title="Permalink to this headline">¶</a></h3>
+<img alt="_images/6.png" src="_images/6.png" />
+</section>
+<section id="ice-creem">
+<h3>Basemap style 7: ice creem<a class="headerlink" href="#ice-creem" title="Permalink to this headline">¶</a></h3>
+<img alt="_images/7.png" src="_images/7.png" />
+</section>
+<section id="night">
+<h3>Basemap style 8: night<a class="headerlink" href="#night" title="Permalink to this headline">¶</a></h3>
+<img alt="_images/8.png" src="_images/8.png" />
+</section>
+<section id="terrain">
+<h3>Basemap style 9: terrain<a class="headerlink" href="#terrain" title="Permalink to this headline">¶</a></h3>
+<img alt="_images/9.png" src="_images/9.png" />
+</section>
+<section id="basic-blue">
+<h3>Basemap style 10: basic blue<a class="headerlink" href="#basic-blue" title="Permalink to this headline">¶</a></h3>
+<img alt="_images/10.png" src="_images/10.png" />
+</section>
+<section id="id4">
+<h3>Code example<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#设定显示范围</span>
+<span class="n">bounds</span> <span class="o">=</span> <span class="p">[</span><span class="n">lon1</span><span class="p">,</span><span class="n">lat1</span><span class="p">,</span><span class="n">lon2</span><span class="p">,</span><span class="n">lat2</span><span class="p">]</span>
+<span class="n">tbd</span><span class="o">.</span><span class="n">plot_map</span><span class="p">(</span><span class="n">plt</span><span class="p">,</span><span class="n">bounds</span><span class="p">,</span><span class="n">zoom</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span><span class="n">style</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id5">
+<h2>Compass and scale<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="transbigdata.plotscale">
+<code class="sig-prename descclassname"><span class="pre">transbigdata.</span></code><code class="sig-name descname"><span class="pre">plotscale</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">textcolor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'k'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">textsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compasssize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accuracy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rect</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0.1,</span> <span class="pre">0.1]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'KM'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transbigdata.plotscale" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Add compass and scale for a map</p>
+<p><strong>Input</strong></p>
+<dl class="simple">
+<dt>bounds<span class="classifier">List</span></dt><dd><p>The drawing boundary of the base map, [lon1,lat1,lon2,lat2] (WGS84 coordinate system), where lon1 and lat1 are the coordinates of the lower left corner and lon2 and lat2 are the coordinates of the upper right corner</p>
+</dd>
+<dt>textsize<span class="classifier">number</span></dt><dd><p>size of the text</p>
+</dd>
+<dt>compasssize<span class="classifier">number</span></dt><dd><p>size of the compass</p>
+</dd>
+<dt>accuracy<span class="classifier">number</span></dt><dd><p>Length of scale bar (m)</p>
+</dd>
+<dt>unit<span class="classifier">str</span></dt><dd><p>‘KM’,’km’,’M’,’m’, the scale units</p>
+</dd>
+<dt>style<span class="classifier">number</span></dt><dd><p>1 or 2, the style of the scale</p>
+</dd>
+<dt>rect<span class="classifier">List</span></dt><dd><p>The approximate position of the scale bar in the figure, such as [0.9,0.9], is in the upper right corner</p>
+</dd>
+</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tbd</span><span class="o">.</span><span class="n">plotscale</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">bounds</span> <span class="o">=</span> <span class="n">bounds</span><span class="p">,</span><span class="n">textsize</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span><span class="n">compasssize</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">accuracy</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">,</span><span class="n">rect</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.06</span><span class="p">,</span><span class="mf">0.03</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="gisprocess.html" class="btn btn-neutral float-left" title="GIS Processing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="CoordinatesConverter.html" class="btn btn-neutral float-right" title="Coordinates and Distances" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Qing Yu.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

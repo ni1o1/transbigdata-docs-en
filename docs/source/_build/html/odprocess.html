@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Aggregating &mdash; TransBigData 0.3.0 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" /><link rel="shortcut icon" href="_static/logo2.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Data Visualization" href="visualization.html" />
+    <link rel="prev" title="Data Gridding" href="grids.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html"><img src="_static/logo-wordmark-light.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.3.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p><span class="caption-text">安装</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Installation</a></li>
+</ul>
+<p><span class="caption-text">Example</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="example-taxi/example-taxi.html">Taxi GPS data processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example-busgps/example-busgps.html">Identifying arrival and departure information from Bus GPS data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metromodel/metromodel.html">Modeling for subway network topology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Example-pNEUMA/Example-pNEUMA.html">pNEUMA trajectory dataset processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example-bikesharing/example-bikesharing.html">Community detection for bicycle-sharing demand</a></li>
+</ul>
+<p><span class="caption-text">General Methods</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quality.html">Data Quality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preprocess.html">Data Preprocess</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grids.html">Data Gridding</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Data Aggregating</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">Data Aggregating</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#od">OD aggregation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">Data Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getbusdata.html">Data Acquisition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="traj.html">Trajectory Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gisprocess.html">GIS Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plot_map.html">Load the basemap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CoordinatesConverter.html">Coordinates and Distances</a></li>
+</ul>
+<p><span class="caption-text">methods for specific data</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="taxigps.html">Taxi GPS data processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bikedata.html">Bike-sharing data processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="busgps.html">Bus GPS data processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metroline.html">Bus and subway network topology modeling</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">TransBigData</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Data Aggregating</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/odprocess.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="odprocess">
+<span id="id1"></span><h1>Data Aggregating<a class="headerlink" href="#odprocess" title="Permalink to this headline">¶</a></h1>
+<section id="id2">
+<h2>Data Aggregating<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="transbigdata.dataagg">
+<code class="sig-prename descclassname"><span class="pre">transbigdata.</span></code><code class="sig-name descname"><span class="pre">dataagg</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['Lng',</span> <span class="pre">'Lat',</span> <span class="pre">'count']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accuracy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transbigdata.dataagg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Aggregate data to traffic zone</p>
+<p><strong>Input</strong></p>
+<dl class="simple">
+<dt>data<span class="classifier">DataFrame</span></dt><dd><p>The origin DataFrame</p>
+</dd>
+<dt>shape<span class="classifier">GeoDataFrame</span></dt><dd><p>The shape of the traffic zone</p>
+</dd>
+<dt>col<span class="classifier">List</span></dt><dd><p>You can either choose to input two columns, i.e., [‘Lng’,’Lat’], or to input three columns, i.e., [‘Lng’,’Lat’,’count’]”, where <cite>count</cite> means the points count</p>
+</dd>
+<dt>accuracy<span class="classifier">number</span></dt><dd><p>The idea is to first implement data gridding and then the aggregation. Here, the grid size will be determined. The less the size is, the higher the accuracy will have.</p>
+</dd>
+</dl>
+<p><strong>Output</strong></p>
+<dl class="simple">
+<dt>aggresult<span class="classifier">GeoDataFrame</span></dt><dd><p>Traffic zone. The <cite>count</cite> column is the output result</p>
+</dd>
+<dt>data1<span class="classifier">DataFrame</span></dt><dd><p>The zone-matched data</p>
+</dd>
+</dl>
+</section>
+<section id="od">
+<h2>OD aggregation<a class="headerlink" href="#od" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="transbigdata.odagg_grid">
+<code class="sig-prename descclassname"><span class="pre">transbigdata.</span></code><code class="sig-name descname"><span class="pre">odagg_grid</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oddata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['slon',</span> <span class="pre">'slat',</span> <span class="pre">'elon',</span> <span class="pre">'elat']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arrow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transbigdata.odagg_grid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Aggregate the OD matrix and generate the grid geometry. The input is the OD matrix (each row represents a trip). The OD will assigned to grids and then aggregated in the form of GeoDataFrame.</p>
+<p><strong>Input</strong></p>
+<dl class="simple">
+<dt>oddata<span class="classifier">DataFrame</span></dt><dd><p>OD data</p>
+</dd>
+<dt>col<span class="classifier">List</span></dt><dd><p>The column of the origin/destination location,[‘slon’,’slat’,’elon’,’elat’]. The default weight is 1 for each column. You can also add the weight parameter, for example, [‘slon’,’slat’,’elon’,’elat’,’count’].</p>
+</dd>
+<dt>params<span class="classifier">List</span></dt><dd><p>The grid parameter, (lonStart, latStart, deltaLon, deltaLat), are the coordinates of the lower left corner of the grid, and the grid size, respectively</p>
+</dd>
+<dt>arrow<span class="classifier">bool</span></dt><dd><p>Whether the generated OD geographic line contains arrows</p>
+</dd>
+</dl>
+<p><strong>Output</strong></p>
+<dl class="simple">
+<dt>oddata1<span class="classifier">GeoDataFrame</span></dt><dd><p>GeoDataFrame of OD after aggregation</p>
+</dd>
+</dl>
+<dl class="py function">
+<dt id="transbigdata.odagg_shape">
+<code class="sig-prename descclassname"><span class="pre">transbigdata.</span></code><code class="sig-name descname"><span class="pre">odagg_shape</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oddata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['slon',</span> <span class="pre">'slat',</span> <span class="pre">'elon',</span> <span class="pre">'elat']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round_accuracy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arrow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transbigdata.odagg_shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Generate the OD aggregation results and the corresponding geometry. The input is the OD data (each row represents a trip). The OD will assigned to grids and then aggregated in the form of GeoDataFrame.</p>
+<p><strong>Input</strong></p>
+<dl class="simple">
+<dt>oddata<span class="classifier">DataFrame</span></dt><dd><p>OD data</p>
+</dd>
+<dt>shape<span class="classifier">GeoDataFrame</span></dt><dd><p>GeoDataFrame of the target traffic zone</p>
+</dd>
+<dt>col<span class="classifier">List</span></dt><dd><p>The column of the origin/destination location,[‘slon’,’slat’,’elon’,’elat’]. The default weight is 1 for each column. You can also add the weight parameter, for example, [‘slon’,’slat’,’elon’,’elat’,’count’].</p>
+</dd>
+<dt>params<span class="classifier">List</span></dt><dd><p>Parameter gridding (optional). If availabel, After the data gridding, the traffic zone will be matched based on the grid center. If not available, then the matching will be processed based on longitude and latitude. When the number of data items is large, the matching efficiency will be improved greatly thanks to data gridding.</p>
+</dd>
+<dt>round_accuracy<span class="classifier">number</span></dt><dd><p>The number of decimal for latitude and longitude when implementing aggregation</p>
+</dd>
+<dt>arrow<span class="classifier">bool</span></dt><dd><p>Whether the generated OD geographic line contains arrows</p>
+</dd>
+</dl>
+<p><strong>Output</strong></p>
+<dl class="simple">
+<dt>oddata1<span class="classifier">GeoDataFrame</span></dt><dd><p>GeoDataFrame of OD after aggregation</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="grids.html" class="btn btn-neutral float-left" title="Data Gridding" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="visualization.html" class="btn btn-neutral float-right" title="Data Visualization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Qing Yu.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
