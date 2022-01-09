@@ -1,8 +1,7 @@
 出租车数据处理
 ==============
 
-| 这个案例的Jupyter notebook: `点击这里 <https://github.com/ni1o1/transbigdata/blob/main/example/Example%201-Taxi%20GPS%20data%20processing.ipynb>`__.
-| 可以点击 `这个链接 <https://mybinder.org/v2/gh/ni1o1/transbigdata/d7d6fa33ff16440ba1698b10dd3cf3f76ff00abd?urlpath=lab%2Ftree%2Fexample%2FExample%201-Taxi%20GPS%20data%20processing.ipynb>`__ 在线编辑器中尝试
+| Jupyter notebook for this example: `Here <https://github.com/ni1o1/transbigdata/blob/main/example/Example%201-Taxi%20GPS%20data%20processing.ipynb>`__.
 | 使用示例中的样例数据集在github仓库中，链接为：https://github.com/ni1o1/transbigdata/tree/main/example
 | 下面我们介绍如何使用TransBigData包，调用其中的函数实现对出租车GPS数据的快速处理。
 | 首先我们引入TransBigData包，并读取数据:
@@ -12,7 +11,7 @@
     import transbigdata as tbd
     import pandas as pd
     import geopandas as gpd
-    #读取数据    
+    #Read data    
     data = pd.read_csv('TaxiData-Sample.csv',header = None) 
     data.columns = ['VehicleNum','Time','Lng','Lat','OpenStatus','Speed']    
     data
@@ -157,9 +156,9 @@
 
 ::
 
-    #读取区域信息
+    #Read the GeoDataFrame of the study area
     import geopandas as gpd
-    sz = gpd.read_file(r'sz/sz.shp')
+    sz = gpd.read_file(r'sz.json')
     sz.crs = None
     sz.plot()
 
@@ -177,10 +176,10 @@ TransBigData包也集成了数据预处理的常用方法。其中，tbd.clean_o
 
 ::
 
-    #数据预处理
-    #剔除研究范围外的数据
+    #Data Preprocessing
+    #Delete the data outside of the study area
     data = tbd.clean_outofshape(data, sz, col=['Lng', 'Lat'], accuracy=500)
-    #剔除出租车数据中载客状态瞬间变化的记录
+    #Delete the data with instantaneous changes in passenger status
     data = tbd.clean_taxi_status(data, col=['VehicleNum', 'Time', 'OpenStatus'])
 
 数据栅格化
@@ -190,8 +189,8 @@ TransBigData包也集成了数据预处理的常用方法。其中，tbd.clean_o
 
 ::
 
-    #栅格化
-    #定义范围，获取栅格化参数
+    #Data gridding
+    #Define the bounds and generate gridding parameters
     bounds = [113.6,22.4,114.8,22.9]
     params = tbd.grid_params(bounds,accuracy = 500)
     params
@@ -204,23 +203,23 @@ TransBigData包也集成了数据预处理的常用方法。其中，tbd.clean_o
 
 ::
 
-    #将GPS栅格化
+    #Mapping GPS data to grids
     data['LONCOL'],data['LATCOL'] = tbd.GPS_to_grids(data['Lng'],data['Lat'],params)
 
 统计每个栅格的数据量:
 
 ::
 
-    #集计栅格数据量
+    #Aggregate data into grids
     datatest = data.groupby(['LONCOL','LATCOL'])['VehicleNum'].count().reset_index()
 
 生成栅格的地理图形，并将它转化为GeoDataFrame:
 
 ::
 
-    #生成栅格地理图形
+    #Generate the geometry for grids
     datatest['geometry'] = tbd.gridid_to_polygon(datatest['LONCOL'],datatest['LATCOL'],params)
-    #转为GeoDataFrame
+    #Change it into GeoDataFrame
     import geopandas as gpd
     datatest = gpd.GeoDataFrame(datatest)
 
@@ -229,7 +228,7 @@ TransBigData包也集成了数据预处理的常用方法。其中，tbd.clean_o
 
 ::
 
-    #绘制
+    #Plot the grids
     datatest.plot(column = 'VehicleNum')
 
 
@@ -244,7 +243,7 @@ TransBigData包也集成了数据预处理的常用方法。其中，tbd.clean_o
 
 ::
 
-    #从GPS数据提取OD
+    #Extract taxi OD from GPS data
     oddata = tbd.taxigps_to_od(data,col = ['VehicleNum','Time','Lng','Lat','OpenStatus'])
     oddata
 
@@ -414,7 +413,7 @@ TransBigData包也集成了数据预处理的常用方法。其中，tbd.clean_o
 
 ::
 
-    #栅格化OD并集计
+    #Gridding and aggragate data
     od_gdf = tbd.odagg_grid(oddata,params)
     od_gdf.plot(column = 'count')
 
@@ -430,7 +429,7 @@ TransBigData包也提供了将OD直接集计到小区的方法
 
 ::
 
-    #OD集计到小区（在不传入栅格化参数时，直接用经纬度匹配）
+    #Aggragate OD data to polygons (Without passing gridding parameters, the algorithm will map the data to polygons directly using their coordinates)
     od_gdf = tbd.odagg_shape(oddata,sz,round_accuracy=6)
     od_gdf.plot(column = 'count')
 
@@ -443,7 +442,7 @@ TransBigData包也提供了将OD直接集计到小区的方法
 
 ::
 
-    #OD集计到小区（传入栅格化参数时，先栅格化后匹配，可加快匹配速度，数据量大时建议使用）
+    #Aggragate OD data to polygons (When passing  gridding parameters, the algorithm will perform data gridding before mapping data, which will speed up the mapping process)
     od_gdf = tbd.odagg_shape(oddata,sz,params = params)
     od_gdf.plot(column = 'count')
 
@@ -460,23 +459,23 @@ tbd中提供了地图底图加载和比例尺指北针的功能。使用这个�
 
 ::
 
-    #创建图框
+    #Create figure
     import matplotlib.pyplot as plt
     import plot_map
     fig =plt.figure(1,(8,8),dpi=80)
     ax =plt.subplot(111)
     plt.sca(ax)
-    #添加地图底图
+    #Load basemap
     tbd.plot_map(plt,bounds,zoom = 12,style = 4)
-    #绘制colorbar
+    #Define an ax for colorbar
     cax = plt.axes([0.05, 0.33, 0.02, 0.3])
     plt.title('count')
     plt.sca(ax)
-    #绘制OD
+    #Plot the OD
     od_gdf.plot(ax = ax,vmax = 100,column = 'count',cax = cax,legend = True)
-    #绘制小区底图
+    #Plot the polygons
     sz.plot(ax = ax,edgecolor = (0,0,0,1),facecolor = (0,0,0,0.2),linewidths=0.5)
-    #添加比例尺和指北针
+    #Add compass and scale
     tbd.plotscale(ax,bounds = bounds,textsize = 10,compasssize = 1,accuracy = 2000,rect = [0.06,0.03],zorder = 10)
     plt.axis('off')
     plt.xlim(bounds[0],bounds[2])

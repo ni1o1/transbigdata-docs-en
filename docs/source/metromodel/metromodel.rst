@@ -1,9 +1,7 @@
 地铁网络拓扑建模
 ================
 
-这个案例的Jupyter notebook: `点击这里 <https://github.com/ni1o1/transbigdata/blob/main/example/Example%203-Modeling%20for%20subway%20network%20topology.ipynb>`__.
-
-| 可以点击 `这个链接 <https://mybinder.org/v2/gh/ni1o1/transbigdata/9507de936806c34a4befd74aa9227b012569a6aa?urlpath=lab%2Ftree%2Fexample%2FExample%203-Modeling%20for%20subway%20network%20topology.ipynb>`__ 在线编辑器中尝试
+| Jupyter notebook for this example: `Here <https://github.com/ni1o1/transbigdata/blob/main/example/Example%203-Modeling%20for%20subway%20network%20topology.ipynb>`__.
 
 下面的案例展示如何用TransBigData包抓取地铁线路，并构建地铁线网的拓扑网络模型
 
@@ -77,7 +75,7 @@ tbd.split_subwayline方法可以用轨道站点切分轨道线路，得到轨道
 
 ::
 
-    #构建拓扑模型
+    #Modeling for subway network topology
     import networkx as nx
     G = tbd.metro_network(stop)
     nx.draw(G)
