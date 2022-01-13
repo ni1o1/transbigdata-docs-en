@@ -141,6 +141,6 @@ msgstr "github for this project: https://github.com/ni1o1/transbigdata/"
 msgid "有bug请在这个页面提交： https://github.com/ni1o1/transbigdata/issues"
 msgstr "Bug report: https://github.com/ni1o1/transbigdata/issues"
 
-#~ msgid "安装、依赖与更新日志"
-#~ msgstr "Installation"
+msgid "安装、依赖与更新日志"
+msgstr "Installation"
 

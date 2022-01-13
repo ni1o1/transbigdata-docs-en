@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TransBigData 0.2.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-07 17:43+0800\n"
+"POT-Creation-Date: 2022-01-07 18:02+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -65,11 +65,17 @@ msgstr "col"
 
 #: ../../source/traj.rst:21
 msgid "数据的列名[个体，时间，经度，纬度]顺序"
-msgstr "Columns of the data, should be input with the sequence: [uid, time, lon,lat]"
+msgstr ""
+"Columns of the data, should be input with the sequence: [uid, time, "
+"lon,lat]"
 
 #: ../../source/traj.rst:23
 msgid "activitytime"
 msgstr "activitytime"
+
+#, fuzzy
+msgid "Number"
+msgstr "number"
 
 #: ../../source/traj.rst:23
 msgid "多长时间识别为停留"
@@ -106,7 +112,9 @@ msgstr "Stay information"
 
 #: ../../source/traj.rst:41
 msgid "列名，分别为[活动开始时间，活动结束时间，活动所在栅格经度编号，活动所在栅格纬度编号]"
-msgstr "Columns of the data, should be input with the sequence: [starttime, endtime, loncol, latcol]"
+msgstr ""
+"Columns of the data, should be input with the sequence: [starttime, "
+"endtime, loncol, latcol]"
 
 #: ../../source/traj.rst:44
 msgid "轨迹线型生成"
