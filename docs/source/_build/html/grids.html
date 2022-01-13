@@ -112,7 +112,7 @@
 <p>Generate the rectangular grids in the bounds</p>
 <p><strong>Input</strong></p>
 <dl class="simple">
-<dt>bounds<span class="classifier">List</span></dt><dd><p>Create the bounds, [lon1, lat1, lon2, lat2](WGS84), where <cite>lon1</cite> , <cite>lat1</cite> are the lower-left coordinates, <cite>lon2</cite> , <cite>lat2</cite> are the upper-right coordinates</p>
+<dt>bounds<span class="classifier">List</span></dt><dd><p>Bounds of the study area, [lon1, lat1, lon2, lat2](WGS84), where <cite>lon1</cite> , <cite>lat1</cite> are the lower-left coordinates, <cite>lon2</cite> , <cite>lat2</cite> are the upper-right coordinates</p>
 </dd>
 <dt>accuracy<span class="classifier">number</span></dt><dd><p>Grid size (meter)</p>
 </dd>
@@ -134,10 +134,10 @@
 <code class="sig-prename descclassname"><span class="pre">transbigdata.</span></code><code class="sig-name descname"><span class="pre">grid_params</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accuracy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transbigdata.grid_params" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<p>Grids data acquisition</p>
+<p>Generate gridding params</p>
 <p><strong>Input</strong></p>
 <dl class="simple">
-<dt>bounds<span class="classifier">List</span></dt><dd><p>Create the bounds, [lon1, lat1, lon2, lat2](WGS84), where <cite>lon1</cite> , <cite>lat1</cite> are the lower-left coordinates, <cite>lon2</cite> , <cite>lat2</cite> are the upper-right coordinates</p>
+<dt>bounds<span class="classifier">List</span></dt><dd><p>Bounds of the study area, [lon1, lat1, lon2, lat2](WGS84), where <cite>lon1</cite> , <cite>lat1</cite> are the lower-left coordinates, <cite>lon2</cite> , <cite>lat2</cite> are the upper-right coordinates</p>
 </dd>
 <dt>accuracy<span class="classifier">number</span></dt><dd><p>Grid size (meter)</p>
 </dd>
@@ -180,7 +180,7 @@
 <code class="sig-prename descclassname"><span class="pre">transbigdata.</span></code><code class="sig-name descname"><span class="pre">GPS_to_grids</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transbigdata.GPS_to_grids" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<p>The grid ID based on trajectory data. The input is the columns of <cite>longitude</cite> and <cite>latitude</cite>, and the grids parameter. The output is the grid ID.</p>
+<p>Match the GPS data to the grids. The input is the columns of <cite>longitude</cite>, <cite>latitude</cite>, and the grids parameter. The output is the grid ID.</p>
 <p><strong>Input</strong></p>
 <dl class="simple">
 <dt>lon<span class="classifier">Series</span></dt><dd><p>The column of longitude</p>
@@ -598,7 +598,7 @@
 <p>Generate hexagonal grids in the bounds</p>
 <p><strong>Input</strong></p>
 <dl class="simple">
-<dt>bounds<span class="classifier">List</span></dt><dd><p>Create the bounds, [lon1, lat1, lon2, lat2](WGS84), where <cite>lon1</cite> , <cite>lat1</cite> are the lower-left coordinates, <cite>lon2</cite> , <cite>lat2</cite> are the upper-right coordinates</p>
+<dt>bounds<span class="classifier">List</span></dt><dd><p>Bounds of the study area, [lon1, lat1, lon2, lat2](WGS84), where <cite>lon1</cite> , <cite>lat1</cite> are the lower-left coordinates, <cite>lon2</cite> , <cite>lat2</cite> are the upper-right coordinates</p>
 </dd>
 <dt>accuracy<span class="classifier">number</span></dt><dd><p>Side length of hexagon (m)</p>
 </dd>

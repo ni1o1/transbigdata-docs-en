@@ -1,10 +1,12 @@
-pNEUMA轨迹数据处理
+pNEUMA trajectory dataset processing
 ====================================
 
-| 这个案例的Jupyter notebook: `点击这里 <https://github.com/ni1o1/transbigdata/blob/main/example/Example%204-pNEUMA%20trajectory%20dataset%20processing.ipynb>`__.
-| 在这个例子中，我们将示例如何将``TransBigData``融入到雅典pNEUMA轨迹数据集的处理与可视化中。
-| 请注意，样本数据已经被经过了一定的处理。原始版本的数据集可以在这里下载。
-  `website <https://open-traffic.epfl.ch/>`__
+| Jupyter notebook for this example: `Here <https://github.com/ni1o1/transbigdata/blob/main/example/Example%204-pNEUMA%20trajectory%20dataset%20processing.ipynb>`__.
+| In this example, …the pNEUMA trajectory at Athens will be processed
+  and visualized.
+| Note that the sample data has been reshaped to a neat form. The origin
+  version of pNEUMA dataset can be download at this
+  `website <https://open-traffic.epfl.ch/>`__.
 
 ::
 
@@ -13,17 +15,17 @@ pNEUMA轨迹数据处理
     import geopandas as gpd
     import matplotlib.pyplot as plt
 
-读取数据
+Read the data
 -------------
 
-轨迹数据
+The trajectory data
 ~~~~~~~~~~~~~~~~~~~
 
 ::
 
-    # 读取数据
+    # Read data
     data = pd.read_csv('data/pNEUMA_tbd_sample.csv')
-    # 将时间戳转换为时间格式
+    # Transform the timestamp into Datetime
     data['time'] = pd.to_datetime(data['time'], unit='s')
     data.head()
 
@@ -108,7 +110,7 @@ pNEUMA轨迹数据处理
 
 ::
 
-    # 输出数据大小信息
+    # print the file size
     data.info()
 
 
@@ -128,46 +130,47 @@ pNEUMA轨迹数据处理
     memory usage: 22.2 MB
 
 
-OSM路网数据获取
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+OSM Map Data
+~~~~~~~~~~~~
 
-你可以直接从``data``文件夹加载道路数据，或者使用OSMNX下载路网 `OSMNX <https://osmnx.readthedocs.io/en/stable/>`__
+You can load the road data directly from the ``data`` folder or download
+it using the `OSMNX package <https://osmnx.readthedocs.io/en/stable/>`__
 
 ::
 
-    # 从OSMNX中获取路网数据
+    # Load data from OSMNX
     # OSM Graph
     import osmnx as ox
     bounds = [23.723577, 37.975462, 23.738471, 37.993053]
     north, south, east, west = bounds[3], bounds[1], bounds[2], bounds[0]
     G = ox.graph_from_bbox(north, south, east, west, network_type='drive')
     
-    # 获取点和边
+    # get the nodes and edges
     nodes, edges = ox.graph_to_gdfs(G, nodes=True, edges=True)
     
-    # 存储路网数据
+    # save/load graph as a graphml file
     filepath = "data/pNEUMA_network.graphml"
     ox.save_graphml(G, filepath)
 
-如果你没有OSMNX,可以运行下面代码读取已经现成的数据
+If you are not using OSMNX, you can run the code below to read the road data
 
 ::
 
-    # 读取OSM数据
+    # Load the prepared OSM data
     import osmnx as ox
     filepath = "data/pNEUMA_network.graphml"
     G = ox.load_graphml(filepath)
-    # 获取点和边
+    # get the nodes and edges
     nodes, edges = ox.graph_to_gdfs(G, nodes=True, edges=True)
 
-地图底图加载
+Basemap Visualization
 ~~~~~~~~~~~~~~~~~~~~~
 
-将地图底图加载并可视化
+Combined with the Graph from OSM
 
 ::
 
-    # 可视化地图底图 tbd.plot_map
+    # Map visualization via tbd.plot_map
     bounds = [23.723577, 37.975462, 23.738471, 37.993053]
     
     fig = plt.figure(1, (12, 8), dpi=100)
@@ -190,18 +193,21 @@ OSM路网数据获取
 .. image:: output_11_0.png
 
 
-数据清洗
+Data Cleaning
 -------------
 
-数据稀疏化
+Data Sparisify
 ~~~~~~~~~~~~~~
 
-| 数据集的采样间隔为 :math:`0.04` 秒, 非常小，不便于处理。
-| 然而，一些宏观层面的研究不需要如此高的采样间隔。在这种情况下，数据可以使用``tbd.traj_sparsify``进行稀疏化。
+| The sampling interval in this dataset is :math:`0.04` second, which is
+  amazing.
+| However, some marcoscopic studies do not need such a high-frequency
+  for better processing efficiency. In this case, the data can be
+  sparsified using tbd.XXX.
 
 ::
 
-    # 原始数据
+    # the origin data
     data.info()
 
 
@@ -223,8 +229,9 @@ OSM路网数据获取
 
 ::
 
-    #轨迹稀疏化
-    data_sparsify = tbd.traj_sparsify(data, col=['track_id', 'time', 'lon', 'lat'],timegap=0.4,method='subsample')
+    data_sparsify = tbd.traj_sparsify(data, col=['track_id', 'time', 'lon', 'lat'], 
+                                      timegap=0.4, 
+                                      method='subsample') # do not using interpolate method
     data_sparsify.info()
 
 
@@ -244,14 +251,15 @@ OSM路网数据获取
     memory usage: 1.1 MB
 
 
-冗余数据剔除
+Data compress
 ~~~~~~~~~~~~~
 
-在车辆停止运行时，位置没有发生移动，但仍然会产生大量GPS点，这些静止的GPS点除第一和最后一个点外的都可以删除。
+Remove the stopped points except for the first and the last point for
+each vehicle.
 
 ::
 
-    #用 tbd.clean_same 删除冗余数据
+    #using tbd.clean_same to delete the trajectory data which is not moving
     data_sparsify_clean = tbd.clean_same(data_sparsify, col=['track_id', 'time', 'lon', 'lat'])
     data_sparsify_clean.info()
 
@@ -353,7 +361,7 @@ OSM路网数据获取
 
 
 
-数据可视化
+Data Visualization
 ------------------
 
 ::
@@ -449,7 +457,7 @@ OSM路网数据获取
 
 ::
 
-    # 获取有最多数据点的车辆
+    # get the vehicle list of top-ranked number of points
     gdf_count = gdf_data.groupby('track_id')['lon'].count().rename('count').sort_values(ascending=False).reset_index()
     print(list(gdf_count.iloc[:20]['track_id']))
 
@@ -459,7 +467,7 @@ OSM路网数据获取
     [2138, 3290, 1442, 3197, 4408, 1767, 5002, 5022, 2140, 347, 2584, 4750, 4542, 2431, 4905, 4997, 1329, 4263, 1215, 3400]
 
 
-可视化车辆
+Visualization of all vehicles
 
 ::
 
@@ -483,7 +491,7 @@ OSM路网数据获取
 .. image:: output_22_0.png
 
 
-可视化单辆车，并显示最短路径
+Visualization of a single vehicle, and show the shortes path
 
 ::
 
@@ -664,7 +672,7 @@ OSM路网数据获取
 .. image:: output_27_0.png
 
 
-我们可以将轨迹数据与最短路径做比对.
+Users can compared the path with the shortes path.
 
 ::
 
