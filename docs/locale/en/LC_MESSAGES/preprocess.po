@@ -259,18 +259,18 @@ msgstr "Suffix of the new numbered column name"
 
 #: ../../source/preprocess.rst:133
 msgid "数据格式转换"
-msgstr ""
+msgstr "Data Transform"
 
 #: ../../source/preprocess.rst:137
 msgid "输入json数据，存储为文件。这个方法主要是解决numpy数值型无法兼容json包报错的问题"
-msgstr ""
+msgstr "Dump json data. This method is to solve the issue that numpy array type cannot be dump by json package"
 
 msgid "json"
 msgstr ""
 
 #: ../../source/preprocess.rst:142
 msgid "要储存的json数据"
-msgstr ""
+msgstr "json data to dump"
 
 #: ../../source/preprocess.rst:145
 msgid "path"
@@ -278,7 +278,7 @@ msgstr ""
 
 #: ../../source/preprocess.rst:144
 msgid "保存的路径"
-msgstr ""
+msgstr "Save path"
 
 #: ../../source/preprocess.rst:148
 msgid "轨迹数据清洗"

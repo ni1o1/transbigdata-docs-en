@@ -92,15 +92,15 @@ msgstr ""
 "from the command prompt to install it"
 
 #: ../../source/index.rst:36
-msgid "下面例子展示如何使用TransBigData工具快速地从出租车GPS数据中提取出行OD ::"
+msgid "下面例子展示如何使用TransBigData工具快速地从出租车GPS数据中提取出行OD::"
 msgstr ""
 "The following example shows how to use the TransBigData to quickly "
 "extract trip OD from cab GPS data::"
 
 #: ../../source/index.rst:51
-msgid "使用*tbd.taxigps_to_od*方法，传入对应的列名，即可提取出行OD ::"
+msgid "使用tbd.taxigps_to_od方法，传入对应的列名，即可提取出行OD::"
 msgstr ""
-"Use the tbd.taxigps_to_od method and pass in the corresponding column "
+"Use the ``tbd.taxigps_to_od`` method and pass in the corresponding column "
 "name to extract the trip OD::"
 
 #: ../../source/index.rst:61

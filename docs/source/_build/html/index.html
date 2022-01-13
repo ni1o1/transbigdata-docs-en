@@ -37,7 +37,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p><span class="caption-text">Install</span></p>
+              <p><span class="caption-text">Installation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Installation</a></li>
 </ul>
@@ -56,11 +56,11 @@
 <li class="toctree-l1"><a class="reference internal" href="grids.html">Data Gridding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="odprocess.html">Data Aggregating</a></li>
 <li class="toctree-l1"><a class="reference internal" href="visualization.html">Data Visualization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getbusdata.html">Data Acquisition</a></li>
 <li class="toctree-l1"><a class="reference internal" href="traj.html">Trajectory Processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gisprocess.html">GIS Processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plot_map.html">Load the basemap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CoordinatesConverter.html">Coordinates and Distances</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getbusdata.html">Data Acquisition</a></li>
 </ul>
 <p><span class="caption-text">methods for specific data</span></p>
 <ul>
@@ -117,9 +117,9 @@
 </pre></div>
 </div>
 <p>The following example shows how to use the TransBigData to quickly extract trip OD from cab GPS data:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#导入TransBigData包</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Import TransBigData</span>
 <span class="kn">import</span> <span class="nn">transbigdata</span> <span class="k">as</span> <span class="nn">tbd</span>
-<span class="c1">#读取数据</span>
+<span class="c1">#Read the data</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;TaxiData-Sample.csv&#39;</span><span class="p">,</span><span class="n">header</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>
 <span class="n">data</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;VehicleNum&#39;</span><span class="p">,</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="s1">&#39;slon&#39;</span><span class="p">,</span><span class="s1">&#39;slat&#39;</span><span class="p">,</span><span class="s1">&#39;OpenStatus&#39;</span><span class="p">,</span><span class="s1">&#39;Speed&#39;</span><span class="p">]</span>
@@ -127,27 +127,27 @@
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="_images/WX20211021-192131&#64;2x.png"><img alt="_images/WX20211021-192131&#64;2x.png" src="_images/WX20211021-192131&#64;2x.png" style="height: 300px;" /></a>
-<p>Use the tbd.taxigps_to_od method and pass in the corresponding column name to extract the trip OD:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#从GPS数据提取OD</span>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">tbd.taxigps_to_od</span></code> method and pass in the corresponding column name to extract the trip OD:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Extract OD from GPS data</span>
 <span class="n">oddata</span> <span class="o">=</span> <span class="n">tbd</span><span class="o">.</span><span class="n">taxigps_to_od</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">col</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;VehicleNum&#39;</span><span class="p">,</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="s1">&#39;slon&#39;</span><span class="p">,</span><span class="s1">&#39;slat&#39;</span><span class="p">,</span><span class="s1">&#39;OpenStatus&#39;</span><span class="p">])</span>
 <span class="n">oddata</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="_images/WX20211021-190104&#64;2x.png"><img alt="_images/WX20211021-190104&#64;2x.png" src="_images/WX20211021-190104&#64;2x.png" style="height: 300px;" /></a>
 <p>Aggregate OD into grids:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="c1">#定义研究范围</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="c1">#define bounds</span>
 <span class="n">bounds</span> <span class="o">=</span> <span class="p">[</span><span class="mf">113.6</span><span class="p">,</span><span class="mf">22.4</span><span class="p">,</span><span class="mf">114.8</span><span class="p">,</span><span class="mf">22.9</span><span class="p">]</span>
-<span class="c1">#输入研究范围边界bounds与栅格宽度accuracy，获取栅格化参数</span>
+<span class="c1">#obtain the gridding parameters</span>
 <span class="n">params</span> <span class="o">=</span> <span class="n">tbd</span><span class="o">.</span><span class="n">grid_params</span><span class="p">(</span><span class="n">bounds</span> <span class="o">=</span> <span class="n">bounds</span><span class="p">,</span><span class="n">accuracy</span> <span class="o">=</span> <span class="mi">1500</span><span class="p">)</span>
-<span class="c1">#栅格化OD并集计</span>
+<span class="c1">#gridding OD data and aggregate</span>
 <span class="n">od_gdf</span> <span class="o">=</span> <span class="n">tbd</span><span class="o">.</span><span class="n">odagg_grid</span><span class="p">(</span><span class="n">oddata</span><span class="p">,</span><span class="n">params</span><span class="p">)</span>
 <span class="n">od_gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span> <span class="o">=</span> <span class="s1">&#39;count&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="_images/WX20211021-190524&#64;2x.png"><img alt="_images/WX20211021-190524&#64;2x.png" src="_images/WX20211021-190524&#64;2x.png" style="height: 300px;" /></a>
 </section>
-<section id="id3">
-<h2>Example<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<section id="example-gallery">
+<h2>Example gallery<a class="headerlink" href="#example-gallery" title="Permalink to this headline">¶</a></h2>
 
 <style>
 .wrapper {
@@ -178,37 +178,37 @@
   <div class='grid-cell' >
       <a href="./example-taxi/example-taxi.html">
     <img height="200" src="./_static/example1.png"></img>
-      <div class='thumb-text'>出租车数据处理</div></a>
+      <div class='thumb-text'>Taxi GPS data processing</div></a>
   </div>
 
   <div class='grid-cell'>
       <a href="./example-busgps/example-busgps.html">
     <img height="200" src="./_static/example2.png"></img>
-      <div class='thumb-text'>公交GPS的到离站信息匹配</div></a>
+      <div class='thumb-text'>Identifying arrival and departure information from Bus GPS data</div></a>
   </div>
 
   <div class='grid-cell'>
       <a href="./metromodel/metromodel.html">
     <img height="200" src="./_static/example3.png"></img>
-      <div class='thumb-text'>地铁网络拓扑建模</div></a>
+      <div class='thumb-text'>Modeling for subway network topology</div></a>
   </div>
 
   <div class='grid-cell'>
       <a href="./Example-pNEUMA/Example-pNEUMA.html">
     <img height="200" src="./_static/example4.png"></img>
-      <div class='thumb-text'>pNEUMA轨迹数据集处理</div></a>
+      <div class='thumb-text'>pNEUMA trajectory dataset processing</div></a>
   </div>
 
   <div class='grid-cell'>
       <a href="./example-bikesharing/example-bikesharing.html">
     <img height="200" src="./_static/example5.png"></img>
-      <div class='thumb-text'>共享单车数据社区发现</div></a>
+      <div class='thumb-text'>Community detection for bike sharing data</div></a>
   </div>
 
 </div>
 </section>
-<section id="id4">
-<h2>Related Links<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<section id="id3">
+<h2>Related Links<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Bilibili: <a class="reference external" href="https://space.bilibili.com/3051484">https://space.bilibili.com/3051484</a></p></li>
 <li><p>data analytics course for beginner： <a class="reference external" href="https://www.lifangshuju.com/#/introduce/166">https://www.lifangshuju.com/#/introduce/166</a></p></li>
@@ -219,10 +219,10 @@
 </ul>
 </section>
 </section>
-<section id="id5">
-<h1>Install<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h1>
+<section id="id4">
+<h1>Installation<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
-<p><span class="caption-text">Install</span></p>
+<p><span class="caption-text">Installation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="getting_started.html#id2">Installation</a></li>
@@ -232,8 +232,8 @@
 </ul>
 </div>
 </section>
-<section id="id6">
-<h1>Example<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h1>
+<section id="id5">
+<h1>Example<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <p><span class="caption-text">Example</span></p>
 <ul>
@@ -278,8 +278,8 @@
 </ul>
 </div>
 </section>
-<section id="id7">
-<h1>General Methods<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h1>
+<section id="id6">
+<h1>General Methods<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <p><span class="caption-text">General Methods</span></p>
 <ul>
@@ -309,7 +309,6 @@
 <li class="toctree-l2"><a class="reference internal" href="visualization.html#od">OD Visualization</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="getbusdata.html">Data Acquisition</a></li>
 <li class="toctree-l1"><a class="reference internal" href="traj.html">Trajectory Processing</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="traj.html#id2">Identification of stay and move from trajectory data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="traj.html#id3">Trajectory GeoDataFrame</a></li>
@@ -334,11 +333,12 @@
 <li class="toctree-l2"><a class="reference internal" href="CoordinatesConverter.html#id5">Distance measurment</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="getbusdata.html">Data Acquisition</a></li>
 </ul>
 </div>
 </section>
-<section id="id8">
-<h1>methods for specific data<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h1>
+<section id="id7">
+<h1>methods for specific data<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <p><span class="caption-text">methods for specific data</span></p>
 <ul>
