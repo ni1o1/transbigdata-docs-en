@@ -38,7 +38,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p><span class="caption-text">安装</span></p>
+              <p><span class="caption-text">Installation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Installation</a></li>
 </ul>
@@ -55,7 +55,7 @@
 <li class="toctree-l1"><a class="reference internal" href="quality.html">Data Quality</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Data Preprocess</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id2">Common preprocess of various types of data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">数据格式转换</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">Data Transform</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id4">Trajectory data cleaning</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id5">Pre-processing of taxi data</a></li>
 </ul>
@@ -63,11 +63,11 @@
 <li class="toctree-l1"><a class="reference internal" href="grids.html">Data Gridding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="odprocess.html">Data Aggregating</a></li>
 <li class="toctree-l1"><a class="reference internal" href="visualization.html">Data Visualization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getbusdata.html">Data Acquisition</a></li>
 <li class="toctree-l1"><a class="reference internal" href="traj.html">Trajectory Processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gisprocess.html">GIS Processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="plot_map.html">Load the basemap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CoordinatesConverter.html">Coordinates and Distances</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getbusdata.html">Data Acquisition</a></li>
 </ul>
 <p><span class="caption-text">methods for specific data</span></p>
 <ul>
@@ -235,18 +235,18 @@
 </dl>
 </section>
 <section id="id3">
-<h2>数据格式转换<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>Data Transform<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
 <dt id="transbigdata.dumpjson">
 <code class="sig-prename descclassname"><span class="pre">transbigdata.</span></code><code class="sig-name descname"><span class="pre">dumpjson</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transbigdata.dumpjson" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<p>输入json数据，存储为文件。这个方法主要是解决numpy数值型无法兼容json包报错的问题</p>
+<p>Dump json data. This method is to solve the issue that numpy array type cannot be dump by json package</p>
 <p><strong>Input</strong></p>
 <dl class="simple">
-<dt>data<span class="classifier">json</span></dt><dd><p>要储存的json数据</p>
+<dt>data<span class="classifier">json</span></dt><dd><p>json data to dump</p>
 </dd>
-<dt>path<span class="classifier">str</span></dt><dd><p>保存的路径</p>
+<dt>path<span class="classifier">str</span></dt><dd><p>Save path</p>
 </dd>
 </dl>
 </section>

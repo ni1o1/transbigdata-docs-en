@@ -38,7 +38,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p><span class="caption-text">Install</span></p>
+              <p><span class="caption-text">Installation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Installation</a></li>
 </ul>
@@ -57,7 +57,6 @@
 <li class="toctree-l1"><a class="reference internal" href="grids.html">Data Gridding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="odprocess.html">Data Aggregating</a></li>
 <li class="toctree-l1"><a class="reference internal" href="visualization.html">Data Visualization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getbusdata.html">Data Acquisition</a></li>
 <li class="toctree-l1"><a class="reference internal" href="traj.html">Trajectory Processing</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">GIS Processing</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id1">Nearest neighbor searches</a><ul>
@@ -72,16 +71,17 @@
 <li class="toctree-l3"><a class="reference internal" href="#id6">Construct new polygon by extending the outer boundary of the ploygon</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id7">置信椭圆</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id8">置信椭圆参数估计</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id9">置信椭圆绘制</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id10">用法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">Confidence ellipse</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Confidence ellipse parameter estimation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">Plot confidence ellipse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">usage</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="plot_map.html">Load the basemap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CoordinatesConverter.html">Coordinates and Distances</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getbusdata.html">Data Acquisition</a></li>
 </ul>
 <p><span class="caption-text">methods for specific data</span></p>
 <ul>
@@ -909,50 +909,49 @@
 </section>
 </section>
 <section id="id7">
-<h2>置信椭圆<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<h2>Confidence ellipse<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
 <section id="id8">
-<h3>置信椭圆参数估计<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<h3>Confidence ellipse parameter estimation<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <dl class="py function">
 <dt id="transbigdata.ellipse_params">
 <code class="sig-prename descclassname"><span class="pre">transbigdata.</span></code><code class="sig-name descname"><span class="pre">ellipse_params</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['lon',</span> <span class="pre">'lat']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confidence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">95</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transbigdata.ellipse_params" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<p>输入点数据，获取置信椭圆的参数</p>
+<p>Input the point data to obtain the parameters of the confidence ellipse</p>
 <p><strong>Input</strong></p>
 <dl class="simple">
-<dt>data<span class="classifier">DataFrame</span></dt><dd><p>公交GPS数据，单一公交线路，且需要含有车辆ID、GPS时间、经纬度（wgs84）</p>
+<dt>data<span class="classifier">DataFrame</span></dt><dd><p>Point data</p>
 </dd>
-<dt>confidence<span class="classifier">number</span></dt><dd><p>置信度，可选99，95，90</p>
+<dt>confidence<span class="classifier">number</span></dt><dd><p>Confidence level</p>
 </dd>
-<dt>epsg<span class="classifier">number</span></dt><dd><p>如果给了，则将原始坐标从wgs84，转换至给定epsg坐标系下进行置信椭圆参数估计</p>
+<dt>epsg<span class="classifier">number</span></dt><dd><p>If given, the original coordinates are transformed from WGS84 to the given EPSG coordinate system for confidence ellipse parameter estimation</p>
 </dd>
-<dt>col: List</dt><dd><p>以[经度，纬度]形式存储的列名</p>
+<dt>col: List</dt><dd><p>Column names stored as [longitude, latitude]</p>
 </dd>
 </dl>
 <p><strong>Output</strong></p>
 <dl class="simple">
-<dt>params: List</dt><dd><p>质心椭圆参数，分别为[pos,width,height,theta,area,alpha]
-对应[中心点坐标，短轴，长轴，角度，面积，方向性]</p>
+<dt>params: List</dt><dd><p>Confidence ellipse parameter,[pos,width,height,theta,area,alpha]</p>
 </dd>
 </dl>
 </section>
 <section id="id9">
-<h3>置信椭圆绘制<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<h3>Plot confidence ellipse<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <dl class="py function">
 <dt id="transbigdata.ellipse_plot">
 <code class="sig-prename descclassname"><span class="pre">transbigdata.</span></code><code class="sig-name descname"><span class="pre">ellipse_plot</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ellip_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transbigdata.ellipse_plot" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<p>输入置信椭圆的参数，绘制置信椭圆</p>
+<p>Input the parameters of the confidence ellipse and draw the confidence ellipse</p>
 <p><strong>Input</strong></p>
 <p>ellip_params : List</p>
 <dl class="simple">
-<dt>ax<span class="classifier">matplotlib.axes._subplots.AxesSubplot</span></dt><dd><p>画板</p>
+<dt>ax<span class="classifier">matplotlib.axes._subplots.AxesSubplot</span></dt><dd><p>axes</p>
 </dd>
 </dl>
 </section>
 <section id="id10">
-<h3>用法<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<h3>usage<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">transbigdata</span> <span class="k">as</span> <span class="nn">tbd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -975,8 +974,7 @@
 </pre></div>
 </div>
 <img alt="_images/output_1_0.png" src="_images/output_1_0.png" />
-<p>输入数据与xy坐标所在列名，置信度，估计椭圆参数
-分别代表[中心点坐标，短轴，长轴，角度，面积，扁率</p>
+<p>Input the column name of xy, confidence level to estimate ellipse parameters</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ellip_params</span> <span class="o">=</span> <span class="n">tbd</span><span class="o">.</span><span class="n">ellipse_params</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">confidence</span><span class="o">=</span><span class="mi">95</span><span class="p">,</span><span class="n">col</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
 <span class="n">ellip_params</span>
 </pre></div>
@@ -989,7 +987,7 @@
  <span class="mf">0.6654457212665993</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>再用tbd.ellipse_plot绘制置信椭圆</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">tbd.ellipse_plot</span></code> to plot confidence ellipse</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#绘制数据分布</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>

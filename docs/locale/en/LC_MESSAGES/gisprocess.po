@@ -238,7 +238,7 @@ msgstr "The following case will show how to split a line itno 100 subline"
 
 #: ../../source/gisprocess.rst:834
 msgid "面要素处理"
-msgstr ""
+msgstr "Polygon feature processing"
 
 #: ../../source/gisprocess.rst:837
 msgid "面合并"
@@ -303,19 +303,19 @@ msgstr "The processed polygon"
 
 #: ../../source/gisprocess.rst:878
 msgid "置信椭圆"
-msgstr ""
+msgstr "Confidence ellipse"
 
 #: ../../source/gisprocess.rst:882
 msgid "置信椭圆参数估计"
-msgstr ""
+msgstr "Confidence ellipse parameter estimation"
 
 #: ../../source/gisprocess.rst:886
 msgid "输入点数据，获取置信椭圆的参数"
-msgstr ""
+msgstr "Input the point data to obtain the parameters of the confidence ellipse"
 
 #: ../../source/gisprocess.rst:891
 msgid "公交GPS数据，单一公交线路，且需要含有车辆ID、GPS时间、经纬度（wgs84）"
-msgstr ""
+msgstr "Point data"
 
 #: ../../source/gisprocess.rst:892
 msgid "confidence"
@@ -323,7 +323,7 @@ msgstr ""
 
 #: ../../source/gisprocess.rst:893
 msgid "置信度，可选99，95，90"
-msgstr ""
+msgstr "Confidence level"
 
 #: ../../source/gisprocess.rst:894
 msgid "epsg"
@@ -331,7 +331,7 @@ msgstr ""
 
 #: ../../source/gisprocess.rst:895
 msgid "如果给了，则将原始坐标从wgs84，转换至给定epsg坐标系下进行置信椭圆参数估计"
-msgstr ""
+msgstr "If given, the original coordinates are transformed from WGS84 to the given EPSG coordinate system for confidence ellipse parameter estimation"
 
 #: ../../source/gisprocess.rst:897
 msgid "col: List"
@@ -339,7 +339,7 @@ msgstr ""
 
 #: ../../source/gisprocess.rst:897
 msgid "以[经度，纬度]形式存储的列名"
-msgstr ""
+msgstr "Column names stored as [longitude, latitude]"
 
 #: ../../source/gisprocess.rst:904
 msgid "params: List"
@@ -347,15 +347,15 @@ msgstr ""
 
 #: ../../source/gisprocess.rst:902
 msgid "质心椭圆参数，分别为[pos,width,height,theta,area,alpha] 对应[中心点坐标，短轴，长轴，角度，面积，方向性]"
-msgstr ""
+msgstr "Confidence ellipse parameter,[pos,width,height,theta,area,alpha] "
 
 #: ../../source/gisprocess.rst:907
 msgid "置信椭圆绘制"
-msgstr ""
+msgstr "Plot confidence ellipse"
 
 #: ../../source/gisprocess.rst:911
 msgid "输入置信椭圆的参数，绘制置信椭圆"
-msgstr ""
+msgstr "Input the parameters of the confidence ellipse and draw the confidence ellipse"
 
 #: ../../source/gisprocess.rst:915
 msgid "ellip_params : List"
@@ -370,17 +370,17 @@ msgstr ""
 
 #: ../../source/gisprocess.rst:918
 msgid "画板"
-msgstr ""
+msgstr "axes"
 
 #: ../../source/gisprocess.rst:921
 msgid "用法"
-msgstr ""
+msgstr "usage"
 
 #: ../../source/gisprocess.rst:949
 msgid "输入数据与xy坐标所在列名，置信度，估计椭圆参数 分别代表[中心点坐标，短轴，长轴，角度，面积，扁率"
-msgstr ""
+msgstr "Input the column name of xy, confidence level to estimate ellipse parameters "
 
 #: ../../source/gisprocess.rst:968
 msgid "再用tbd.ellipse_plot绘制置信椭圆"
-msgstr ""
+msgstr "Use ``tbd.ellipse_plot`` to plot confidence ellipse"
 
