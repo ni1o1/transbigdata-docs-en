@@ -38,7 +38,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p><span class="caption-text">安装</span></p>
+              <p><span class="caption-text">Installation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Installation</a></li>
 </ul>
@@ -57,7 +57,6 @@
 <li class="toctree-l1"><a class="reference internal" href="grids.html">Data Gridding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="odprocess.html">Data Aggregating</a></li>
 <li class="toctree-l1"><a class="reference internal" href="visualization.html">Data Visualization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getbusdata.html">Data Acquisition</a></li>
 <li class="toctree-l1"><a class="reference internal" href="traj.html">Trajectory Processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gisprocess.html">GIS Processing</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Load the basemap</a><ul>
@@ -80,6 +79,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="CoordinatesConverter.html">Coordinates and Distances</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getbusdata.html">Data Acquisition</a></li>
 </ul>
 <p><span class="caption-text">methods for specific data</span></p>
 <ul>
@@ -122,33 +122,43 @@
 <div class="line">If you have obtained the mapbox token, you can use the following code to set the mapbox token for TransBigData (you only need to set it once, and you don’t need to reset it when you reopen python later)</div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">transbigdata</span> <span class="k">as</span> <span class="nn">tbd</span>
-<span class="c1">#用下面代码设置你的mapboxtoken</span>
-<span class="n">tbd</span><span class="o">.</span><span class="n">set_mapboxtoken</span><span class="p">(</span><span class="s1">&#39;pk.eyxxxxxxxxxx.xxxxxxxxx&#39;</span><span class="p">)</span><span class="c1">#必须在里面设置你申请的token，直接复制此行代码无效！</span>
+
+<span class="c1"># Set your mapboxtoken with the following code</span>
+
+<span class="n">tbd</span><span class="o">.</span><span class="n">set_mapboxtoken</span><span class="p">(</span><span class="s1">&#39;pk.eyxxxxxxxxxx.xxxxxxxxx&#39;</span><span class="p">)</span>
+<span class="c1"># The token you applied for must be set in it.</span>
+<span class="c1"># Copying this line of code directly is invalid</span>
 </pre></div>
 </div>
 <p>In addition, you need to set the storage location of a map basemap. When the same location is displayed next time, the map will be read and loaded locally</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#设置你的地图底图存储路径</span>
-<span class="c1">#如果你是linux或者mac系统，路径是这么写，注意最后有一个反斜杠</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set your map basemap storage path</span>
+<span class="c1"># On linux or mac, the path is written like this.</span>
+<span class="c1"># Note that there is a backslash at the end</span>
 <span class="n">tbd</span><span class="o">.</span><span class="n">set_imgsavepath</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;/Users/xxxx/xxxx/&#39;</span><span class="p">)</span>
-<span class="c1">#如果是windows系统，路径这么写，最后注意要两个斜杠以防转义</span>
+
+<span class="c1"># On windows, the path is written like this.</span>
+<span class="c1"># Finally, pay attention to two slashes to prevent escape</span>
 <span class="n">tbd</span><span class="o">.</span><span class="n">set_imgsavepath</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;E:\pythonscript\xxx</span><span class="se">\\</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>After setting, the next time you draw the base map, you will create a <cite>tileimg</cite> folder under the path you set, and put all the base maps in it. Try the following code to see if you can draw the base map successfully</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#定义显示范围范围</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define display range</span>
 <span class="n">bounds</span> <span class="o">=</span> <span class="p">[</span><span class="mf">113.6</span><span class="p">,</span><span class="mf">22.4</span><span class="p">,</span><span class="mf">114.8</span><span class="p">,</span><span class="mf">22.9</span><span class="p">]</span>
-<span class="c1">#创建图框</span>
+
+<span class="c1"># Plot Frame</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="n">fig</span> <span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">sca</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
-<span class="c1">#添加地图底图</span>
+
+<span class="c1"># Add map basemap</span>
 <span class="n">tbd</span><span class="o">.</span><span class="n">plot_map</span><span class="p">(</span><span class="n">plt</span><span class="p">,</span><span class="n">bounds</span><span class="p">,</span><span class="n">zoom</span> <span class="o">=</span> <span class="mi">11</span><span class="p">,</span><span class="n">style</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span>
-<span class="c1">#添加比例尺和指北针</span>
-<span class="n">tbd</span><span class="o">.</span><span class="n">plotscale</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">bounds</span> <span class="o">=</span> <span class="n">bounds</span><span class="p">,</span><span class="n">textsize</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span><span class="n">compasssize</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">accuracy</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">,</span><span class="n">rect</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.06</span><span class="p">,</span><span class="mf">0.03</span><span class="p">],</span><span class="n">zorder</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Add scale bar and north arrow</span>
+<span class="n">tbd</span><span class="o">.</span><span class="n">plotscale</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">bounds</span> <span class="o">=</span> <span class="n">bounds</span><span class="p">,</span><span class="n">textsize</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span><span class="n">compasssize</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">accuracy</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">,</span> <span class="n">rect</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.06</span><span class="p">,</span><span class="mf">0.03</span><span class="p">],</span> <span class="n">zorder</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">bounds</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">bounds</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -162,7 +172,7 @@
 </div>
 <dl class="py function">
 <dt id="transbigdata.plot_map">
-<code class="sig-prename descclassname"><span class="pre">transbigdata.</span></code><code class="sig-name descname"><span class="pre">plot_map</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zoom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">printlog</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">styleid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dark'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transbigdata.plot_map" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">transbigdata.</span></code><code class="sig-name descname"><span class="pre">plot_map</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zoom</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">printlog</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">styleid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dark'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transbigdata.plot_map" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>Add the basemap</p>
@@ -219,7 +229,7 @@
 </section>
 <section id="id4">
 <h3>Code example<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#设定显示范围</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set display range</span>
 <span class="n">bounds</span> <span class="o">=</span> <span class="p">[</span><span class="n">lon1</span><span class="p">,</span><span class="n">lat1</span><span class="p">,</span><span class="n">lon2</span><span class="p">,</span><span class="n">lat2</span><span class="p">]</span>
 <span class="n">tbd</span><span class="o">.</span><span class="n">plot_map</span><span class="p">(</span><span class="n">plt</span><span class="p">,</span><span class="n">bounds</span><span class="p">,</span><span class="n">zoom</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span><span class="n">style</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span>
 </pre></div>
@@ -251,7 +261,7 @@
 <dt>rect<span class="classifier">List</span></dt><dd><p>The approximate position of the scale bar in the figure, such as [0.9,0.9], is in the upper right corner</p>
 </dd>
 </dl>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tbd</span><span class="o">.</span><span class="n">plotscale</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">bounds</span> <span class="o">=</span> <span class="n">bounds</span><span class="p">,</span><span class="n">textsize</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span><span class="n">compasssize</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">accuracy</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">,</span><span class="n">rect</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.06</span><span class="p">,</span><span class="mf">0.03</span><span class="p">])</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tbd</span><span class="o">.</span><span class="n">plotscale</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">bounds</span> <span class="o">=</span> <span class="n">bounds</span><span class="p">,</span><span class="n">textsize</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span><span class="n">compasssize</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">accuracy</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">,</span> <span class="n">rect</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">])</span>
 </pre></div>
 </div>
 </section>

@@ -38,7 +38,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p><span class="caption-text">安装</span></p>
+              <p><span class="caption-text">Installation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Installation</a></li>
 </ul>
@@ -49,12 +49,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../metromodel/metromodel.html">Modeling for subway network topology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Example-pNEUMA/Example-pNEUMA.html">pNEUMA trajectory dataset processing</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Community detection for bicycle-sharing demand</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id2">Data preprocessing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">Extract node data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">Extract edge data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">Construct network</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id6">Community detection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id7">Visualization of the community</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-preprocessing">Data preprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#extract-node-data">Extract node data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#extract-edge-data">Extract edge data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#construct-network">Construct network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#community-detection">Community detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#visualize-the-community">Visualize the community</a></li>
 </ul>
 </li>
 </ul>
@@ -65,11 +65,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../grids.html">Data Gridding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../odprocess.html">Data Aggregating</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../visualization.html">Data Visualization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../getbusdata.html">Data Acquisition</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../traj.html">Trajectory Processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gisprocess.html">GIS Processing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../plot_map.html">Load the basemap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plot_map.html">地图底图</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../CoordinatesConverter.html">Coordinates and Distances</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getbusdata.html">Data Acquisition</a></li>
 </ul>
 <p><span class="caption-text">methods for specific data</span></p>
 <ul>
@@ -103,24 +103,28 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="id1">
-<h1>Community detection for bicycle-sharing demand<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+  <section id="community-detection-for-bicycle-sharing-demand">
+<h1>Community detection for bicycle-sharing demand<a class="headerlink" href="#community-detection-for-bicycle-sharing-demand" title="Permalink to this headline">¶</a></h1>
 <div class="line-block">
-<div class="line">Jupyter notebook for this example: <a class="reference external" href="https://github.com/ni1o1/transbigdata/blob/main/example/Example%205-community%20detection%20for%20bikesharing%20data.ipynb">https://github.com/ni1o1/transbigdata/blob/main/example/Example%205-community%20detection%20for%20bikesharing%20data.ipynb</a></div>
-<div class="line">For bicycle sharing demand, each trip of can be seen as a process from the starting loaction to the end loaction. When we regard the start point and the end point as nodes, and the travel between them as edges, a network can be constructed. By analysing this network, we can get information about the spatial connection structure of the city or the macro travel characteristics of the bicycle sharing demand.</div>
-<div class="line">Community detection, also called graph partition, helps us to reveal the hidden relations among the nodes in the network. In this example, we will introduce how to integrate TransBigData into the analysis process of community detection from bicycle-sharing data.</div>
+<div class="line">Jupyter notebook for this example: <a class="reference external" href="https://github.com/ni1o1/transbigdata/blob/main/example/Example%205-community%20detection%20for%20bikesharing%20data.ipynb">Here</a>.</div>
 </div>
+<div class="line-block">
+<div class="line">For bicycle sharing demand, each trip of can be seen as a process from the starting loaction to the end loaction. When we regard the start point and the end point as nodes, and the travel between them as edges, a network can be constructed. By analysing this network, we can get information about the spatial connection structure of the city or the macro travel characteristics of the bicycle sharing demand.</div>
+</div>
+<div class="line-block">
+<div class="line">Community detection, also called graph partition, helps us to reveal the hidden relations among the nodes in the network. In this example, we will introduce how to integrate <cite>TransBigData</cite> into the analysis process of community detection from bicycle-sharing data.</div>
+</div>
+<section id="data-preprocessing">
+<h2>Data preprocessing<a class="headerlink" href="#data-preprocessing" title="Permalink to this headline">¶</a></h2>
+<p>Fristly, import packages.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
 <span class="kn">import</span> <span class="nn">transbigdata</span> <span class="k">as</span> <span class="nn">tbd</span>
 </pre></div>
 </div>
-<section id="id2">
-<h2>Data preprocessing<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>Fristly, import packages.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#读取共享单车数据</span>
-<span class="n">bikedata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;data/bikedata-sample.csv&#39;</span><span class="p">)</span>
+<p>Read bicycle sharing data</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bikedata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;data/bikedata-sample.csv&#39;</span><span class="p">)</span>
 <span class="n">bikedata</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -192,16 +196,16 @@
     </tr>
   </tbody>
 </table>
-</div><p>Read the polygon of the study area and delete the data outside of the study area using tbd.clean_outofshape</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#读取上海行政区划边界</span>
-<span class="n">shanghai_admin</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;data/shanghai.json&#39;</span><span class="p">)</span>
-<span class="c1">#剔除研究范围外的数据</span>
+</div><div class="line-block">
+<div class="line"><br /></div>
+<div class="line">Read the polygon of the study area and delete the data outside of the study area</div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">shanghai_admin</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;data/shanghai.json&#39;</span><span class="p">)</span>
 <span class="n">bikedata</span> <span class="o">=</span> <span class="n">tbd</span><span class="o">.</span><span class="n">clean_outofshape</span><span class="p">(</span><span class="n">bikedata</span><span class="p">,</span> <span class="n">shanghai_admin</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;LONGITUDE&#39;</span><span class="p">,</span> <span class="s1">&#39;LATITUDE&#39;</span><span class="p">],</span> <span class="n">accuracy</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Identify Bicycle sharing trip information using tbd.bikedata_to_od</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#识别单车出行OD</span>
-<span class="n">move_data</span><span class="p">,</span><span class="n">stop_data</span> <span class="o">=</span> <span class="n">tbd</span><span class="o">.</span><span class="n">bikedata_to_od</span><span class="p">(</span><span class="n">bikedata</span><span class="p">,</span>
+<p>Identify Bicycle sharing trip information using <code class="docutils literal notranslate"><span class="pre">tbd.bikedata_to_od</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">move_data</span><span class="p">,</span><span class="n">stop_data</span> <span class="o">=</span> <span class="n">tbd</span><span class="o">.</span><span class="n">bikedata_to_od</span><span class="p">(</span><span class="n">bikedata</span><span class="p">,</span>
                    <span class="n">col</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;BIKE_ID&#39;</span><span class="p">,</span><span class="s1">&#39;DATA_TIME&#39;</span><span class="p">,</span><span class="s1">&#39;LONGITUDE&#39;</span><span class="p">,</span><span class="s1">&#39;LATITUDE&#39;</span><span class="p">,</span><span class="s1">&#39;LOCK_STATUS&#39;</span><span class="p">])</span>
 <span class="n">move_data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
@@ -286,18 +290,18 @@
     </tr>
   </tbody>
 </table>
-</div><p>Calculate the travel distance. Remove too long and too short trips.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#计算骑行直线距离</span>
-<span class="n">move_data</span><span class="p">[</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tbd</span><span class="o">.</span><span class="n">getdistance</span><span class="p">(</span><span class="n">move_data</span><span class="p">[</span><span class="s1">&#39;slon&#39;</span><span class="p">],</span><span class="n">move_data</span><span class="p">[</span><span class="s1">&#39;slat&#39;</span><span class="p">],</span><span class="n">move_data</span><span class="p">[</span><span class="s1">&#39;elon&#39;</span><span class="p">],</span><span class="n">move_data</span><span class="p">[</span><span class="s1">&#39;elat&#39;</span><span class="p">])</span>
-<span class="c1">#清洗骑行数据，删除过长与过短的出行</span>
+</div><div class="line-block">
+<div class="line"><br /></div>
+<div class="line">Calculate the travel distance. Remove too long and too short trips.</div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">move_data</span><span class="p">[</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tbd</span><span class="o">.</span><span class="n">getdistance</span><span class="p">(</span><span class="n">move_data</span><span class="p">[</span><span class="s1">&#39;slon&#39;</span><span class="p">],</span><span class="n">move_data</span><span class="p">[</span><span class="s1">&#39;slat&#39;</span><span class="p">],</span><span class="n">move_data</span><span class="p">[</span><span class="s1">&#39;elon&#39;</span><span class="p">],</span><span class="n">move_data</span><span class="p">[</span><span class="s1">&#39;elat&#39;</span><span class="p">])</span>
 <span class="n">move_data</span> <span class="o">=</span> <span class="n">move_data</span><span class="p">[(</span><span class="n">move_data</span><span class="p">[</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">100</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">move_data</span><span class="p">[</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">10000</span><span class="p">)]</span>
 </pre></div>
 </div>
 <p>Perform data gridding:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 获取栅格划分参数</span>
-<span class="n">bounds</span> <span class="o">=</span> <span class="p">(</span><span class="mf">120.85</span><span class="p">,</span> <span class="mf">30.67</span><span class="p">,</span> <span class="mf">122.24</span><span class="p">,</span> <span class="mf">31.87</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bounds</span> <span class="o">=</span> <span class="p">(</span><span class="mf">120.85</span><span class="p">,</span> <span class="mf">30.67</span><span class="p">,</span> <span class="mf">122.24</span><span class="p">,</span> <span class="mf">31.87</span><span class="p">)</span>
 <span class="n">params</span> <span class="o">=</span> <span class="n">tbd</span><span class="o">.</span><span class="n">grid_params</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span><span class="n">accuracy</span> <span class="o">=</span> <span class="mi">500</span><span class="p">)</span>
-<span class="c1">#集计OD</span>
+<span class="c1">#Aggregate OD data</span>
 <span class="n">od_gdf</span> <span class="o">=</span> <span class="n">tbd</span><span class="o">.</span><span class="n">odagg_grid</span><span class="p">(</span><span class="n">move_data</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;slon&#39;</span><span class="p">,</span> <span class="s1">&#39;slat&#39;</span><span class="p">,</span> <span class="s1">&#39;elon&#39;</span><span class="p">,</span> <span class="s1">&#39;elat&#39;</span><span class="p">])</span>
 <span class="n">od_gdf</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
@@ -400,22 +404,25 @@
     </tr>
   </tbody>
 </table>
-</div><p>Visualize figure.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#创建图框</span>
+</div><div class="line-block">
+<div class="line"><br /></div>
+<div class="line">Visualize figure.</div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Create figure</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">plot_map</span>
 <span class="n">fig</span> <span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">sca</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
-<span class="c1">#添加地图底图</span>
+<span class="c1">#Load basemap</span>
 <span class="n">tbd</span><span class="o">.</span><span class="n">plot_map</span><span class="p">(</span><span class="n">plt</span><span class="p">,</span><span class="n">bounds</span><span class="p">,</span><span class="n">zoom</span> <span class="o">=</span> <span class="mi">11</span><span class="p">,</span><span class="n">style</span> <span class="o">=</span> <span class="mi">8</span><span class="p">)</span>
-<span class="c1">#绘制colorbar</span>
+<span class="c1">#Plot colorbar</span>
 <span class="n">cax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">([</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.33</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Data count&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">sca</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
-<span class="c1">#绘制OD</span>
+<span class="c1">#Plot OD</span>
 <span class="n">od_gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">,</span><span class="n">column</span> <span class="o">=</span> <span class="s1">&#39;count&#39;</span><span class="p">,</span><span class="n">cmap</span> <span class="o">=</span> <span class="s1">&#39;Blues_r&#39;</span><span class="p">,</span><span class="n">linewidth</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span><span class="n">vmax</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span><span class="n">cax</span> <span class="o">=</span> <span class="n">cax</span><span class="p">,</span><span class="n">legend</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-<span class="c1">#添加比例尺和指北针</span>
+<span class="c1">#Plot compass and scale</span>
 <span class="n">tbd</span><span class="o">.</span><span class="n">plotscale</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">bounds</span> <span class="o">=</span> <span class="n">bounds</span><span class="p">,</span><span class="n">textsize</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span><span class="n">compasssize</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">textcolor</span> <span class="o">=</span> <span class="s1">&#39;white&#39;</span><span class="p">,</span><span class="n">accuracy</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">,</span><span class="n">rect</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.06</span><span class="p">,</span><span class="mf">0.03</span><span class="p">],</span><span class="n">zorder</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">bounds</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
@@ -425,17 +432,18 @@
 </div>
 <img alt="../_images/output_7_0.png" src="../_images/output_7_0.png" />
 </section>
-<section id="id3">
-<h2>Extract node data<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<p>Combine the LONCOL and LATCOL columns information into one field</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#把起终点的经纬度栅格编号变为一个字段</span>
-<span class="n">od_gdf</span><span class="p">[</span><span class="s1">&#39;S&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">od_gdf</span><span class="p">[</span><span class="s1">&#39;SLONCOL&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="n">od_gdf</span><span class="p">[</span><span class="s1">&#39;SLATCOL&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<section id="extract-node-data">
+<h2>Extract node data<a class="headerlink" href="#extract-node-data" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">Combine the <code class="docutils literal notranslate"><span class="pre">LONCOL</span></code> and <code class="docutils literal notranslate"><span class="pre">LATCOL</span></code> columns information into one field</div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">od_gdf</span><span class="p">[</span><span class="s1">&#39;S&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">od_gdf</span><span class="p">[</span><span class="s1">&#39;SLONCOL&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="n">od_gdf</span><span class="p">[</span><span class="s1">&#39;SLATCOL&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
 <span class="n">od_gdf</span><span class="p">[</span><span class="s1">&#39;E&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">od_gdf</span><span class="p">[</span><span class="s1">&#39;ELONCOL&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="n">od_gdf</span><span class="p">[</span><span class="s1">&#39;ELATCOL&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
-<span class="c1">#提取节点集合</span>
+<span class="c1">#Extract node set</span>
 <span class="n">node</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">od_gdf</span><span class="p">[</span><span class="s1">&#39;S&#39;</span><span class="p">])</span><span class="o">|</span><span class="nb">set</span><span class="p">(</span><span class="n">od_gdf</span><span class="p">[</span><span class="s1">&#39;E&#39;</span><span class="p">])</span>
-<span class="c1">#把节点集合变成DataFrame</span>
+<span class="c1">#Change the type into DataFrame</span>
 <span class="n">node</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
-<span class="c1">#重新编号节点</span>
+<span class="c1">#reindex the node</span>
 <span class="n">node</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">node</span><span class="p">))</span>
 <span class="n">node</span>
 </pre></div>
@@ -522,15 +530,14 @@
 </table>
 <p>9811 rows × 2 columns</p>
 </div></section>
-<section id="id4">
-<h2>Extract edge data<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<section id="extract-edge-data">
+<h2>Extract edge data<a class="headerlink" href="#extract-edge-data" title="Permalink to this headline">¶</a></h2>
 <p>Merge the node information to the OD data to extract edge data.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#把新编号连接到OD数据上</span>
-<span class="n">node</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;S&#39;</span><span class="p">,</span><span class="s1">&#39;S_id&#39;</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">node</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;S&#39;</span><span class="p">,</span><span class="s1">&#39;S_id&#39;</span><span class="p">]</span>
 <span class="n">od_gdf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">od_gdf</span><span class="p">,</span><span class="n">node</span><span class="p">,</span><span class="n">on</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;S&#39;</span><span class="p">])</span>
 <span class="n">node</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;E&#39;</span><span class="p">,</span><span class="s1">&#39;E_id&#39;</span><span class="p">]</span>
 <span class="n">od_gdf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">od_gdf</span><span class="p">,</span><span class="n">node</span><span class="p">,</span><span class="n">on</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;E&#39;</span><span class="p">])</span>
-<span class="c1">#提取边信息</span>
+<span class="c1">#extract edge data</span>
 <span class="n">edge</span> <span class="o">=</span> <span class="n">od_gdf</span><span class="p">[[</span><span class="s1">&#39;S_id&#39;</span><span class="p">,</span><span class="s1">&#39;E_id&#39;</span><span class="p">,</span><span class="s1">&#39;count&#39;</span><span class="p">]]</span>
 <span class="n">edge</span>
 </pre></div>
@@ -629,43 +636,38 @@
 </table>
 <p>68473 rows × 3 columns</p>
 </div></section>
-<section id="id5">
-<h2>Construct network<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
-<p>Import igraph to create network</p>
+<section id="construct-network">
+<h2>Construct network<a class="headerlink" href="#construct-network" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">igraph</span>
-<span class="c1">#创建网络</span>
+<span class="c1">#Construct network</span>
 <span class="n">g</span> <span class="o">=</span> <span class="n">igraph</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
-<span class="c1">#在网络中添加节点。</span>
+<span class="c1">#Add node</span>
 <span class="n">g</span><span class="o">.</span><span class="n">add_vertices</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">node</span><span class="p">))</span>
-<span class="c1">#在网络中添加边。</span>
+<span class="c1">#Add edge</span>
 <span class="n">g</span><span class="o">.</span><span class="n">add_edges</span><span class="p">(</span><span class="n">edge</span><span class="p">[[</span><span class="s1">&#39;S_id&#39;</span><span class="p">,</span><span class="s1">&#39;E_id&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-<span class="c1">#提取边的权重。</span>
+<span class="c1">#Add weight</span>
 <span class="n">edge_weights</span> <span class="o">=</span> <span class="n">edge</span><span class="p">[[</span><span class="s1">&#39;count&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
-<span class="c1">#给边添加权重。</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">edge_weights</span><span class="p">)):</span>
     <span class="n">g</span><span class="o">.</span><span class="n">es</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_weights</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 </pre></div>
 </div>
 </section>
-<section id="id6">
-<h2>Community detection<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
-<p>Community detection using fast unfolding algorithm</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#社区发现</span>
+<section id="community-detection">
+<h2>Community detection<a class="headerlink" href="#community-detection" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Community detection</span>
 <span class="n">g_clustered</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">community_multilevel</span><span class="p">(</span><span class="n">weights</span> <span class="o">=</span> <span class="n">edge_weights</span><span class="p">,</span> <span class="n">return_levels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>the result is stored at g_clustered, calculate the modularity</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#模块度</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Modularity</span>
 <span class="n">g_clustered</span><span class="o">.</span><span class="n">modularity</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.8496561130926571</span>
 </pre></div>
 </div>
-<p>Next, prepare data for visualization</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#将结果赋值到节点上</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Assign the group result to the node</span>
 <span class="n">node</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">g_clustered</span><span class="o">.</span><span class="n">membership</span>
-<span class="c1">#重命名列</span>
+<span class="c1">#rename the columns</span>
 <span class="n">node</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;grid&#39;</span><span class="p">,</span><span class="s1">&#39;node_id&#39;</span><span class="p">,</span><span class="s1">&#39;group&#39;</span><span class="p">]</span>
 <span class="n">node</span>
 </pre></div>
@@ -764,24 +766,22 @@
 </table>
 <p>9811 rows × 3 columns</p>
 </div></section>
-<section id="id7">
-<h2>Visualization of the community<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
-<p>Count the number of grids per community and Extract communities with more than 10 grids</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#统计每个社区的栅格数量</span>
+<section id="visualize-the-community">
+<h2>Visualize the community<a class="headerlink" href="#visualize-the-community" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Count the number of grids per community</span>
 <span class="n">group</span> <span class="o">=</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-<span class="c1">#提取大于10个栅格的社区</span>
+<span class="c1">#Extract communities with more than 10 grids</span>
 <span class="n">group</span> <span class="o">=</span> <span class="n">group</span><span class="p">[</span><span class="n">group</span><span class="o">&gt;</span><span class="mi">10</span><span class="p">]</span>
-<span class="c1">#只保留这些社区的栅格</span>
+<span class="c1">#Retain only these community grids</span>
 <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="p">[</span><span class="n">node</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">r</span><span class="p">:</span><span class="n">r</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">index</span><span class="p">)]</span>
 </pre></div>
 </div>
-<p>Recover the grid number and use the tbd.grid_to_polygon method to generate the geometry of the raster from the raster number</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#切分获取栅格编号</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Get the grid number</span>
 <span class="n">node</span><span class="p">[</span><span class="s1">&#39;LONCOL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;grid&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">r</span><span class="p">:</span><span class="n">r</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 <span class="n">node</span><span class="p">[</span><span class="s1">&#39;LATCOL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;grid&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">r</span><span class="p">:</span><span class="n">r</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-<span class="c1">#生成栅格地理图形</span>
+<span class="c1">#Generate the geometry</span>
 <span class="n">node</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tbd</span><span class="o">.</span><span class="n">gridid_to_polygon</span><span class="p">(</span><span class="n">node</span><span class="p">[</span><span class="s1">&#39;LONCOL&#39;</span><span class="p">],</span><span class="n">node</span><span class="p">[</span><span class="s1">&#39;LATCOL&#39;</span><span class="p">],</span><span class="n">params</span><span class="p">)</span>
-<span class="c1">#转为GeoDataFrame</span>
+<span class="c1">#Change it into GeoDataFrame</span>
 <span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
 <span class="n">node</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
 <span class="n">node</span>
@@ -916,52 +916,40 @@
   </tbody>
 </table>
 <p>8527 rows × 6 columns</p>
-</div><p>Generate the geometry</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">node</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;group&#39;</span><span class="p">)</span>
+</div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">node</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;group&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="../_images/output_22_1.png" src="../_images/output_22_1.png" />
-<p>Visualize the community</p>
-<p>The previous visualisation of the results is not obvious and we do not see the partitioning clearly in the graph. Next, we can make some adjustments to the partitioning results and visualise them. The main ideas for the visualisation are as follows:</p>
-<ul class="simple">
-<li><p>A more appropriate partitioning result would be for each region to be spatially contiguous. In the initial visualisation, there are a number of rasters that are spatially isolated and these points should be eliminated.</p></li>
-<li><p>In the visualisation of the results we can merge grids from the same group to form face elements for each partition so that the boundaries of the partitions can be drawn in the next visualisation step.</p></li>
-<li><p>As a result of zoning, some zones may have enclaves within them, i.e. they are part of their own zone but are surrounded by other zones and can only ‘fly’ through other zones to reach their own enclaves. Such zoning can be difficult to manage in practice and should be avoided.</p></li>
-</ul>
-<p>To solve this problem, we can use the two GIS processing methods provided by TransBigData, tbd.merge_polygon and tbd.polyon_exterior. tbd.merge_polygon merges face elements of the same group, while <a href="#id8"><span class="problematic" id="id9">tbd.polyon_</span></a> exterior takes the outer boundary of a polygon and forms a new polygon, thus eliminating enclaves. It is also possible to set a minimum area and eliminate facets smaller than this. The code is as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#以group字段为分组，将同一组别的面要素合并</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Use the group column to merge polygon</span>
 <span class="n">node_community</span> <span class="o">=</span> <span class="n">tbd</span><span class="o">.</span><span class="n">merge_polygon</span><span class="p">(</span><span class="n">node</span><span class="p">,</span><span class="s1">&#39;group&#39;</span><span class="p">)</span>
-<span class="c1">#输入多边形GeoDataFrame数据，对多边形取外边界构成新多边形</span>
-<span class="c1">#设定最小面积minarea，小于该面积的面全部剔除，避免大量离群点出现</span>
+<span class="c1">#Input polygon GeoDataFrame data, take the exterior boundary of the polygon to form a new polygon</span>
 <span class="n">node_community</span> <span class="o">=</span> <span class="n">tbd</span><span class="o">.</span><span class="n">polyon_exterior</span><span class="p">(</span><span class="n">node_community</span><span class="p">,</span><span class="n">minarea</span> <span class="o">=</span> <span class="mf">0.000100</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Once the face elements of the community have been dealt with, the next step is to visualise the face elements. We want to give different colours to the different faces. As we mentioned in the visualisation section, when there is no numerical size difference between the displayed elements, the colours need to be chosen in such a way that they have the same brightness and saturation. Using seaborn’s palette method, we can quickly generate multiple colours of the same brightness and saturation</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#生成调色盘</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Generate palette</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="c1">## l: 亮度</span>
-<span class="c1">## s: 饱和度</span>
+<span class="c1">## l: Luminance</span>
+<span class="c1">## s: Saturation</span>
 <span class="n">cmap</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">hls_palette</span><span class="p">(</span><span class="n">n_colors</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">node_community</span><span class="p">),</span> <span class="n">l</span><span class="o">=.</span><span class="mi">7</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">palplot</span><span class="p">(</span><span class="n">cmap</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="../_images/output_24_0.png" src="../_images/output_24_0.png" />
-<p>Visualisation of community results</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#创建图框</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Create figure</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">plot_map</span>
 <span class="n">fig</span> <span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">sca</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
-<span class="c1">#添加地图底图</span>
+<span class="c1">#Load basemap</span>
 <span class="n">tbd</span><span class="o">.</span><span class="n">plot_map</span><span class="p">(</span><span class="n">plt</span><span class="p">,</span><span class="n">bounds</span><span class="p">,</span><span class="n">zoom</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span><span class="n">style</span> <span class="o">=</span> <span class="mi">6</span><span class="p">)</span>
-<span class="c1">#设定colormap</span>
+<span class="c1">#Set colormap</span>
 <span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">ListedColormap</span>
-<span class="c1">#打乱社区的排列顺序</span>
+<span class="c1">#Disrupting the order of the community</span>
 <span class="n">node_community</span> <span class="o">=</span> <span class="n">node_community</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="c1">#绘制社区</span>
+<span class="c1">#Plot community</span>
 <span class="n">node_community</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cmap</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">(</span><span class="n">cmap</span><span class="p">),</span><span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">,</span><span class="n">edgecolor</span> <span class="o">=</span> <span class="s1">&#39;#333&#39;</span><span class="p">,</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">)</span>
-<span class="c1">#添加比例尺和指北针</span>
+<span class="c1">#Add scale</span>
 <span class="n">tbd</span><span class="o">.</span><span class="n">plotscale</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">bounds</span> <span class="o">=</span> <span class="n">bounds</span><span class="p">,</span><span class="n">textsize</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span><span class="n">compasssize</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">textcolor</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span>
               <span class="p">,</span><span class="n">accuracy</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">,</span><span class="n">rect</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.06</span><span class="p">,</span><span class="mf">0.03</span><span class="p">],</span><span class="n">zorder</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
@@ -971,7 +959,6 @@
 </pre></div>
 </div>
 <img alt="../_images/output_25_0.png" src="../_images/output_25_0.png" />
-<p>At this point, we have successfully visualised the bike-sharing communities and mapped out the boundaries of each one. No geospatial information was entered into the model when partitioning with the community discovery model, and the model’s partitioning of the study area relied solely on the network connections made by the demand for bike-sharing trips.</p>
 </section>
 </section>
 

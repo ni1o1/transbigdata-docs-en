@@ -38,7 +38,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p><span class="caption-text">安装</span></p>
+              <p><span class="caption-text">Installation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Installation</a></li>
 </ul>
@@ -62,11 +62,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../grids.html">Data Gridding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../odprocess.html">Data Aggregating</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../visualization.html">Data Visualization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../getbusdata.html">Data Acquisition</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../traj.html">Trajectory Processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gisprocess.html">GIS Processing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../plot_map.html">Load the basemap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plot_map.html">地图底图</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../CoordinatesConverter.html">Coordinates and Distances</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getbusdata.html">Data Acquisition</a></li>
 </ul>
 <p><span class="caption-text">methods for specific data</span></p>
 <ul>
@@ -102,9 +102,8 @@
              
   <section id="id1">
 <h1>Modeling for subway network topology<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>这个案例的Jupyter notebook: <a class="reference external" href="https://github.com/ni1o1/transbigdata/blob/main/example/Example%203-Modeling%20for%20subway%20network%20topology.ipynb">点击这里</a>.</p>
 <div class="line-block">
-<div class="line">可以点击 <a class="reference external" href="https://mybinder.org/v2/gh/ni1o1/transbigdata/9507de936806c34a4befd74aa9227b012569a6aa?urlpath=lab%2Ftree%2Fexample%2FExample%203-Modeling%20for%20subway%20network%20topology.ipynb">这个链接</a> 在线编辑器中尝试</div>
+<div class="line">Jupyter notebook for this example: <a class="reference external" href="https://github.com/ni1o1/transbigdata/blob/main/example/Example%203-Modeling%20for%20subway%20network%20topology.ipynb">Here</a>.</div>
 </div>
 <p>The following example shows how to use TransBigData to download subway lines and to build a topological network model for the subway line network</p>
 <section id="id2">
@@ -136,7 +135,7 @@
 <section id="id4">
 <h2>Modeling for subway network topology<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>We can also use the metro station data to build a topology model of the metro network. This step is useful for subsequent identification of metro travel paths. The graph generated relies on <cite>NetworkX</cite>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#构建拓扑模型</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Modeling for subway network topology</span>
 <span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
 <span class="n">G</span> <span class="o">=</span> <span class="n">tbd</span><span class="o">.</span><span class="n">metro_network</span><span class="p">(</span><span class="n">stop</span><span class="p">)</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>

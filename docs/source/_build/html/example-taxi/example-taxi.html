@@ -38,7 +38,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p><span class="caption-text">安装</span></p>
+              <p><span class="caption-text">Installation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Installation</a></li>
 </ul>
@@ -66,11 +66,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../grids.html">Data Gridding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../odprocess.html">Data Aggregating</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../visualization.html">Data Visualization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../getbusdata.html">Data Acquisition</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../traj.html">Trajectory Processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gisprocess.html">GIS Processing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../plot_map.html">Load the basemap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plot_map.html">地图底图</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../CoordinatesConverter.html">Coordinates and Distances</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getbusdata.html">Data Acquisition</a></li>
 </ul>
 <p><span class="caption-text">methods for specific data</span></p>
 <ul>
@@ -107,8 +107,7 @@
   <section id="id1">
 <h1>Taxi GPS data processing<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <div class="line-block">
-<div class="line">这个案例的Jupyter notebook: <a class="reference external" href="https://github.com/ni1o1/transbigdata/blob/main/example/Example%201-Taxi%20GPS%20data%20processing.ipynb">点击这里</a>.</div>
-<div class="line">可以点击 <a class="reference external" href="https://mybinder.org/v2/gh/ni1o1/transbigdata/d7d6fa33ff16440ba1698b10dd3cf3f76ff00abd?urlpath=lab%2Ftree%2Fexample%2FExample%201-Taxi%20GPS%20data%20processing.ipynb">这个链接</a> 在线编辑器中尝试</div>
+<div class="line">Jupyter notebook for this example: <a class="reference external" href="https://github.com/ni1o1/transbigdata/blob/main/example/Example%201-Taxi%20GPS%20data%20processing.ipynb">Here</a>.</div>
 <div class="line">The sample dataset and the Jupyter notebook of the usage example is in the github repository at the following link: <a class="reference external" href="https://github.com/ni1o1/transbigdata/tree/main/example">https://github.com/ni1o1/transbigdata/tree/main/example</a></div>
 <div class="line">In this example, we will introduce how to use the TransBigData package to efficiently process Taxi GPS data.</div>
 <div class="line">Firstly, import the TransBigData and read the data using pandas</div>
@@ -116,7 +115,7 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">transbigdata</span> <span class="k">as</span> <span class="nn">tbd</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
-<span class="c1">#读取数据</span>
+<span class="c1">#Read data</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;TaxiData-Sample.csv&#39;</span><span class="p">,</span><span class="n">header</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>
 <span class="n">data</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;VehicleNum&#39;</span><span class="p">,</span><span class="s1">&#39;Time&#39;</span><span class="p">,</span><span class="s1">&#39;Lng&#39;</span><span class="p">,</span><span class="s1">&#39;Lat&#39;</span><span class="p">,</span><span class="s1">&#39;OpenStatus&#39;</span><span class="p">,</span><span class="s1">&#39;Speed&#39;</span><span class="p">]</span>
 <span class="n">data</span>
@@ -251,9 +250,9 @@
   </tbody>
 </table>
 <p>544999 rows × 6 columns</p>
-</div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#读取区域信息</span>
+</div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Read the GeoDataFrame of the study area</span>
 <span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
-<span class="n">sz</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;sz/sz.shp&#39;</span><span class="p">)</span>
+<span class="n">sz</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;sz.json&#39;</span><span class="p">)</span>
 <span class="n">sz</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="n">sz</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
@@ -262,10 +261,10 @@
 <section id="id2">
 <h2>Data pre-processing<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>TransBigData integrates several common methods for data pre-processing. Using the <cite>tbd.clean_outofshape</cite> method, given the data and the GeoDataFrame of the study area, it can delete the data outside the study area. The <cite>tbd.clean_taxi_status</cite> method can filters out the data with instantaneous changes in passenger status(OpenStatus). When using the preprocessing method, the corresponding column names need to be passed in as parameters：</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#数据预处理</span>
-<span class="c1">#剔除研究范围外的数据</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Data Preprocessing</span>
+<span class="c1">#Delete the data outside of the study area</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">tbd</span><span class="o">.</span><span class="n">clean_outofshape</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sz</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Lng&#39;</span><span class="p">,</span> <span class="s1">&#39;Lat&#39;</span><span class="p">],</span> <span class="n">accuracy</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
-<span class="c1">#剔除出租车数据中载客状态瞬间变化的记录</span>
+<span class="c1">#Delete the data with instantaneous changes in passenger status</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">tbd</span><span class="o">.</span><span class="n">clean_taxi_status</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;VehicleNum&#39;</span><span class="p">,</span> <span class="s1">&#39;Time&#39;</span><span class="p">,</span> <span class="s1">&#39;OpenStatus&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -273,8 +272,8 @@
 <section id="id3">
 <h2>Data Gridding<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>The most basic way to express the data distribution is in the form of geograpic grids; after the data gridding, each GPS data point is mapped to the corresponding grid. For data gridding, you need to determine the gridding parameters at first(which can be interpreted as defining a grid coordinate system):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#栅格化</span>
-<span class="c1">#定义范围，获取栅格化参数</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Data gridding</span>
+<span class="c1">#Define the bounds and generate gridding parameters</span>
 <span class="n">bounds</span> <span class="o">=</span> <span class="p">[</span><span class="mf">113.6</span><span class="p">,</span><span class="mf">22.4</span><span class="p">,</span><span class="mf">114.8</span><span class="p">,</span><span class="mf">22.9</span><span class="p">]</span>
 <span class="n">params</span> <span class="o">=</span> <span class="n">tbd</span><span class="o">.</span><span class="n">grid_params</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span><span class="n">accuracy</span> <span class="o">=</span> <span class="mi">500</span><span class="p">)</span>
 <span class="n">params</span>
@@ -282,25 +281,25 @@
 </div>
 <p>(113.6, 22.4, 0.004872390756896538, 0.004496605206422906)</p>
 <p>After obtaining the gridding parameters, the next step is to map the GPS is to their corresponding grids. Using the <cite>tbd.GPS_to_grids</cite>, it will generate the LONCOL column and the LATCOL column. The two columns together can specify a grid:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#将GPS栅格化</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Mapping GPS data to grids</span>
 <span class="n">data</span><span class="p">[</span><span class="s1">&#39;LONCOL&#39;</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;LATCOL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tbd</span><span class="o">.</span><span class="n">GPS_to_grids</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Lng&#39;</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Lat&#39;</span><span class="p">],</span><span class="n">params</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Count the amount of data in each grids:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#集计栅格数据量</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Aggregate data into grids</span>
 <span class="n">datatest</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;LONCOL&#39;</span><span class="p">,</span><span class="s1">&#39;LATCOL&#39;</span><span class="p">])[</span><span class="s1">&#39;VehicleNum&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Generate the geometry of the grids and transform it into a GeoDataFrame:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#生成栅格地理图形</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Generate the geometry for grids</span>
 <span class="n">datatest</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tbd</span><span class="o">.</span><span class="n">gridid_to_polygon</span><span class="p">(</span><span class="n">datatest</span><span class="p">[</span><span class="s1">&#39;LONCOL&#39;</span><span class="p">],</span><span class="n">datatest</span><span class="p">[</span><span class="s1">&#39;LATCOL&#39;</span><span class="p">],</span><span class="n">params</span><span class="p">)</span>
-<span class="c1">#转为GeoDataFrame</span>
+<span class="c1">#Change it into GeoDataFrame</span>
 <span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
 <span class="n">datatest</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">datatest</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Plot the generated grids:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#绘制</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Plot the grids</span>
 <span class="n">datatest</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span> <span class="o">=</span> <span class="s1">&#39;VehicleNum&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -309,7 +308,7 @@
 <section id="od">
 <h2>Origin-destination(OD) Extraction and aggregate taxi trips<a class="headerlink" href="#od" title="Permalink to this headline">¶</a></h2>
 <p>Use the <cite>tbd.taxigps_to_od</cite> method and pass in the corresponding column name to extract the taxi trip OD:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#从GPS数据提取OD</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Extract taxi OD from GPS data</span>
 <span class="n">oddata</span> <span class="o">=</span> <span class="n">tbd</span><span class="o">.</span><span class="n">taxigps_to_od</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">col</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;VehicleNum&#39;</span><span class="p">,</span><span class="s1">&#39;Time&#39;</span><span class="p">,</span><span class="s1">&#39;Lng&#39;</span><span class="p">,</span><span class="s1">&#39;Lat&#39;</span><span class="p">,</span><span class="s1">&#39;OpenStatus&#39;</span><span class="p">])</span>
 <span class="n">oddata</span>
 </pre></div>
@@ -468,7 +467,7 @@
 </table>
 <p>5337 rows × 8 columns</p>
 </div><p>Aggregate the extracted OD and generate LineString GeoDataFrame</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#栅格化OD并集计</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Gridding and aggragate data</span>
 <span class="n">od_gdf</span> <span class="o">=</span> <span class="n">tbd</span><span class="o">.</span><span class="n">odagg_grid</span><span class="p">(</span><span class="n">oddata</span><span class="p">,</span><span class="n">params</span><span class="p">)</span>
 <span class="n">od_gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span> <span class="o">=</span> <span class="s1">&#39;count&#39;</span><span class="p">)</span>
 </pre></div>
@@ -478,13 +477,13 @@
 <section id="id4">
 <h2>Aggregate OD into polygons<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p><cite>TransBigData</cite> also provides the method for aggregating OD into polygons</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#OD集计到小区（在不传入栅格化参数时，直接用经纬度匹配）</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Aggragate OD data to polygons (Without passing gridding parameters, the algorithm will map the data to polygons directly using their coordinates)</span>
 <span class="n">od_gdf</span> <span class="o">=</span> <span class="n">tbd</span><span class="o">.</span><span class="n">odagg_shape</span><span class="p">(</span><span class="n">oddata</span><span class="p">,</span><span class="n">sz</span><span class="p">,</span><span class="n">round_accuracy</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
 <span class="n">od_gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span> <span class="o">=</span> <span class="s1">&#39;count&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="../_images/output_25_1.png" src="../_images/output_25_1.png" />
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#OD集计到小区（传入栅格化参数时，先栅格化后匹配，可加快匹配速度，数据量大时建议使用）</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Aggragate OD data to polygons (When passing  gridding parameters, the algorithm will perform data gridding before mapping data, which will speed up the mapping process)</span>
 <span class="n">od_gdf</span> <span class="o">=</span> <span class="n">tbd</span><span class="o">.</span><span class="n">odagg_shape</span><span class="p">(</span><span class="n">oddata</span><span class="p">,</span><span class="n">sz</span><span class="p">,</span><span class="n">params</span> <span class="o">=</span> <span class="n">params</span><span class="p">)</span>
 <span class="n">od_gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span> <span class="o">=</span> <span class="s1">&#39;count&#39;</span><span class="p">)</span>
 </pre></div>
@@ -494,23 +493,23 @@
 <section id="matplotlib">
 <h2>Matplotlib-based map drawing<a class="headerlink" href="#matplotlib" title="Permalink to this headline">¶</a></h2>
 <p>TransBigData also provide basemap loading in matplotlib. Before using this method, you need to set your mapboxtoken and the storage location for the basemap, see: <a class="reference external" href="https://transbigdata.readthedocs.io/en/latest/plot_map.html">this link</a>。<cite>tbd.plot_map</cite> to add basemap and <cite>tbd.plotscale</cite> to add scale and compass:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#创建图框</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Create figure</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">plot_map</span>
 <span class="n">fig</span> <span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">sca</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
-<span class="c1">#添加地图底图</span>
+<span class="c1">#Load basemap</span>
 <span class="n">tbd</span><span class="o">.</span><span class="n">plot_map</span><span class="p">(</span><span class="n">plt</span><span class="p">,</span><span class="n">bounds</span><span class="p">,</span><span class="n">zoom</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span><span class="n">style</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span>
-<span class="c1">#绘制colorbar</span>
+<span class="c1">#Define an ax for colorbar</span>
 <span class="n">cax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">([</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.33</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">sca</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
-<span class="c1">#绘制OD</span>
+<span class="c1">#Plot the OD</span>
 <span class="n">od_gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">,</span><span class="n">vmax</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span><span class="n">column</span> <span class="o">=</span> <span class="s1">&#39;count&#39;</span><span class="p">,</span><span class="n">cax</span> <span class="o">=</span> <span class="n">cax</span><span class="p">,</span><span class="n">legend</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-<span class="c1">#绘制小区底图</span>
+<span class="c1">#Plot the polygons</span>
 <span class="n">sz</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">,</span><span class="n">edgecolor</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">facecolor</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">),</span><span class="n">linewidths</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-<span class="c1">#添加比例尺和指北针</span>
+<span class="c1">#Add compass and scale</span>
 <span class="n">tbd</span><span class="o">.</span><span class="n">plotscale</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">bounds</span> <span class="o">=</span> <span class="n">bounds</span><span class="p">,</span><span class="n">textsize</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span><span class="n">compasssize</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">accuracy</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">,</span><span class="n">rect</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.06</span><span class="p">,</span><span class="mf">0.03</span><span class="p">],</span><span class="n">zorder</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">bounds</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>

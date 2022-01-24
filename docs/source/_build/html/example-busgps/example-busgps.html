@@ -38,7 +38,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p><span class="caption-text">安装</span></p>
+              <p><span class="caption-text">Installation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Installation</a></li>
 </ul>
@@ -63,11 +63,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../grids.html">Data Gridding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../odprocess.html">Data Aggregating</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../visualization.html">Data Visualization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../getbusdata.html">Data Acquisition</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../traj.html">Trajectory Processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gisprocess.html">GIS Processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../plot_map.html">Load the basemap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../CoordinatesConverter.html">Coordinates and Distances</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getbusdata.html">Data Acquisition</a></li>
 </ul>
 <p><span class="caption-text">methods for specific data</span></p>
 <ul>
@@ -104,8 +104,7 @@
   <section id="gps">
 <h1>Identifying arrival and departure information from Bus GPS data<a class="headerlink" href="#gps" title="Permalink to this headline">¶</a></h1>
 <div class="line-block">
-<div class="line">这个案例的Jupyter notebook: <a class="reference external" href="https://github.com/ni1o1/transbigdata/blob/main/example/Example%202-Identifying%20arrival%20and%20departure%20information%20from%20Bus%20GPS%20data.ipynb">点击这里</a>.</div>
-<div class="line">可以点击 <a class="reference external" href="https://mybinder.org/v2/gh/ni1o1/transbigdata/9507de936806c34a4befd74aa9227b012569a6aa?urlpath=lab%2Ftree%2Fexample%2FExample%202-Identifying%20arrival%20and%20departure%20information%20from%20Bus%20GPS%20data.ipynb">这个链接</a> 在线编辑器中尝试</div>
+<div class="line">Jupyter notebook for this example: <a class="reference external" href="https://github.com/ni1o1/transbigdata/blob/main/example/Example%202-Identifying%20arrival%20and%20departure%20information%20from%20Bus%20GPS%20data.ipynb">click here</a>.</div>
 </div>
 <p>The following example shows how to use TransBigData to process bus GPS data, including identifying bus arrival and departure information, calculate travel time and operating speed for buses.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">transbigdata</span> <span class="k">as</span> <span class="nn">tbd</span>
@@ -119,15 +118,15 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BUS_GPS</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;busgps.csv&#39;</span><span class="p">,</span><span class="n">header</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>
 <span class="n">BUS_GPS</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;GPSDateTime&#39;</span><span class="p">,</span> <span class="s1">&#39;LineId&#39;</span><span class="p">,</span> <span class="s1">&#39;LineName&#39;</span><span class="p">,</span> <span class="s1">&#39;NextLevel&#39;</span><span class="p">,</span> <span class="s1">&#39;PrevLevel&#39;</span><span class="p">,</span>
        <span class="s1">&#39;Strlatlon&#39;</span><span class="p">,</span> <span class="s1">&#39;ToDir&#39;</span><span class="p">,</span> <span class="s1">&#39;VehicleId&#39;</span><span class="p">,</span> <span class="s1">&#39;VehicleNo&#39;</span><span class="p">,</span> <span class="s1">&#39;unknow&#39;</span><span class="p">]</span>
-<span class="c1">#时间转换为datetime格式</span>
+<span class="c1">#Convert the time column to datetime type</span>
 <span class="n">BUS_GPS</span><span class="p">[</span><span class="s1">&#39;GPSDateTime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">BUS_GPS</span><span class="p">[</span><span class="s1">&#39;GPSDateTime&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>Convert coordinates</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#切分经纬度的字符串</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Slice the latitude and longitude string</span>
 <span class="n">BUS_GPS</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BUS_GPS</span><span class="p">[</span><span class="s1">&#39;Strlatlon&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">r</span><span class="p">:</span><span class="n">r</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">BUS_GPS</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BUS_GPS</span><span class="p">[</span><span class="s1">&#39;Strlatlon&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">r</span><span class="p">:</span><span class="n">r</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
-<span class="c1">#坐标系转换</span>
+<span class="c1">#Convert coordinates</span>
 <span class="n">BUS_GPS</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">],</span><span class="n">BUS_GPS</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tbd</span><span class="o">.</span><span class="n">gcj02towgs84</span><span class="p">(</span><span class="n">BUS_GPS</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">),</span><span class="n">BUS_GPS</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">))</span>
 <span class="n">BUS_GPS</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
@@ -383,7 +382,7 @@
                                    <span class="n">end</span> <span class="o">=</span> <span class="s1">&#39;申昆路枢纽站&#39;</span><span class="p">,</span><span class="n">col</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;VehicleId&#39;</span><span class="p">,</span><span class="s1">&#39;stopname&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## 绘制耗时分布箱型图</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Draw box plot for one-way travel time</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
@@ -405,10 +404,10 @@
 </section>
 <section id="id4">
 <h2>operating speed<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#转换坐标系为投影坐标系，方便后面计算距离</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Convert coordinate system to projection coordinate system for later calculation of distance</span>
 <span class="n">line</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;init&#39;</span><span class="p">:</span><span class="s1">&#39;epsg:4326&#39;</span><span class="p">}</span>
 <span class="n">line_2416</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span> <span class="o">=</span> <span class="mi">2416</span><span class="p">)</span>
-<span class="c1">#公交线路数据里面的geometry</span>
+<span class="c1">#Obtain the geometry inside the bus route data</span>
 <span class="n">lineshp</span> <span class="o">=</span> <span class="n">line_2416</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">linename</span> <span class="o">=</span> <span class="n">line_2416</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">lineshp</span>
@@ -419,13 +418,13 @@
 </pre></div>
 </div>
 <img alt="../_images/output_18_1.png" src="../_images/output_18_1.png" />
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#筛选去掉车速过快的</span>
-<span class="c1">#车速单位转换为km/h</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Remove the data with abnormal speed</span>
+<span class="c1">#Vehicle speed units converted to km/h</span>
 <span class="n">onewaytime</span><span class="p">[</span><span class="s1">&#39;speed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">lineshp</span><span class="o">.</span><span class="n">length</span><span class="o">/</span><span class="n">onewaytime</span><span class="p">[</span><span class="s1">&#39;duration&#39;</span><span class="p">])</span><span class="o">*</span><span class="mf">3.6</span>
 <span class="n">onewaytime</span> <span class="o">=</span> <span class="n">onewaytime</span><span class="p">[</span><span class="n">onewaytime</span><span class="p">[</span><span class="s1">&#39;speed&#39;</span><span class="p">]</span><span class="o">&lt;=</span><span class="mi">60</span><span class="p">]</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## 车速分布</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Travel speed distribution</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>

@@ -34,4 +34,3 @@ TransBigData依赖如下包
 * `osmnx` (optional)
 * `seaborn` (optional)
 * `keplergl` (optional)
-* `leuvenmapmatching` (optional)
