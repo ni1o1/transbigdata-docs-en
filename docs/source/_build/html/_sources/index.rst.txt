@@ -14,6 +14,13 @@ TransBigData 为交通时空大数据而生
 
 TransBigData工具针对时空大数据处理而开发，依托于GeoPandas。TransBigData集成了交通时空大数据处理过程中常用的方法。包括栅格化、数据质量分析、数据预处理、数据集计、轨迹分析、GIS处理、地图底图加载、坐标与距离计算、数据可视化等通用方法。TransBigData也针对出租车GPS数据、共享单车数据、公交GPS数据等多种常见交通时空大数据提供了快速简洁的处理方法。
 
+**Target audience**
+
+The target audience of `TransBigData` includes: 
+
+- Data science researchers and data engineers in the field of transportation big data, smart transportation system and urban computing, particular who wants to integrate innovative algorithms into the intelligent trasnportation systems.
+- Government, enterprises or other entities who expect efficient and reliable management decision supports through transportation spatio-temporal data analysis.
+
 **技术特点**
 
 * 面向交通时空大数据分析不同阶段的处理需求提供不同处理功能。
