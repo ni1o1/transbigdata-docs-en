@@ -83,7 +83,7 @@ msgstr "Quick Start"
 msgid "在安装TransBigData之前，请确保已经安装了可用的geopandas包：https://geopandas.org/index.html"
 msgstr ""
 "Before installing TransBigData, make sure that you have installed the "
-"geopandas package: https://geopandas.org/index.html"
+"geopandas package: https://geopandas.org/en/stable/getting_started/install.html"
 
 #: ../../source/index.rst:30
 msgid "如果你已经安装了geopandas，则直接在命令提示符中运行下面代码即可安装"
