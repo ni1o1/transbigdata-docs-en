@@ -17,6 +17,10 @@ TransBigData依赖geopandas，在安装TransBigData前需要根据 `这个链接
 
   import transbigdata as tbd
 
+You can also install `TransBigData` by conda-forge, this will automaticaly solve the dependency, it can be installed with:
+
+  conda install -c conda-forge transbigdata
+
 依赖包
 =============================
 TransBigData依赖如下包
@@ -27,8 +31,6 @@ TransBigData依赖如下包
 * `geopandas`
 * `scipy`
 * `matplotlib`
-* `plot_map`>=0.3.5
-* `CoordinatesConverter`>=0.1.4
 * `networkx` (optional)
 * `igraph` (optional)
 * `osmnx` (optional)
