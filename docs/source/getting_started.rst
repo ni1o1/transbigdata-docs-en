@@ -15,13 +15,14 @@ TransBigData依赖geopandas，在安装TransBigData前需要根据 `这个链接
 
   pip install -U transbigdata
 
+
+You can also install `TransBigData` by conda-forge, this will automaticaly solve the dependency, it can be installed with::
+
+  conda install -c conda-forge transbigdata
+
 在Python中运行下面代码::
 
   import transbigdata as tbd
-
-You can also install `TransBigData` by conda-forge, this will automaticaly solve the dependency, it can be installed with:
-
-  conda install -c conda-forge transbigdata
 
 依赖包
 =============================
