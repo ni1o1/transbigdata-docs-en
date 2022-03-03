@@ -11,8 +11,10 @@
 
 city : str
     城市
-keywords : List
+keywords : str or list
     关键词，线路名称
+accurate : bool
+    Accurate matching
 
 **输出**
 
