@@ -42,3 +42,47 @@ admin : GeoDataFrame
     行政区划信息
 districts : DataFrame
     子行政区划的信息，利用这个可以进一步抓下一级的行政区划
+
+.. function:: transbigdata.get_isochrone_amap(lon,lat,reachtime,ak,mode=2)
+
+Obtain the isochrone from Amap reachcricle
+
+**Parameters**
+
+lon : float
+    Longitude of the start point(WGS84)
+lat : float
+    Latitude of the start point(WGS84)
+reachtime : number
+    Reachtime of the isochrone
+ak : str
+    Amap access token
+mode : int or str
+    Travel mode, should be 0(bus), 1(subway), 2(bus+subway)
+
+**Returns**
+
+isochrone : GeoDataFrame
+    The isochrone GeoDataFrame(WGS84)
+
+.. function:: transbigdata.get_isochrone_mapbox(lon,lat,reachtime,access_token='auto',mode = 'driving')
+
+Obtain the isochrone from mapbox isochrone
+
+**Parameters**
+
+lon : float
+    Longitude of the start point(WGS84)
+lat : float
+    Latitude of the start point(WGS84)
+reachtime : number
+    Reachtime of the isochrone
+access_token : str
+    Mapbox access token, if `auto` it will use the preset access token
+mode : bool
+    Travel mode, should be `driving`, `walking` or `cycling`
+
+**Returns**
+
+isochrone : GeoDataFrame
+    The isochrone GeoDataFrame(WGS84)
