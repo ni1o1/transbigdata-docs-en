@@ -64,29 +64,6 @@ params : List
     tbd.grid_params(bounds,accuracy = 500)
 
 
-.. function:: transbigdata.grid_params_best(data,col = ['lon','lat'],accuracy = 500,gap = 10,sample = 10000)
-
-获取最佳的栅格化参数，以基尼系数最大为标准
-
-**输入**
-
-data : DataFrame
-    数据
-col : List
-    经纬度列
-accuracy : number
-    网格大小
-gap : number
-    精度,越大越精确，效果越好，计算量越大
-sample : number
-    抽样多少数据做测试
-
-**输出**
-
-params : List
-    最佳的栅格参数(lonStart,latStart,deltaLon,deltaLat)，分别为栅格左下角坐标与单个栅格的经纬度长宽
-
-
 .. function:: transbigdata.GPS_to_grids(lon,lat,params)
 
 GPS数据对应栅格编号。输入数据的经纬度列与栅格参数，输出对应的栅格编号
@@ -193,6 +170,32 @@ grid : GeoDataFrame
 params : List
     Gridding parameters (lonStart,latStart,deltaLon,deltaLat) or (lonStart,latStart,deltaLon,deltaLat,theta), lonStart and latStart are the lower-left coordinates; deltaLon, deltaLat are the length and width of a single grid; theta is the angle of the grid, it will be 0 if not given
 
+Optimize gridding params
+==============================
+
+.. function:: transbigdata.grid_params_optimize(data,initialparams,col=['uid','lon','lat'],method='centerdist',printlog=False,sample=0)
+
+Optimize the grid params
+
+**Input**
+
+data : DataFrame
+    Trajectory data
+initialparams : List
+    Initial griding params
+col : List
+    Column names [uid,lon,lat]
+method : str
+    The method to optimize: centerdist, gini, gridscount
+printlog : bool
+    Whether to print log or not
+sample : int
+    Sample the data as input, if 0 it will not perform sampling
+    
+**Output**
+
+params_optimized : List
+    Optimized params
 
 geohash编码
 ==============
