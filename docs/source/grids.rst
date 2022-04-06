@@ -5,10 +5,10 @@
 数据栅格化
 ***************
 
-方形栅格渔网的生成与对应
-=============================
+Gridding Framework
+==============================
 
-.. function:: transbigdata.rect_grids(location,accuracy = 500,params='auto')
+.. function:: transbigdata.area_to_grid(location, accuracy=500, method='rect', params='auto')
 
 Generate the rectangular grids in the bounds or shape
 
@@ -16,159 +16,177 @@ Generate the rectangular grids in the bounds or shape
 
 location : bounds(List) or shape(GeoDataFrame)
     Where to generate grids.
-    If bounds, [lon1, lat1, lon2, lat2](WGS84), where lon1 , lat1 are the lower-left coordinates, lon2 , lat2 are the upper-right coordinates
+    If bounds, [lon1, lat1, lon2, lat2](WGS84), where lon1 , lat1 are the
+    lower-left coordinates, lon2 , lat2 are the upper-right coordinates
     If shape, it should be GeoDataFrame
 accuracy : number
     Grid size (meter)
-params : List
-    Gridding parameters (lonStart,latStart,deltaLon,deltaLat) or (lonStart,latStart,deltaLon,deltaLat,theta), lonStart and latStart are the lower-left coordinates; deltaLon, deltaLat are the length and width of a single grid; theta is the angle of the grid, it will be 0 if not given
-    When Gridding parameters is given, accuracy will not be used.                          
-                      
+method : str
+    rect, tri or hexa
+params : list or dict
+    Gridding parameters. 
+    See https://transbigdata.readthedocs.io/en/latest/grids.html 
+    for detail information about gridding parameters.
+    When Gridding parameters is given, accuracy will not be used.
 
 **Returns**
 
 grid : GeoDataFrame
-    Grid GeoDataFrame, LONCOL and LATCOL are the index of grids, HBLON and HBLAT are the center of the grids
-params : List
-    Gridding parameters (lonStart,latStart,deltaLon,deltaLat) or (lonStart,latStart,deltaLon,deltaLat,theta), lonStart and latStart are the lower-left coordinates; deltaLon, deltaLat are the length and width of a single grid; theta is the angle of the grid, it will be 0 if not given
+    Grid GeoDataFrame,
+    LONCOL and LATCOL are the index of grids,
+    HBLON and HBLAT are the center of the grids
+params : list or dict
+    Gridding parameters. 
+    See https://transbigdata.readthedocs.io/en/latest/grids.html 
+    for detail information about gridding parameters.
 
+.. function:: transbigdata.area_to_params(location, accuracy=500, method='rect')
 
-::
+Generate gridding params
 
-    #设定范围
-    bounds = [lon1,lat1,lon2,lat2]
-    grid,params = tbd.rect_grids(bounds,accuracy = 500)
+**Parameters**
 
-
-.. function:: transbigdata.grid_params(bounds,accuracy = 500)
-
-栅格参数获取
-
-**输入**
-
-bounds : List
-    生成范围的边界，[lon1,lat1,lon2,lat2] (WGS84坐标系) 其中，lon1,lat1是左下角坐标，lon2,lat2是右上角坐标 
+location : bounds(List) or shape(GeoDataFrame)
+    Where to generate grids.
+    If bounds, [lon1, lat1, lon2, lat2](WGS84), where lon1 , lat1 are the
+    lower-left coordinates, lon2 , lat2 are the upper-right coordinates
+    If shape, it should be GeoDataFrame
 accuracy : number
-    栅格大小（米）
-                                           
-
-**输出**
-
-params : List
-    栅格参数(lonStart,latStart,deltaLon,deltaLat)，分别为栅格左下角坐标与单个栅格的经纬度长宽
+    Grid size (meter)
+method : str
+    rect, tri or hexa
 
 
-::
+**Returns**
 
-    bounds = [113.75194,22.447837,114.624187,22.864748]
-    tbd.grid_params(bounds,accuracy = 500)
+params : list or dict
+    Gridding parameters. 
+    See https://transbigdata.readthedocs.io/en/latest/grids.html 
+    for detail information about gridding parameters.
 
+.. function:: transbigdata.GPS_to_grid(lon, lat, params)
 
-.. function:: transbigdata.GPS_to_grids(lon,lat,params)
+Match the GPS data to the grids. The input is the columns of
+longitude, latitude, and the grids parameter. The output is the grid ID.
 
-GPS数据对应栅格编号。输入数据的经纬度列与栅格参数，输出对应的栅格编号
-
-**输入**
+**Parameters**
 
 lon : Series
-    经度列
+    The column of longitude
 lat : Series
-    纬度列
-params : List
-    栅格参数(lonStart,latStart,deltaLon,deltaLat)，分别为栅格左下角坐标与单个栅格的经纬度长宽
-                                           
-**输出**
+    The column of latitude
+params : list or dict
+    Gridding parameters. 
+    See https://transbigdata.readthedocs.io/en/latest/grids.html 
+    for detail information about gridding parameters.
 
-LONCOL : Series
-    经度栅格编号列
-LATCOL : Series
-    纬度栅格编号列
+**Returns**
 
-::
+`Rectangle grids`
+[LONCOL,LATCOL] : list
+    The two columns LONCOL and LATCOL together can specify a grid.
 
-    data['LONCOL'],data['LATCOL'] = tbd.GPS_to_grids(data['Lng'],data['Lat'],params)
+`Triangle and Hexagon grids`
+[loncol_1,loncol_2,loncol_3] : list
+    The index of the grid latitude. The two columns LONCOL and
+    LATCOL together can specify a grid.
 
-.. function:: transbigdata.grids_centre(loncol,latcol,params)
+.. function:: transbigdata.grid_to_centre(gridid, params)
 
-栅格编号对应栅格中心点经纬度。输入数据的栅格编号与栅格参数，输出对应的栅格中心点
+The center location of the grid. The input is the grid ID and
+parameters, the output is the grid center location.
 
-**输入**
+**Parameters**
 
-LONCOL : Series
-    经度栅格编号列
-LATCOL : Series
-    纬度栅格编号列
-params : List
-    栅格参数(lonStart,latStart,deltaLon,deltaLat)，分别为栅格左下角坐标与单个栅格的经纬度长宽
-                                           
-**输出**
+gridid : list
+    if `Rectangle grids`
+    [LONCOL,LATCOL] : Series
+        The two columns LONCOL and LATCOL together can specify a grid.
+
+    if `Triangle and Hexagon grids`
+    [loncol_1,loncol_2,loncol_3] : Series
+        The index of the grid latitude. The two columns LONCOL and
+        LATCOL together can specify a grid.
+params : list or dict
+    Gridding parameters. 
+    See https://transbigdata.readthedocs.io/en/latest/grids.html 
+    for detail information about gridding parameters.
+
+**Returns**
 
 HBLON : Series
-    栅格中心点经度列
+    The longitude of the grid center
 HBLAT : Series
-    栅格中心点纬度列
+    The latitude of the grid center
 
+.. function:: transbigdata.grid_to_polygon(gridid, params)
 
-::
+Generate the geometry column based on the grid ID.
+The input is the grid ID, the output is the geometry.
+Support rectangle, triangle and hexagon grids
 
-    data['HBLON'],data['HBLAT'] = tbd.grids_centre(data['LONCOL'],data['LATCOL'],params)
+**Parameters**
 
-.. function:: transbigdata.gridid_to_polygon(loncol,latcol,params)
+gridid : list
+    if `Rectangle grids`
+    [LONCOL,LATCOL] : Series
+        The two columns LONCOL and LATCOL together can specify a grid.
 
-栅格编号生成栅格的地理信息列。输入数据的栅格编号与栅格参数，输出对应的地理信息列
+    if `Triangle and Hexagon grids`
+    [loncol_1,loncol_2,loncol_3] : Series
+        The index of the grid latitude. The two columns LONCOL and
+        LATCOL together can specify a grid.
 
-**输入**
+params : list or dict
+    Gridding parameters. 
+    See https://transbigdata.readthedocs.io/en/latest/grids.html 
+    for detail information about gridding parameters.
 
-LONCOL : Series
-    经度栅格编号列
-LATCOL : Series
-    纬度栅格编号列
-params : List
-    栅格参数(lonStart,latStart,deltaLon,deltaLat)，分别为栅格左下角坐标与单个栅格的经纬度长宽
-                                           
-**输出**
+**Returns**
 
 geometry : Series
-    栅格的矢量图形列
+    The column of grid geographic polygon
 
-::
+.. function:: transbigdata.grid_to_area(data, shape, params, col=['LONCOL', 'LATCOL'])
 
-    data['geometry'] = tbd.gridid_to_polygon(data['LONCOL'],data['LATCOL'],params)
+Input the two columns of grid ID, the geographic polygon and gridding
+paramters. The output is the grid.
 
-.. function:: transbigdata.gridid_sjoin_shape(data,shape,params,col = ['LONCOL','LATCOL'])
-
-输入数据（带有栅格经纬度编号两列），矢量图形与栅格化参数，输出数据栅格并对应矢量图形。
-
-**输入**
+**Parameters**
 
 data : DataFrame
-    数据,（带有栅格经纬度编号两列）
+    Data, with two columns of grid ID
 shape : GeoDataFrame
-    矢量图形
-params : List
-    栅格化参数
+    Geographic polygon
+params : list or dict
+    Gridding parameters. 
+    See https://transbigdata.readthedocs.io/en/latest/grids.html 
+    for detail information about gridding parameters.
 col : List
-    列名，[经度栅格编号，纬度栅格编号]
+    Column names [LONCOL,LATCOL] for rect grids or
+    [loncol_1,loncol_2,loncol_3] for tri and hexa grids
 
-**输出**
+**Returns**
 
 data1 : DataFrame
-    数据栅格并对应矢量图形
+    Data gridding and mapping to the corresponding geographic polygon
+    
+.. function:: transbigdata.grid_to_params(grid)
 
+Regenerate gridding params from grid. Only support rect grids now.
 
+**Parameters**
 
-.. function:: transbigdata.regenerate_params(grid)
-
-Regenerate gridding params from grid.
-
-**Input**
 grid : GeoDataFrame
-    grids generated by transbigdata 
-                                            
+    grids generated by transbigdata
 
-**Output**
-params : List
-    Gridding parameters (lonStart,latStart,deltaLon,deltaLat) or (lonStart,latStart,deltaLon,deltaLat,theta), lonStart and latStart are the lower-left coordinates; deltaLon, deltaLat are the length and width of a single grid; theta is the angle of the grid, it will be 0 if not given
+
+**Returns**
+
+params : list or dict
+    Gridding parameters. 
+    See https://transbigdata.readthedocs.io/en/latest/grids.html 
+    for detail information about gridding parameters.
 
 Optimize gridding params
 ==============================
@@ -472,34 +490,284 @@ poly : Series
 .. image:: geohash/output_9_0.png
 
 
-
-
-六边形渔网生成
+Old methods
 =============================
 
-.. function:: transbigdata.hexagon_grids(bounds,accuracy = 500)
+.. function:: transbigdata.rect_grids(location,accuracy = 500,params='auto')
 
-生成研究范围内的六边形渔网。
+Generate the rectangular grids in the bounds or shape
+
+**Parameters**
+
+location : bounds(List) or shape(GeoDataFrame)
+    Where to generate grids.
+    If bounds, [lon1, lat1, lon2, lat2](WGS84), where lon1 , lat1 are the lower-left coordinates, lon2 , lat2 are the upper-right coordinates
+    If shape, it should be GeoDataFrame
+accuracy : number
+    Grid size (meter)
+params : List
+    Gridding parameters (lonStart,latStart,deltaLon,deltaLat) or (lonStart,latStart,deltaLon,deltaLat,theta), lonStart and latStart are the lower-left coordinates; deltaLon, deltaLat are the length and width of a single grid; theta is the angle of the grid, it will be 0 if not given
+    When Gridding parameters is given, accuracy will not be used.                          
+                      
+
+**Returns**
+
+grid : GeoDataFrame
+    Grid GeoDataFrame, LONCOL and LATCOL are the index of grids, HBLON and HBLAT are the center of the grids
+params : List
+    Gridding parameters (lonStart,latStart,deltaLon,deltaLat) or (lonStart,latStart,deltaLon,deltaLat,theta), lonStart and latStart are the lower-left coordinates; deltaLon, deltaLat are the length and width of a single grid; theta is the angle of the grid, it will be 0 if not given
+
+
+::
+
+    #设定范围
+    bounds = [lon1,lat1,lon2,lat2]
+    grid,params = tbd.rect_grids(bounds,accuracy = 500)
+
+
+.. function:: transbigdata.grid_params(bounds,accuracy = 500)
+
+栅格参数获取
 
 **输入**
 
 bounds : List
     生成范围的边界，[lon1,lat1,lon2,lat2] (WGS84坐标系) 其中，lon1,lat1是左下角坐标，lon2,lat2是右上角坐标 
 accuracy : number
-    六边形的边长（米）
+    栅格大小（米）
+                                           
+
+**输出**
+
+params : List
+    栅格参数(lonStart,latStart,deltaLon,deltaLat)，分别为栅格左下角坐标与单个栅格的经纬度长宽
+
+
+::
+
+    bounds = [113.75194,22.447837,114.624187,22.864748]
+    tbd.grid_params(bounds,accuracy = 500)
+
+
+.. function:: transbigdata.GPS_to_grids(lon,lat,params)
+
+GPS数据对应栅格编号。输入数据的经纬度列与栅格参数，输出对应的栅格编号
+
+**输入**
+
+lon : Series
+    经度列
+lat : Series
+    纬度列
+params : List
+    栅格参数(lonStart,latStart,deltaLon,deltaLat)，分别为栅格左下角坐标与单个栅格的经纬度长宽
                                            
 **输出**
 
-hexagon : GeoDataFrame
-    六边形渔网的矢量图形
+LONCOL : Series
+    经度栅格编号列
+LATCOL : Series
+    纬度栅格编号列
+
+::
+
+    data['LONCOL'],data['LATCOL'] = tbd.GPS_to_grids(data['Lng'],data['Lat'],params)
+
+.. function:: transbigdata.grids_centre(loncol,latcol,params)
+
+栅格编号对应栅格中心点经纬度。输入数据的栅格编号与栅格参数，输出对应的栅格中心点
+
+**输入**
+
+LONCOL : Series
+    经度栅格编号列
+LATCOL : Series
+    纬度栅格编号列
+params : List
+    栅格参数(lonStart,latStart,deltaLon,deltaLat)，分别为栅格左下角坐标与单个栅格的经纬度长宽
+                                           
+**输出**
+
+HBLON : Series
+    栅格中心点经度列
+HBLAT : Series
+    栅格中心点纬度列
+
+
+::
+
+    data['HBLON'],data['HBLAT'] = tbd.grids_centre(data['LONCOL'],data['LATCOL'],params)
+
+.. function:: transbigdata.gridid_to_polygon(loncol,latcol,params)
+
+栅格编号生成栅格的地理信息列。输入数据的栅格编号与栅格参数，输出对应的地理信息列
+
+**输入**
+
+LONCOL : Series
+    经度栅格编号列
+LATCOL : Series
+    纬度栅格编号列
+params : List
+    栅格参数(lonStart,latStart,deltaLon,deltaLat)，分别为栅格左下角坐标与单个栅格的经纬度长宽
+                                           
+**输出**
+
+geometry : Series
+    栅格的矢量图形列
+
+::
+
+    data['geometry'] = tbd.gridid_to_polygon(data['LONCOL'],data['LATCOL'],params)
+
+.. function:: transbigdata.gridid_sjoin_shape(data,shape,params,col = ['LONCOL','LATCOL'])
+
+输入数据（带有栅格经纬度编号两列），矢量图形与栅格化参数，输出数据栅格并对应矢量图形。
+
+**输入**
+
+data : DataFrame
+    数据,（带有栅格经纬度编号两列）
+shape : GeoDataFrame
+    矢量图形
+params : List
+    栅格化参数
+col : List
+    列名，[经度栅格编号，纬度栅格编号]
+
+**输出**
+
+data1 : DataFrame
+    数据栅格并对应矢量图形
+
+
+
+.. function:: transbigdata.regenerate_params(grid)
+
+Regenerate gridding params from grid.
+
+**Input**
+grid : GeoDataFrame
+    grids generated by transbigdata 
+                                            
+
+**Output**
+params : List
+    Gridding parameters (lonStart,latStart,deltaLon,deltaLat) or (lonStart,latStart,deltaLon,deltaLat,theta), lonStart and latStart are the lower-left coordinates; deltaLon, deltaLat are the length and width of a single grid; theta is the angle of the grid, it will be 0 if not given
+
+
+.. function:: transbigdata.GPS_to_grids_tri(lon, lat, params)
+
+Match the GPS data to the Triangle grids. The input is the columns of
+longitude, latitude, and the grids parameter. The output is the grid ID.
+
+**Parameters**
+
+lon : Series
+    The column of longitude
+lat : Series
+    The column of latitude
+params : List
+    Gridding parameters (lonStart, latStart, deltaLon, deltaLat) or
+    (lonStart, latStart, deltaLon, deltaLat, theta).
+    lonStart and latStart are the lower-left coordinates;
+    deltaLon, deltaLat are the length and width of a single grid;
+    theta is the angle of the grid, it will be 0 if not given.
+    When Gridding parameters is given, accuracy will not be used.
+
+**Returns**
+
+gridid : Series
+    The index of the triangle grid.
+
+
+.. function:: transbigdata.gridid_to_polygon_tri(gridid, params)
+
+Generate the geometry column based on the Triangle grid ID.
+The input is the grid ID, the output is the geometry.
+
+**Parameters**
+
+gridid : Series
+    The index of the triangle grid.
+params : List
+    Gridding parameters (lonStart, latStart, deltaLon, deltaLat) or
+    (lonStart, latStart, deltaLon, deltaLat, theta).
+    lonStart and latStart are the lower-left coordinates;
+    deltaLon, deltaLat are the length and width of a single grid;
+    theta is the angle of the grid, it will be 0 if not given.
+    When Gridding parameters is given, accuracy will not be used.
+
+**Returns**
+
+geometry : Series
+    The column of grid geographic polygon
 
 ::
 
     
-    #设定范围
-    bounds = [113.6,22.4,114.8,22.9]
-    hexagon = tbd.hexagon_grids(bounds,accuracy = 5000)
-    hexagon.plot()
+    #Map the GPS data to triangle grids
+    data['gridid'] = tbd.GPS_to_grids_tri(data['lon'],data['lat'],params)
+    #Generate grid geometry
+    grid_agg['geometry'] = tbd.gridid_to_polygon_tri(grid_agg['gridid'],params)
 
-.. image:: _static/WX20211021-201747@2x.png
+.. image:: _static/WechatIMG2459.jpeg
+   :height: 200
+
+
+.. function:: transbigdata.GPS_to_grids_hexa(lon, lat, params)
+
+Match the GPS data to the Hexagon grids. The input is the columns of
+longitude, latitude, and the grids parameter. The output is the grid ID.
+
+**Parameters**
+
+lon : Series
+    The column of longitude
+lat : Series
+    The column of latitude
+params : List
+    Gridding parameters (lonStart, latStart, deltaLon, deltaLat) or
+    (lonStart, latStart, deltaLon, deltaLat, theta).
+    lonStart and latStart are the lower-left coordinates;
+    deltaLon, deltaLat are the length and width of a single grid;
+    theta is the angle of the grid, it will be 0 if not given.
+    When Gridding parameters is given, accuracy will not be used.
+
+**Returns**
+
+gridid : Series
+    The index of the hexagon grid.
+
+.. function:: transbigdata.gridid_to_polygon_hexa(gridid, params)
+
+Generate the geometry column based on the Hexagon grids ID.
+The input is the grid ID, the output is the geometry.
+
+**Parameters**
+
+gridid : Series
+    The index of the hexagon grid.
+params : List
+    Gridding parameters (lonStart, latStart, deltaLon, deltaLat) or
+    (lonStart, latStart, deltaLon, deltaLat, theta).
+    lonStart and latStart are the lower-left coordinates;
+    deltaLon, deltaLat are the length and width of a single grid;
+    theta is the angle of the grid, it will be 0 if not given.
+    When Gridding parameters is given, accuracy will not be used.
+
+**Returns**
+
+geometry : Series
+    The column of grid geographic polygon
+
+::
+
+    
+    #Map the GPS data to hexagon grids
+    data['gridid'] = tbd.GPS_to_grids_hexa(data['lon'],data['lat'],params)
+    #Generate grid geometry
+    grid_agg['geometry'] = tbd.gridid_to_polygon_hexa(grid_agg['gridid'],params)
+
+.. image:: _static/WechatIMG2470.jpeg
    :height: 200
