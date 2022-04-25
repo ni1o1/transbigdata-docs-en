@@ -191,7 +191,7 @@ params : list or dict
 Optimize gridding params
 ==============================
 
-.. function:: transbigdata.grid_params_optimize(data,initialparams,col=['uid','lon','lat'],method='centerdist',printlog=False,sample=0)
+.. function:: transbigdata.grid_params_optimize(data,initialparams,col=['uid','lon','lat'],optmethod='centerdist',printlog=False,sample=0,pop=15,max_iter=50,w=0.1,c1=0.5,c2=0.5)
 
 Optimize the grid params
 
@@ -203,12 +203,14 @@ initialparams : List
     Initial griding params
 col : List
     Column names [uid,lon,lat]
-method : str
+optmethod : str
     The method to optimize: centerdist, gini, gridscount
 printlog : bool
-    Whether to print log or not
+    Whether to print detail result
 sample : int
     Sample the data as input, if 0 it will not perform sampling
+pop,max_iter,w,c1,c2:
+    Params in PSO from scikit-opt
     
 **Output**
 
