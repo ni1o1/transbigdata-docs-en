@@ -143,6 +143,26 @@ style : number
 
 .. image:: plot_map/10.png
 
+
+Basemap style 11: light (without labels)
+----------------------------------------
+
+.. image:: plot_map/11.png
+
+Basemap style 12: dark (without labels)
+----------------------------------------
+
+.. image:: plot_map/12.png
+
+Self-defined style
+----------------------------------------
+
+support selfdefined mapbox style
+
+::
+
+    tbd.plot_map(plt,bounds,zoom = 11,style = 'mapbox://styles/ni1o1/cl38pljx0006r14qp7ioy7gcc')
+
 用法
 ----------------------------------------
 
