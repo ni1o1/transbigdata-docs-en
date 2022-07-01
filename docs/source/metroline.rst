@@ -28,10 +28,12 @@ nxgraph : bool
 **Returns**
 
 *When the nxgraph parameter is True*
+
 G : networkx.classes.graph.Graph
     Network G built by networkx.
 
 *When the nxgraph parameter is False* (This is for detail design of the network)
+
 edge1 : DataFrame
     Network edge for line section.
 edge2 : DataFrame
