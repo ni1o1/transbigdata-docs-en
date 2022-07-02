@@ -84,7 +84,7 @@ tbd.split_subwayline方法可以用轨道站点切分轨道线路，得到轨道
 ::
 
     #Modeling for subway network topology
-    line['speed'] = 36 #operation speed 36km/h
+    line['speed'] = 55 #operation speed 55km/h
     line['stoptime'] = 0.5 #stop time at each stations 30s
     import networkx as nx
     G = tbd.metro_network(line,stop, transfertime=5)
@@ -183,4 +183,4 @@ Obtain the travel time
 
 ::
 
-    68.00206888083389
+    49.34680872200037
