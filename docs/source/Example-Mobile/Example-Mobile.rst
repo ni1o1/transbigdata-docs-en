@@ -102,7 +102,6 @@ When processing mobile phone data, TransBigData’s approach is to first
 correspond the data to the grids and treat the data within the same grid
 as being at the same location to avoid data positioning errors that
 cause the same location to be identified as multiple.
-处理手机数据时，TransBigData的方法是先将数据对应至栅格，将同一个栅格内的数据视为在同一个位置，以避免数据定位误差导致同一位置被识别为多个。
 
 ::
 
