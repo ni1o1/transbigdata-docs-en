@@ -1,6 +1,7 @@
 Mobile phone data processing
 =================================
 
+| Jupyter notebook for this example: `点击这里 <https://github.com/ni1o1/transbigdata/blob/main/example/Example%208-Mobile%20phone%20data%20processing.ipynb>`__.
 | In this example, we will introduce how to use the TransBigData to
   process mobile phone data.
 | Firstly, import the TransBigData and read the data using pandas
